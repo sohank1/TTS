@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Button } from "@material-ui/core"
-// import styles from "./Home.module.scss"
+import { Button } from "@material-ui/core";
 
 export const HomePage = () => {
     const navLinks = [
@@ -41,7 +40,7 @@ export const HomePage = () => {
                 <app-join></app-join> */}
                     </section>
                 </div>
-                <img className="tomatohead" src="../../../assets/tomatohead.png" alt="A picture of tomatohead." />
+                <img className="tomatohead" src="/assets/tomatohead.png" alt="A picture of tomatohead." />
             </div>
 
             <article className="team-pizza">
