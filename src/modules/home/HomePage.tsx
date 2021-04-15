@@ -17,7 +17,7 @@ export const HomePage = () => {
                 </Link>
                 <div className="links">
                     {navLinks.map(link => (
-                        <Link href={link.path}>
+                        <Link key={link.path} href={link.path}>
                             <Button className="a">{link.name}</Button>
                         </Link>
                     ))}
