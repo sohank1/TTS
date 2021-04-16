@@ -35,6 +35,9 @@ export const HomePage = () => {
                 for new members like you!</p>
 
                     <section>
+                        <div>
+                            <Button variant="contained" color="primary">Login</Button>
+                        </div>
                         {/* <app-login *ngIf="!user"></app-login>
                 <app-home-logout *ngIf="user"></app-home-logout>
                 <app-join></app-join> */}

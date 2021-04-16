@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import Router from 'next/router';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { StylesProvider } from '@material-ui/core/styles'
 import NProgress from 'nprogress';
 import '../styles/globals.scss'
 import 'nprogress/nprogress.css';
@@ -34,9 +35,11 @@ const theme = createMuiTheme({
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <StylesProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </StylesProvider>
   )
 
 }
