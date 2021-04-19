@@ -46,6 +46,15 @@
         }
     }
 
+    .hamburger {
+        margin: 1rem;
+        margin-top: 1.5rem;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
     h1 {
         margin: 4rem 2rem 2rem;
         font-weight: $extra-bold;
@@ -211,42 +220,33 @@
             }
         }
     }
-}
 
-.hamburger {
-    margin: 1rem;
-    margin-top: 1.5rem;
+    // app-login,
+    // app-join,
+    // app-home-logout {
+    //     margin: 1rem 2rem;
+    //     @include tablet {
+    //         margin-left: 0;
+    //     }
+    // }
 
-    @include tablet {
-        display: none;
-    }
-}
+    // app-login,
+    // app-home-logout {
+    //     @include tablet {
+    //         margin-left: 3rem;
+    //     }
+    // }
 
-// app-login,
-// app-join,
-// app-home-logout {
-//     margin: 1rem 2rem;
-//     @include tablet {
-//         margin-left: 0;
-//     }
-// }
+    //  .discordimg {
+    //     @include laptop {
+    //         width: 90%;
+    //     }
+    // }
 
-// app-login,
-// app-home-logout {
-//     @include tablet {
-//         margin-left: 3rem;
-//     }
-// }
-
-.discordimg {
-    @include laptop {
-        width: 90%;
-    }
-}
-
-// Remove the margin inside of grids.
-.article .text > * {
-    @include laptop {
-        margin-left: 0;
+    // Remove the margin inside of grids.
+    article .text > * {
+        @include laptop {
+            margin-left: 0;
+        }
     }
 }

@@ -1,0 +1,93 @@
+@import "../../styles/variables.scss";
+
+.nav-bar-ui-component {
+    .MuiDrawer-paper {
+        height: 100vh;
+        padding: 20px;
+        width: 75%;
+        background: $bg-alt;
+        overflow: hidden !important;
+
+        section {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            margin-right: 1rem;
+        }
+
+        #close {
+            margin: 0 0 0 12rem;
+            padding-left: 16px;
+            padding-right: 16px;
+            line-height: 36px;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            height: 80%;
+            width: 50%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .links,
+        .link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .link {
+            justify-content: flex-start;
+        }
+
+        .link {
+            svg {
+                margin-right: 0.8rem;
+                width: 35px;
+                height: 35px;
+
+                &,
+                path {
+                    fill: $footer-text;
+                }
+            }
+        }
+
+        button {
+            text-transform: none;
+
+            font-size: 1.5rem;
+            font-weight: $semi-bold;
+            color: $nav-text;
+            text-align: left;
+            margin: 1rem 0;
+            padding: 0 0.4rem;
+            height: 2.5rem;
+        }
+
+        .login-button {
+            margin: 3rem 0.7rem;
+        }
+
+        .active {
+            color: $active;
+
+            svg,
+            svg path {
+                fill: $active !important;
+                margin-right: 0.4rem;
+            }
+
+            border-radius: 1rem;
+            border: 0.2rem solid $active;
+            height: 4rem;
+            padding-right: 1rem;
+            padding-left: 1rem;
+            white-space: nowrap;
+        }
+    }
+}
