@@ -67,6 +67,7 @@
             margin: 1rem 0;
             padding: 0 0.4rem;
             height: 2.5rem;
+            white-space: nowrap;
         }
 
         .login-button {
@@ -87,7 +88,6 @@
             height: 4rem;
             padding-right: 1rem;
             padding-left: 1rem;
-            white-space: nowrap;
         }
     }
 }
