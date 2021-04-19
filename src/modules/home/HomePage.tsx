@@ -3,6 +3,7 @@ import { Button } from "@material-ui/core";
 import { LoginButton } from "../../ui/LoginButton";
 import { JoinButton } from "../../ui/JoinButton";
 import { Footer } from "../../ui/Footer";
+import { JourneyButton } from "../../ui/JourneyButton";
 
 const navLinks = [
     { name: 'Dashboard', svg: 'app-dashboard', path: '/dashboard' },
@@ -44,12 +45,6 @@ export const HomePage = () => (
                     <div className="join-button">
                         <JoinButton />
                     </div>
-                    {/* <div> */}
-                    {/* <Button variant="contained" color="primary">Login</Button> */}
-                    {/* </div> */}
-                    {/* <app-login *ngIf="!user"></app-login>
-                <app-home-logout *ngIf="user"></app-home-logout>
-                <app-join></app-join> */}
                 </section>
             </div>
             <img className="tomatohead" src="/assets/tomatohead.png" alt="A picture of tomatohead." />
@@ -86,7 +81,9 @@ export const HomePage = () => (
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Bibendum magna morbi facilisis tellus diam amet. Enim
                 magna. changed</p>
-                {/* <app-journey></app-journey> */}
+                <div className="journey-button">
+                    <JourneyButton />
+                </div>
             </div>
         </article>
 
