@@ -3,7 +3,7 @@ import React from "react";
 import { footerLinks } from "./FooterLinks";
 
 interface FooterProps {
-    color: 'bg' | 'bg-alt';
+    color?: 'bg' | 'bg-alt';
 }
 
 export const Footer: React.FC<FooterProps> = ({ color }) => (
@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ color }) => (
 
             <section className="icons">
                 {footerLinks.map((l) => (
-                    <Button href={l.url}>
+                    <Button href={l.url} key={l.url}>
                         <img src={l.svgPath} />
                     </Button>
                 ))}
