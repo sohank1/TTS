@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@material-ui/core";
 import { LoginButton } from "../../ui/LoginButton";
 import { JoinButton } from "../../ui/JoinButton";
+import { Footer } from "../../ui/Footer";
 
 const navLinks = [
     { name: 'Dashboard', svg: 'app-dashboard', path: '/dashboard' },
@@ -88,5 +89,7 @@ export const HomePage = () => (
                 {/* <app-journey></app-journey> */}
             </div>
         </article>
+
+        <Footer />
     </div>
 )
