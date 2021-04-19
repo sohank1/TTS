@@ -119,35 +119,15 @@
                     flex-direction: row;
                 }
 
-                div button {
+                .login-button,
+                .join-button {
                     margin: 1rem 2rem;
-                    font-weight: $bold;
-                    font-size: 1.5rem;
-                    padding: 0.5rem 2.5rem;
-                    background: $primary;
-                    border-radius: 1rem;
-                    height: 62px;
-                    text-transform: none;
-
-                    &:hover {
-                        background: lighten($primary, 3%);
-                    }
-                    @include phone {
-                        padding: 0.7rem 2.5rem;
-                        border-radius: 1rem;
-                    }
-
-                    @include tablet {
-                        padding: 0.8rem 2.5rem;
-                        border-radius: 0.8rem;
-                    }
-
                     @include tablet {
                         margin-left: 0;
                     }
                 }
 
-                div button {
+                .login-button {
                     @include tablet {
                         margin-left: 3rem;
                     }

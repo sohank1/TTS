@@ -1,7 +1,10 @@
 @import "reset";
 @import "responsive";
 @import "../modules/home/Home";
+@import "../ui/LoginButton/LoginButton.scss";
+@import "../ui/JoinButton/JoinButton.scss";
+
 #nprogress {
     position: relative;
-    z-index: 9999999;
+    z-index: 100;
 }
