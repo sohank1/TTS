@@ -5,6 +5,7 @@ import { StylesProvider } from '@material-ui/core/styles'
 import NProgress from 'nprogress';
 import '../styles/globals.scss'
 import 'nprogress/nprogress.css';
+import { WebSocketProvider } from '../modules/ws/WebSocketProvider';
 
 
 Router.events.on("routeChangeStart", () => {
@@ -35,11 +36,13 @@ const theme = createMuiTheme({
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <StylesProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </StylesProvider>
+    <WebSocketProvider shouldConnect={true}>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </StylesProvider>
+    </WebSocketProvider>
   )
 
 }
