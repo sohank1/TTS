@@ -1,11 +1,13 @@
 import { useRouter } from "next/router"
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { loginRedirectPathKey } from "../../lib/constants";
 import { useTokenStore } from "./useTokenStore";
 
-export const useSaveTokens = () => {
+export const SaveTokens: React.FC = ({ children }) => {
     const { query, replace } = useRouter();
     const { accessToken, refreshToken } = query;
+    const [show, setShow] = useState(false)
+
 
     useEffect(() => {
         if (typeof accessToken === "string" &&
@@ -23,9 +25,13 @@ export const useSaveTokens = () => {
             const loginRedirectPath = localStorage.getItem(loginRedirectPathKey);
             console.log(loginRedirectPath)
 
-            if (loginRedirectPath?.startsWith("/"))
+            if (loginRedirectPath?.startsWith("/")) {
                 replace(loginRedirectPath);
+                setShow(true);
+            }
         }
-    }), [accessToken, refreshToken, replace]
+    }), [accessToken, refreshToken]
 
+    if (!show) return <div></div>;
+    return <>{children}</>
 }

@@ -13,6 +13,7 @@ const DashboardPage = () => {
 
     return (
         <p>
+            asdf
             {/* {JSON.stringify(conn.user, null, 4)} */}
         </p>
     )

@@ -6,14 +6,11 @@ import NProgress from 'nprogress';
 import '../styles/globals.scss'
 import 'nprogress/nprogress.css';
 import { WebSocketProvider } from '../modules/ws/WebSocketProvider';
-import { useSaveTokens } from '../modules/auth/useSaveTokens';
 import { useSaveLoginRedirectPath } from '../modules/auth/useSaveLoginRedirectPath';
 import { WaitForWsAndAuth } from '../modules/auth/WaitForWsAndAuth';
 
 
-Router.events.on("routeChangeStart", () => {
-  NProgress.start();
-});
+Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
