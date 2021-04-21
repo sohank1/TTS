@@ -6,7 +6,6 @@ import { useTokenStore } from "./useTokenStore";
 export const SaveTokens: React.FC = ({ children }) => {
     const { query, replace } = useRouter();
     const { accessToken, refreshToken } = query;
-    const [show, setShow] = useState(false)
 
 
     useEffect(() => {
@@ -27,11 +26,11 @@ export const SaveTokens: React.FC = ({ children }) => {
 
             if (loginRedirectPath?.startsWith("/")) {
                 replace(loginRedirectPath);
-                setShow(true);
+                // setShow(true);
             }
         }
     }), [accessToken, refreshToken]
 
-    if (!show) return <div></div>;
+    if (accessToken && refreshToken) return <div></div>;
     return <>{children}</>
 }
