@@ -1,9 +1,18 @@
 import Head from "next/head";
+import { useContext, useEffect } from "react";
 import { useSaveTokens } from "../modules/auth/useSaveTokens";
 import { HomePage as Home } from "../modules/home/HomePage";
+import { WebSocketContext } from "../modules/ws/WebSocketProvider";
 
 const HomePage = () => {
     useSaveTokens();
+    const { setConn } = useContext(WebSocketContext);
+
+
+    // useEffect(() => {
+    //     setConn(null);
+    // }, [])
+
 
     return (
         <>

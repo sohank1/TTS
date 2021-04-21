@@ -50,7 +50,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
                 onUser: (user) => {
                     console.log("user", user)
                     setConn({ ...conn, user })
-                    isConnecting.current = false
+                    isConnecting.current = false;
                 }
             })
                 .then(c => setConn(c))

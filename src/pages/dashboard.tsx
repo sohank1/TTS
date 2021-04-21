@@ -5,15 +5,15 @@ import { useConn } from "../shared-hooks/useConn";
 
 const DashboardPage = () => {
     const { setConn } = useContext(WebSocketContext);
-    const conn = useConn();
+    // const conn = useConn();
     useEffect(() => {
         // setConn(null);
-        console.log(conn)
+        // console.log(conn)
     }, [])
 
     return (
         <p>
-            {JSON.stringify(conn.user, null, 4)}
+            {/* {JSON.stringify(conn.user, null, 4)} */}
         </p>
     )
 }

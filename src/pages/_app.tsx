@@ -38,19 +38,18 @@ const theme = createMuiTheme({
 });
 
 function App({ Component, pageProps }: AppProps) {
-
   useSaveLoginRedirectPath();
-
+  {/* </WaitForWsAndAuth> */ }
   return (
-    <WebSocketProvider shouldConnect={true}>
-      <WaitForWsAndAuth>
-        <StylesProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </StylesProvider>
-      </WaitForWsAndAuth>
-    </WebSocketProvider>
+    // <WebSocketProvider shouldConnect={true}>
+
+    < StylesProvider injectFirst >
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </StylesProvider >
+
+    // </WebSocketProvider>
   )
 
 }
