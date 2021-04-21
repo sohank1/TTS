@@ -1,7 +1,10 @@
 import Head from "next/head";
+import { useSaveTokens } from "../modules/auth/useSaveTokens";
 import { HomePage as Home } from "../modules/home/HomePage";
 
 const HomePage = () => {
+    useSaveTokens();
+
     return (
         <>
             <Head>

@@ -11,7 +11,8 @@ export const connect = (
         onConnectionTaken = () => { },
         onClearTokens = () => { },
         url = apiUrl,
-        getAuthOptions
+        getAuthOptions,
+        onUser
     }: {
         onConnectionTaken?: () => void;
         onClearTokens?: () => void;
@@ -20,33 +21,41 @@ export const connect = (
             token: Token;
             refreshToken: Token
         }>
+        onUser?: (u: User) => void;
 
     }
 ): Promise<Connection> =>
     new Promise((res, rej) => {
         const socket = io(url);
 
-        socket.on("connect", () => {
-            socket.emit("auth", {
-                accessToken: token,
-                refreshToken,
-                ...getAuthOptions?.()
-            })
-        })
+        // socket.on("connect", () => {
+        const data = {
+            accessToken: token,
+            refreshToken,
+            ...getAuthOptions?.()
+        }
+        console.log(data)
+        if (data.accessToken && data.refreshToken) {
+            console.log("emitting auth")
+            socket.emit("auth", data)
+        }
+        // })
 
         socket.on("auth-error", ({ error }: { error: Error }) => {
             if (error.code === 400) {
-                socket.close();
-                onClearTokens();
+                console.log(error)
+                // socket.close();
+                // onClearTokens();
             }
-
-            rej(error);
+            // rej(error);
         })
 
-        socket.on("auth-success", (user: User) => {
+
+
+        socket.on("connect", () => {
             const conn: Connection = {
                 socket,
-                user,
+                user: null,
                 close: () => socket.close(),
                 fetch: (event: string, data: unknown, serverEvent: string): Promise<any> =>
                     new Promise((resFetch, rejFetch) => {
@@ -59,6 +68,10 @@ export const connect = (
                     })
             }
 
+            socket.on("auth-success", (u: User) => onUser(u))
+
             res(conn);
         })
+
+
     })

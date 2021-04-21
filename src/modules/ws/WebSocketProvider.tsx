@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import React, { createContext, useEffect, useMemo, useRef, useState } from "react";
 import { BASE_URL } from "../../lib/constants";
+import { useHasTokens } from "../auth/useHasTokens";
+import { useTokenStore } from "../auth/useTokenStore";
 import { connect, Connection, User } from "./client";
 
 type V = Connection | null;
@@ -23,36 +25,46 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
     shouldConnect,
     children,
 }) => {
-    // check if has tokens
+    console.log("ws providor")
+    const { replace } = useRouter();
     const [conn, setConn] = useState<V>(null);
     const isConnecting = useRef(false);
+    const hasTokens = useHasTokens();
 
     useEffect(() => {
         if (!conn && shouldConnect && !isConnecting.current) {
             isConnecting.current = true;
+            console.log("connecting to websocket", isConnecting.current)
             connect("", "", {
                 url: BASE_URL,
                 getAuthOptions: () => {
-                    // get token logic
-                    return {
-                        accessToken: "asdf",
-                        refreshToken: "asdf"
-                    }
+
+                    const { accessToken, refreshToken } = useTokenStore.getState();
+                    console.log("getting auth options", accessToken, refreshToken);
+                    return { accessToken, refreshToken };
                 },
                 onClearTokens: () => {
-                    setConn(null);
-                    // clear token logic
+                    replace("/logout");
+                    // setConn(null);
+                },
+                onUser: (user) => {
+                    console.log("user", user)
+                    setConn({ ...conn, user })
+                    isConnecting.current = false
                 }
             })
                 .then(c => setConn(c))
                 .catch((err) => {
                     console.log(err)
-                    // if (err.code === 400) 
-                    // save next url if bad request
+                    if (err.code === 400) {
+                        // go to logout page if bad request
+                        // replace("/logout")
+                        // setConn(null);
+                    }
                 })
                 .finally(() => isConnecting.current = false)
         }
-    }, [conn, shouldConnect])
+    }, [conn, shouldConnect, replace])
 
     useEffect(() => {
         if (!conn) return;
