@@ -1,3 +1,8 @@
+import { isServer } from "../../lib/isServer";
 import { useTokenStore } from "./useTokenStore"
 
-export const useHasTokens = () => useTokenStore((s) => !!(s.accessToken && s.refreshToken));
+export const useHasTokens = () => {
+    console.log("isServer", isServer)
+    if (isServer) return false;
+    return useTokenStore((s) => !!(s.accessToken && s.refreshToken))
+};

@@ -1,9 +1,11 @@
 
 import { useContext, useEffect } from "react";
 import { useHasTokens } from "../modules/auth/useHasTokens";
+import { useTokenStore } from "../modules/auth/useTokenStore";
 import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
 import { WebSocketContext } from "../modules/ws/WebSocketProvider";
 import { useConn } from "../shared-hooks/useConn";
+
 
 const DashboardPage = () => {
     // const { setConn } = useContext(WebSocketContext);
@@ -14,15 +16,17 @@ const DashboardPage = () => {
         console.log("conn", conn);
     }, [conn])
 
+    setInterval(() => console.log(hasTokens), 2000)
+
     return (
         // <WaitForWsAndAuth>
-        <p>
-            {!hasTokens ? <h3> You are not logged in</h3> : null}
-            {conn?.user ? <>
-                {JSON.stringify(conn?.user, null, 4)}
-                <img src={conn?.user?.avatarUrl} /></> : null}
+        <>
 
-        </p>
+            {conn?.user ? <>
+                <p>{JSON.stringify(conn?.user, null, 4)}</p>
+                <img src={conn?.user?.avatarUrl} /></> :
+                !hasTokens && <h3>You are not logged in</h3>}
+        </>
         // </WaitForWsAndAuth>
     )
 }
