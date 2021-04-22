@@ -16,7 +16,7 @@ const DashboardPage = () => {
         <WaitForWsAndAuth>
             <p>
                 {JSON.stringify(conn?.user, null, 4)}
-                <img src={conn?.user.avatarUrl}></img>
+                <img src={conn?.user?.avatarUrl}></img>
             </p>
         </WaitForWsAndAuth>
     )
