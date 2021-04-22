@@ -94,7 +94,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
                     .finally(() => {
                         // isConnecting.current = false;                    
                     })
-            }, 200)
+            }, 90)
         }
 
     }, [replace])
