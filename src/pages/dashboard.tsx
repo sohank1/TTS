@@ -16,8 +16,6 @@ const DashboardPage = () => {
         console.log("conn", conn);
     }, [conn])
 
-    setInterval(() => console.log(hasTokens), 2000)
-
     return (
         // <WaitForWsAndAuth>
         <>
