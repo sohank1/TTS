@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { loginRedirectPathKey } from "../../lib/constants";
 import { useTokenStore } from "./useTokenStore";
 
-export const SaveTokens: React.FC = ({ children }) => {
+export const useSaveTokens = () => {
     const { query, replace } = useRouter();
     const { accessToken, refreshToken } = query;
 
@@ -31,6 +31,4 @@ export const SaveTokens: React.FC = ({ children }) => {
         }
     }), [accessToken, refreshToken]
 
-    if (accessToken && refreshToken) return <div></div>;
-    return <>{children}</>
 }

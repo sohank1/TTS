@@ -8,6 +8,7 @@ import 'nprogress/nprogress.css';
 import { WebSocketProvider } from '../modules/ws/WebSocketProvider';
 import { useSaveLoginRedirectPath } from '../modules/auth/useSaveLoginRedirectPath';
 import { WaitForWsAndAuth } from '../modules/auth/WaitForWsAndAuth';
+import { useSaveTokens } from '../modules/auth/useSaveTokens';
 
 
 Router.events.on("routeChangeStart", () => NProgress.start());
@@ -35,18 +36,19 @@ const theme = createMuiTheme({
 });
 
 function App({ Component, pageProps }: AppProps) {
+
   useSaveLoginRedirectPath();
   {/* </WaitForWsAndAuth> */ }
   return (
-    // <WebSocketProvider shouldConnect={true}>
+    <WebSocketProvider shouldConnect={true}>
 
-    < StylesProvider injectFirst >
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </StylesProvider >
+      <StylesProvider injectFirst >
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </StylesProvider >
 
-    // </WebSocketProvider>
+    </WebSocketProvider>
   )
 
 }

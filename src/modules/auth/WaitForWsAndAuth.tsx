@@ -4,7 +4,7 @@ import { useConn } from "../../shared-hooks/useConn";
 export const WaitForWsAndAuth: React.FC = ({ children }) => {
     const conn = useConn();
 
-    if (!conn) return null;
+    if (!conn?.user) return null;
 
-    return <>{children}</>
+    return <>{children}</>;
 }

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { createContext, useEffect, useMemo, useRef, useState } from "react";
 import { BASE_URL } from "../../lib/constants";
 import { useHasTokens } from "../auth/useHasTokens";
+import { useSaveTokens } from "../auth/useSaveTokens";
 import { useTokenStore } from "../auth/useTokenStore";
 import { connect, Connection, User } from "./client";
 
@@ -25,46 +26,78 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
     shouldConnect,
     children,
 }) => {
-    console.log("ws providor")
-    const { replace } = useRouter();
+    console.log("ws providor");
+    useSaveTokens();
+    const { replace, query, route } = useRouter();
     const [conn, setConn] = useState<V>(null);
     const isConnecting = useRef(false);
     const hasTokens = useHasTokens();
 
+
+
     useEffect(() => {
+        if (query.accessToken && query.refreshToken) shouldConnect = false;
+        console.log("query", query, route)
+        console.log("websocket use effect called")
+        console.log("shouldConnect", shouldConnect)
         if (!conn && shouldConnect && !isConnecting.current) {
             isConnecting.current = true;
             console.log("connecting to websocket", isConnecting.current)
-            connect("", "", {
-                url: BASE_URL,
-                getAuthOptions: () => {
+            let v;
+            setTimeout(() => {
+                const { accessToken, refreshToken } = useTokenStore.getState();
+                console.log("getting auth options", { accessToken: accessToken || query.accessToken, refreshToken: refreshToken || query.refreshToken });
 
-                    const { accessToken, refreshToken } = useTokenStore.getState();
-                    console.log("getting auth options", accessToken, refreshToken);
-                    return { accessToken, refreshToken };
-                },
-                onClearTokens: () => {
-                    replace("/logout");
-                    // setConn(null);
-                },
-                onUser: (user) => {
-                    console.log("user", user)
-                    setConn({ ...conn, user })
-                    isConnecting.current = false;
-                }
-            })
-                .then(c => setConn(c))
-                .catch((err) => {
-                    console.log(err)
-                    if (err.code === 400) {
-                        // go to logout page if bad request
-                        // replace("/logout")
+                v = { accessToken: accessToken || query.accessToken, refreshToken: refreshToken || query.refreshToken };
+
+
+                connect(v.accessToken, v.refreshToken, {
+                    url: BASE_URL,
+                    //@ts-ignore
+                    getAuthOptions: () => {
+
+                        // const { accessToken, refreshToken } = useTokenStore.getState();
+                        // console.log("getting auth options", { accessToken: accessToken || query.accessToken, refreshToken: refreshToken || query.refreshToken });
+
+                        // return { accessToken: accessToken || query.accessToken, refreshToken: refreshToken || query.refreshToken };
+
+
+                    },
+                    onClearTokens: () => {
+                        replace("/logout");
                         // setConn(null);
+                    },
+                    onUser: (user) => {
+                        console.log("user", user);
+                        setConn(c => ({ ...c, user }));
+                        isConnecting.current = false;
                     }
                 })
-                .finally(() => isConnecting.current = false)
+                    .then(c => {
+                        if (hasTokens) {
+                            setConn(null);
+                            isConnecting.current = true
+                        }
+                        else {
+                            setConn(c);
+                            isConnecting.current = false;
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                        if (err.code === 400) {
+                            // go to logout page if bad request
+                            // replace("/logout")
+                            // setConn(null);
+                        }
+                    })
+                    .finally(() => {
+                        // isConnecting.current = false;                    
+                    })
+            }, 90)
         }
-    }, [conn, shouldConnect, replace])
+
+    }, [replace])
 
     useEffect(() => {
         if (!conn) return;
