@@ -17,7 +17,7 @@ const DashboardPage = () => {
     return (
         // <WaitForWsAndAuth>
         <p>
-            {hasTokens ? <h3> You are not logged in</h3> : null}
+            {!hasTokens ? <h3> You are not logged in</h3> : null}
             {conn?.user ? <>
                 {JSON.stringify(conn?.user, null, 4)}
                 <img src={conn?.user?.avatarUrl} /></> : null}
