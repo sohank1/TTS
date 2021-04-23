@@ -53,16 +53,15 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
 
                 connect(v.accessToken, v.refreshToken, {
                     url: BASE_URL,
-                    //@ts-ignore
-                    getAuthOptions: () => {
+                    // getAuthOptions: () => {
 
-                        // const { accessToken, refreshToken } = useTokenStore.getState();
-                        // console.log("getting auth options", { accessToken: accessToken || query.accessToken, refreshToken: refreshToken || query.refreshToken });
+                    // const { accessToken, refreshToken } = useTokenStore.getState();
+                    // console.log("getting auth options", { accessToken: accessToken || query.accessToken, refreshToken: refreshToken || query.refreshToken });
 
-                        // return { accessToken: accessToken || query.accessToken, refreshToken: refreshToken || query.refreshToken };
+                    // return { accessToken: accessToken || query.accessToken, refreshToken: refreshToken || query.refreshToken };
 
 
-                    },
+                    // },
                     onClearTokens: () => {
                         replace("/logout");
                         // setConn(null);
@@ -74,14 +73,14 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
                     }
                 })
                     .then(c => {
-                        if (hasTokens) {
-                            setConn(null);
-                            isConnecting.current = true
-                        }
-                        else {
-                            setConn(c);
-                            isConnecting.current = false;
-                        }
+                        // if (hasTokens) {
+                        // setConn(null);
+                        // isConnecting.current = true
+                        // }
+                        // else {
+                        setConn(c);
+                        isConnecting.current = false;
+                        // }
                     })
                     .catch((err) => {
                         console.log(err)

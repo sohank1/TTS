@@ -9,6 +9,8 @@ import { WebSocketProvider } from '../modules/ws/WebSocketProvider';
 import { useSaveLoginRedirectPath } from '../modules/auth/useSaveLoginRedirectPath';
 import { WaitForWsAndAuth } from '../modules/auth/WaitForWsAndAuth';
 import { useSaveTokens } from '../modules/auth/useSaveTokens';
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from '../lib/queryClient';
 
 
 Router.events.on("routeChangeStart", () => NProgress.start());
@@ -36,18 +38,17 @@ const theme = createMuiTheme({
 });
 
 function App({ Component, pageProps }: AppProps) {
-
   useSaveLoginRedirectPath();
-  {/* </WaitForWsAndAuth> */ }
+
   return (
     <WebSocketProvider shouldConnect={true}>
-
-      <StylesProvider injectFirst >
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </StylesProvider >
-
+      <QueryClientProvider client={queryClient}>
+        <StylesProvider injectFirst >
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </StylesProvider >
+      </QueryClientProvider>
     </WebSocketProvider>
   )
 

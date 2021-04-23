@@ -45,7 +45,7 @@ export const connect = (
             if (error.code === 400) {
                 console.log(error)
                 // socket.close();
-                // onClearTokens();
+                onClearTokens();
             }
             // rej(error);
         })
@@ -57,11 +57,11 @@ export const connect = (
                 socket,
                 user: null,
                 close: () => socket.close(),
-                fetch: (event: string, data: unknown, serverEvent: string): Promise<any> =>
+                fetch: (event: string, data?: unknown, serverEvent?: string): Promise<any> =>
                     new Promise((resFetch, rejFetch) => {
                         socket.emit(event, data);
 
-                        socket.on(serverEvent, (d: { error?: Error }) => {
+                        socket.on(serverEvent || `fetch-done-${event}`, (d: { error?: Error }) => {
                             if (d.error) rejFetch(d.error);
                             resFetch(d);
                         })
