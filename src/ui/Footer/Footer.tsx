@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ color }) => (
 
             <section className="icons">
                 {footerLinks.map((l) => (
-                    <Button href={l.url} key={l.url}>
+                    <Button href={l.url} key={l.url} target="_blank">
                         <img src={l.svgPath} />
                     </Button>
                 ))}
