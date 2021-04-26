@@ -3,6 +3,6 @@ import { inviteLink } from "../JoinButton/JoinButton";
 
 export const JourneyButton = () => (
     <div className="journey-button-ui-component">
-        <Button variant="contained" color="primary" href={inviteLink}>Start Your Journey</Button>
+        <Button variant="contained" color="primary" target="_blank" href={inviteLink}>Start Your Journey</Button>
     </div>
 )
