@@ -31,7 +31,7 @@ export const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
                     <ul>
                         {navLinks.map(l => (
                             <div className="links" key={l.name}>
-                                <section className="link" >
+                                <section className="link">
                                     <Link href={l.path}>
                                         <Button className={route === l.path ? "active" : null}>
                                             {(() => {

@@ -1,11 +1,14 @@
 @import "reset";
 @import "responsive";
 @import "../modules/home/HomePage";
+@import "../modules/dashboard/DashboardPage";
 @import "../ui/LoginButton/LoginButton";
 @import "../ui/JoinButton/JoinButton";
 @import "../ui/Footer/Footer";
 @import "../ui/JourneyButton/JourneyButton";
 @import "../ui/NavBar/NavBar";
+@import "../ui/DashboardNavBar/DashboardNavBar";
+@import "../ui/DashboardNavBar/DashboardUser/DashboardUser.scss";
 
 #nprogress {
     position: relative;

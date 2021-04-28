@@ -2,11 +2,11 @@ import Head from "next/head";
 import { useContext, useEffect } from "react";
 import { useSaveTokens } from "../modules/auth/useSaveTokens";
 import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
-import { HomePage as Home } from "../modules/home/HomePage";
+import { HomePage } from "../modules/home/HomePage";
 import { WebSocketContext } from "../modules/ws/WebSocketProvider";
 import { useConn } from "../shared-hooks/useConn";
 
-const HomePage = () => {
+export default function Home() {
     const conn = useConn();
     // const { setConn } = useContext(WebSocketContext);
 
@@ -41,9 +41,8 @@ const HomePage = () => {
                     <meta property="twitter:image" content="https://ttsclan.vercel.app/assets/preview.png" />
                 </Head>
                 {conn?.user ? <>{JSON.stringify(conn?.user, null, 4)}</> : null}
-                <Home />
+                <HomePage />
             </WaitForWsAndAuth>
         </>
     )
 }
-export default HomePage;
