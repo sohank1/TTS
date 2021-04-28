@@ -28,17 +28,13 @@ TTS makes it easy to view and manage all things in TTS.
 
 # Patch Notes
 - Patch Notes are a simple way for creators to share release notes of their maps and bots with TTS members
-
+- 
 - When created
   - You can add a name and an image URL for the Patch Notes
-
   - If your don't have an image you can add text with markdown to be used. Markdown can also be used with an image
-  
   - You can schedule for them to release at a certain date
-
   - You can also choose whether other creators can see your patch notes before they are scheduled to release
-
   - You can create a command for TTS Bot to integrate with the patch notes. When the command is used it will send an image with the patch notes if they are released
-
+  
 - TTS Creators and Members can like and dislike Patch Notes
 
