@@ -8,6 +8,8 @@ import { BugsIcon } from "../../icons/BugsIcon";
 import { NewsIcon } from "../../icons/NewsIcon";
 import { PatchNotesIcon } from "../../icons/PatchNotesIcon";
 import { LoginButton } from "../LoginButton";
+import { useConn } from "../../shared-hooks/useConn";
+import { DashboardUser } from "../DashboardNavBar";
 
 
 interface NavBarProps {
@@ -16,6 +18,7 @@ interface NavBarProps {
 }
 
 export const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
+    const { user } = useConn();
     const { route } = useRouter();
 
     return (
@@ -54,7 +57,7 @@ export const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
                             </div>
                         ))}
                         <div className="login-button">
-                            <LoginButton />
+                            {user ? <DashboardUser /> : <LoginButton />}
                         </div>
                     </ul>
                 </div>

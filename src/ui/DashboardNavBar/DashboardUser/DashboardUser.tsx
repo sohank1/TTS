@@ -1,16 +1,25 @@
-import { Button } from "@material-ui/core"
-import React, { useRef, useState } from "react"
+import { Button, useFormControl } from "@material-ui/core"
+import React, { useEffect, useRef, useState } from "react"
 import { CloseIcon } from "../../../icons/CloseIcon";
-import { User } from "../../../modules/ws/client";
+import { isServer } from "../../../lib/isServer";
+import { Role } from "../../../modules/ws/client";
+import { useConn } from "../../../shared-hooks/useConn";
+import { useTypeSafeQuery } from "../../../shared-hooks/useTypeSafeQuery";
 
 // const roles = data.members.find(m => m.id === "481158632008974337").roles;
 
 interface DashboardUserProps {
-    user: User;
-    roles: any;
+    roles?: Role[];
 }
 
-export const DashboardUser: React.FC<DashboardUserProps> = ({ user, roles }) => {
+export const DashboardUser: React.FC<DashboardUserProps> = ({ }) => {
+    const { user } = useConn();
+
+    const { data } = useTypeSafeQuery("getContent", { enabled: !isServer, });
+    const roles = data?.members.find(m => m.id === "481158632008974337").roles;
+
+    useEffect(() => console.log(data), [data])
+
     const [showDetail, setShowDetail] = useState(false);
     const detail = useRef<HTMLDivElement>(null);
 
@@ -22,6 +31,7 @@ export const DashboardUser: React.FC<DashboardUserProps> = ({ user, roles }) => 
     }
 
     return (
+
         <div className="dashboard-user-ui-component">
             { showDetail ?
                 <div className="detail" ref={detail}>
