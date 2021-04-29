@@ -10,8 +10,11 @@ import { NewsIcon } from "../../icons/NewsIcon";
 import { PatchNotesIcon } from "../../icons/PatchNotesIcon";
 import { LoginButton } from "../LoginButton";
 import { DashboardUser } from "./DashboardUser";
+import { useConn } from "../../shared-hooks/useConn";
+import { Footer } from "../Footer";
 
 export const DashboardNavBar: React.FC = ({ children }) => {
+    const { user } = useConn();
     const [isOpen, setIsOpen] = useState(false);
     const { route } = useRouter();
 
@@ -31,10 +34,10 @@ export const DashboardNavBar: React.FC = ({ children }) => {
             <section>
                 <div className="side-nav">
 
-                    <head>
+                    <header>
                         <img src="assets/tts-logo.png" alt="The TTS logo" />
                         <Link href="/"><Button className="tts-button on-card">TTS</Button></Link>
-                    </head>
+                    </header>
 
                     <section className="links">
                         {navLinks.map(l => (
@@ -60,18 +63,23 @@ export const DashboardNavBar: React.FC = ({ children }) => {
                         ))}
                     </section>
 
-                    {/* <div className="login-button">
-                        <LoginButton />
-                    </div> */}
 
-                    <div className="dashboard-user">
-                        <DashboardUser />
-                    </div>
+                    {user ?
+                        <div className="dashboard-user">
+                            <DashboardUser />
+                        </div> :
+                        <div className="login-button">
+                            <LoginButton />
+                        </div>}
 
                 </div>
 
                 <div className="children">
                     {<>{children}</>}
+                </div>
+
+                <div className="footer">
+                    <Footer />
                 </div>
 
             </section>

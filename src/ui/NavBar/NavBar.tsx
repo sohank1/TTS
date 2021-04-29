@@ -1,7 +1,8 @@
 import React, { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Button, ClickAwayListener, Drawer } from "@material-ui/core";
+import { Button, Drawer } from "@material-ui/core";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener"
 import { navLinks } from "./NavLinks";
 import { DashboardIcon } from "../../icons/DashboardIcon";
 import { BugsIcon } from "../../icons/BugsIcon";
@@ -22,46 +23,55 @@ export const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
     const { route } = useRouter();
 
     return (
-        <Drawer className="nav-bar-ui-component" open={isOpen} anchor="right">
+
+        <Drawer className="nav-bar-ui-component-outer" open={isOpen} anchor="right">
             <ClickAwayListener onClickAway={() => setIsOpen(false)}>
                 <div>
-                    <section>
-                        <Button onClick={() => setIsOpen(false)} id="close">
-                            <img src="assets/close.svg" />
-                        </Button>
-                    </section>
 
-                    <ul>
-                        {navLinks.map(l => (
-                            <div className="links" key={l.name}>
-                                <section className="link">
-                                    <Link href={l.path}>
-                                        <Button className={route === l.path ? "active" : null}>
-                                            {(() => {
-                                                switch (l.name) {
-                                                    case "Dashboard":
-                                                        return <DashboardIcon />
-                                                    case "Bugs":
-                                                        return <BugsIcon />
-                                                    case "News":
-                                                        return <NewsIcon />
-                                                    case "Patch Notes":
-                                                        return <PatchNotesIcon />
-                                                }
-                                            })()}
-                                            {l.name}
-                                        </Button>
-                                    </Link>
+                    <div className="nav-bar-ui-component">
+                        <div>
+                            <section>
+                                <Button onClick={() => setIsOpen(false)} id="close">
+                                    <img src="assets/close.svg" />
+                                </Button>
+                            </section>
 
-                                </section>
-                            </div>
-                        ))}
-                        <div className="login-button">
-                            {user ? <DashboardUser /> : <LoginButton />}
+                            <ul>
+                                {navLinks.map(l => (
+                                    <div className="links" key={l.name}>
+                                        <section className="link">
+                                            <Link href={l.path}>
+                                                <Button className={`${route === l.path ? "active" : null} on-card`}>
+                                                    {(() => {
+                                                        switch (l.name) {
+                                                            case "Dashboard":
+                                                                return <DashboardIcon />
+                                                            case "Bugs":
+                                                                return <BugsIcon />
+                                                            case "News":
+                                                                return <NewsIcon />
+                                                            case "Patch Notes":
+                                                                return <PatchNotesIcon />
+                                                        }
+                                                    })()}
+                                                    {l.name}
+                                                </Button>
+                                            </Link>
+
+                                        </section>
+                                    </div>
+                                ))}
+                            </ul>
                         </div>
-                    </ul>
+                    </div>
+
+
+                    <div className="login-button">
+                        {user ? <DashboardUser /> : <LoginButton />}
+                    </div>
                 </div>
             </ClickAwayListener>
+
         </Drawer>
     )
 }

@@ -24,6 +24,12 @@
         }
     }
 
+    .footer {
+        @include tablet {
+            display: none;
+        }
+    }
+
     .hamburger {
         margin: 1rem;
         margin-top: 1.5rem;
@@ -34,8 +40,10 @@
     }
 
     section {
-        display: flex;
-        justify-content: flex-start;
+        @include tablet {
+            display: flex;
+            justify-content: flex-start;
+        }
 
         .side-nav {
             display: none;
@@ -59,7 +67,7 @@
                 }
             }
 
-            head {
+            header {
                 display: flex;
                 margin-top: 1.5rem;
 
