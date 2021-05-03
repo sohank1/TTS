@@ -41,15 +41,15 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <WebSocketProvider shouldConnect={true}>
-      <HandleConnectionFailed>
-        <QueryClientProvider client={queryClient}>
-          <StylesProvider injectFirst >
-            <ThemeProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
+        <StylesProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <HandleConnectionFailed>
               <Component {...pageProps} />
-            </ThemeProvider>
-          </StylesProvider >
-        </QueryClientProvider>
-      </HandleConnectionFailed>
+            </HandleConnectionFailed>
+          </ThemeProvider>
+        </StylesProvider >
+      </QueryClientProvider>
     </WebSocketProvider>
   )
 
