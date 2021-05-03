@@ -89,7 +89,7 @@ export const connect = (
                         })
                     })
             }
-            res(conn)
+            res(conn);
             onConnectionFailed();
         })
 

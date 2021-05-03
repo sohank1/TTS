@@ -1,11 +1,15 @@
-import React, { useContext, useEffect } from "react";;
+import React, { useContext } from "react";;
 import { useRouter } from "next/router"
 import { navLinks } from "../../ui/NavBar/NavLinks";
-import { WebSocketContext } from "./WebSocketProvider";;
+import { WebSocketContext } from "./WebSocketProvider";
+import { useTokenStore } from "../auth/useTokenStore";
+import { ServerDownModal } from "../../ui/ServerDownModal";
+
 
 export const HandleConnectionFailed: React.FC = ({ children }) => {
-    const { isServerDown, conn } = useContext(WebSocketContext)
+    const { isServerDown } = useContext(WebSocketContext)
     const { route, replace } = useRouter();
+    const setTokens = useTokenStore(s => s.setTokens);
 
     try {
         if (isServerDown && navLinks.some(l => route.toLowerCase().includes(l.path)))
@@ -13,17 +17,18 @@ export const HandleConnectionFailed: React.FC = ({ children }) => {
     }
     catch { }
 
-
-    useEffect(() => console.log(isServerDown, "down?", conn), [isServerDown, conn])
-
     if (isServerDown === null) return null;
 
-    if (isServerDown) return (
-        <>
-            <h2>down</h2>
-            {children}
-        </>
-    )
+    if (isServerDown) {
+        setTokens({ accessToken: "", refreshToken: "" });
+
+        return (
+            <>
+                <ServerDownModal />
+                {children}
+            </>
+        )
+    }
 
     return <>{children}</>
 
