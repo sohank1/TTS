@@ -16,13 +16,21 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 10rem;
-        width: 85%;
+        margin: 10rem auto;
+        padding: 0 0.5rem 0.5rem 0.5rem;
+        width: 80%;
         max-width: 45rem;
-        max-height: 50%;
         background: $bg-alt;
         border: 1px solid $border;
         box-shadow: 3px 10px 4px rgba(0, 0, 0, 0.25);
+
+        @include small-phone {
+            min-height: 42rem;
+        }
+
+        @include large-phone {
+            min-height: 35rem;
+        }
     }
 
     section {
@@ -31,8 +39,7 @@
         align-items: center;
         width: 100%;
         margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-        margin-left: -1rem;
+        margin-bottom: 1rem;
     }
 
     #close {
@@ -45,10 +52,12 @@
     h1 {
         font-weight: $bold;
         font-size: 1.5rem;
+        text-align: center;
     }
 
     p {
+        margin-left: 1rem;
         margin-top: 1rem;
-        margin-left: 3rem;
+        text-align: center;
     }
 }

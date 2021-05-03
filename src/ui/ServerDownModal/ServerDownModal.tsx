@@ -15,7 +15,7 @@ export const ServerDownModal = () => {
                             </Button>
                         </section>
                         <h1>Failed to Establish Connection to Websocket Server</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, ipsam possimus voluptatem error sint ipsum explicabo alias rerum nihil totam eaque, optio facilis delectus nostrum maiores voluptas sed nobis quaerat?</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odio, illum aliquam quos expedita, consectetur quisquam hic quam corrupti ipsam nulla ducimus? Tempore molestias obcaecati repudiandae nesciunt vel error dolore!</p>
                     </div>
                 </div>
                 : null}
