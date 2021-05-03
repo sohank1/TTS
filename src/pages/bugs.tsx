@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { isServer } from "../lib/isServer";
-import { WaitForConn } from "../modules/auth/WaitForConn";
+import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
 import { useTypeSafeQuery } from "../shared-hooks/useTypeSafeQuery";
 
 const Bugs = () => {
@@ -40,8 +40,8 @@ const Bugs = () => {
 
 export default function BugsPage() {
     return (
-        <WaitForConn>
+        <WaitForWsAndAuth>
             <Bugs />
-        </WaitForConn>
+        </WaitForWsAndAuth>
     )
 }

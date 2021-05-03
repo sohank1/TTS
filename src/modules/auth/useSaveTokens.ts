@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { loginRedirectPathKey } from "../../lib/constants";
 import { useTokenStore } from "./useTokenStore";
 
@@ -24,10 +24,9 @@ export const useSaveTokens = () => {
             const loginRedirectPath = localStorage.getItem(loginRedirectPathKey);
             console.log(loginRedirectPath)
 
-            if (loginRedirectPath?.startsWith("/")) {
+            if (loginRedirectPath?.startsWith("/"))
                 replace(loginRedirectPath);
-                // setShow(true);
-            }
+
         }
     }), [accessToken, refreshToken]
 

@@ -6,13 +6,8 @@ import { Role } from "../../../modules/ws/client";
 import { useConn } from "../../../shared-hooks/useConn";
 import { useTypeSafeQuery } from "../../../shared-hooks/useTypeSafeQuery";
 
-// const roles = data.members.find(m => m.id === "481158632008974337").roles;
 
-interface DashboardUserProps {
-    roles?: Role[];
-}
-
-export const DashboardUser: React.FC<DashboardUserProps> = ({ }) => {
+export const DashboardUser = () => {
     const { user } = useConn();
 
     const { data, isLoading } = useTypeSafeQuery("getContent", { enabled: !isServer, refetchOnMount: "always" });

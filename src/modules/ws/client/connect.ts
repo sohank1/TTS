@@ -8,13 +8,13 @@ export const connect = (
     token: Token,
     refreshToken: Token,
     {
-        onConnectionTaken = () => { },
+        onConnectionFailed = () => { },
         onClearTokens = () => { },
         url = apiUrl,
         getAuthOptions,
         onUser
     }: {
-        onConnectionTaken?: () => void;
+        onConnectionFailed?: () => void;
         onClearTokens?: () => void;
         url?: string;
         getAuthOptions?: () => Partial<{
@@ -26,7 +26,7 @@ export const connect = (
     }
 ): Promise<Connection> =>
     new Promise((res, rej) => {
-        const socket = io(url);
+        const socket = io(url, { reconnection: false });
 
         // socket.on("connect", () => {
         const data = {
@@ -73,5 +73,23 @@ export const connect = (
             res(conn);
         })
 
+        socket.on("connect_error", () => {
+            const conn: Connection = {
+                socket,
+                user: null,
+                close: () => socket.close(),
+                fetch: (event: string, data?: unknown, serverEvent?: string): Promise<any> =>
+                    new Promise((resFetch, rejFetch) => {
+                        socket.emit(event, data);
+
+                        socket.on(serverEvent || `fetch-done:${event}`, (d: { error?: Error }) => {
+                            if (d.error) rejFetch(d.error);
+                            resFetch(d);
+                        })
+                    })
+            }
+            res(conn)
+            onConnectionFailed();
+        })
 
     })

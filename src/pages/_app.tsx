@@ -7,10 +7,9 @@ import '../styles/globals.scss'
 import 'nprogress/nprogress.css';
 import { WebSocketProvider } from '../modules/ws/WebSocketProvider';
 import { useSaveLoginRedirectPath } from '../modules/auth/useSaveLoginRedirectPath';
-import { WaitForWsAndAuth } from '../modules/auth/WaitForWsAndAuth';
-import { useSaveTokens } from '../modules/auth/useSaveTokens';
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from '../lib/queryClient';
+import { HandleConnectionFailed } from '../modules/ws/HandleConnectionFailed';
 
 
 Router.events.on("routeChangeStart", () => NProgress.start());
@@ -42,13 +41,15 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <WebSocketProvider shouldConnect={true}>
-      <QueryClientProvider client={queryClient}>
-        <StylesProvider injectFirst >
-          <ThemeProvider theme={theme}>
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </StylesProvider >
-      </QueryClientProvider>
+      <HandleConnectionFailed>
+        <QueryClientProvider client={queryClient}>
+          <StylesProvider injectFirst >
+            <ThemeProvider theme={theme}>
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </StylesProvider >
+        </QueryClientProvider>
+      </HandleConnectionFailed>
     </WebSocketProvider>
   )
 

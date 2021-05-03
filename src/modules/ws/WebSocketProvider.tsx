@@ -10,10 +10,12 @@ type V = Connection | null;
 
 export const WebSocketContext = createContext<{
     conn: V;
+    isServerDown: boolean;
     setUser: (u: User) => void;
     setConn: (c: V) => void
 }>({
     conn: null,
+    isServerDown: null,
     setUser: () => { },
     setConn: () => { },
 })
@@ -30,9 +32,9 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
     useSaveTokens();
     const { replace, query, route } = useRouter();
     const [conn, setConn] = useState<V>(null);
+    const [isServerDown, setIsServerDown] = useState(null);
     const isConnecting = useRef(false);
     const hasTokens = useHasTokens();
-
 
 
     useEffect(() => {
@@ -52,7 +54,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
 
 
                 connect(v.accessToken, v.refreshToken, {
-                    url: BASE_URL,
+                    url: "https://google.com",
                     // getAuthOptions: () => {
 
                     // const { accessToken, refreshToken } = useTokenStore.getState();
@@ -70,6 +72,9 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
                         console.log("user", user);
                         setConn(c => ({ ...c, user }));
                         isConnecting.current = false;
+                    },
+                    onConnectionFailed: () => {
+                        setIsServerDown(true);
                     }
                 })
                     .then(c => {
@@ -107,17 +112,18 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
         <WebSocketContext.Provider
             value={useMemo(() => ({
                 conn,
+                isServerDown,
                 setConn,
-                setUser: (u: User) => {
+                setUser: (user: User) => {
                     if (conn) {
                         setConn({
                             ...conn,
-                            user: u
+                            user,
                         })
                     }
                 }
             }), [conn])}>
-            { children}
+            {children}
         </WebSocketContext.Provider>
     )
 }
