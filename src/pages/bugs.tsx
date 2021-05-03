@@ -15,7 +15,7 @@ const Bugs = () => {
         [id]
     )
 
-    const { data: users, isLoading: usersAreLoading, refetch } = useTypeSafeQuery(
+    const { data: users, isLoading: usersAreLoading, refetch, isFetching } = useTypeSafeQuery(
         "getUsers",
         {
             enabled: false,
@@ -32,6 +32,7 @@ const Bugs = () => {
             {isLoading && <p>Loading: {isLoading}</p>}
 
             <button onClick={() => refetch()}>Get Users</button>
+            {isFetching && <h2>FETCHING.....</h2>}
             {users && <p>{JSON.stringify(users, null, 4)}</p>}
             {usersAreLoading && <p>Loading: {usersAreLoading}</p>}
         </>
