@@ -26,7 +26,7 @@ export const connect = (
     }
 ): Promise<Connection> =>
     new Promise((res, rej) => {
-        const socket = io(url);
+        const socket = io(url, { transports: ['websocket'], upgrade: false });
 
         // socket.on("connect", () => {
         const data = {
