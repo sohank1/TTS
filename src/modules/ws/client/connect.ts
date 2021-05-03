@@ -59,7 +59,8 @@ export const connect = (
                 close: () => socket.close(),
                 fetch: (event: string, data?: unknown, serverEvent?: string): Promise<any> =>
                     new Promise((resFetch, rejFetch) => {
-                        socket.emit(event, data);
+                        if (data) socket.emit(event, data);
+                        else socket.emit(event);
 
                         socket.on(serverEvent || `fetch-done:${event}`, (d: { error?: Error }) => {
                             if (d.error) rejFetch(d.error);
