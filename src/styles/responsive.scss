@@ -1,27 +1,28 @@
 @import "variables";
 
 html {
-    @include small-phone {
-        font-size: 13px;
-    }
-
-    @include phone {
-        font-size: 15px;
-    }
-
-    @include large-phone {
-        font-size: 16px;
-    }
-
-    @include tablet {
-        font-size: 16px;
-    }
-
-    @include laptop {
-        font-size: 16px;
-    }
-
-    // @include desktop {
-    //     font-size: 17px;
+    font-size: 16px;
+    // @include small-phone {
+    //     font-size: 13px;
     // }
+
+    // @include phone {
+    //     font-size: 15px;
+    // }
+
+    // @include large-phone {
+    //     font-size: 16px;
+    // }
+
+    // @include tablet {
+    //     font-size: 16px;
+    // }
+
+    // @include laptop {
+    //     font-size: 16px;
+    // }
+
+    // // @include desktop {
+    // //     font-size: 17px;
+    // // }
 }
