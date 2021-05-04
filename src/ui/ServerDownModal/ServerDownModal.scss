@@ -3,43 +3,117 @@
 .server-down-modal-ui-component {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     position: fixed;
     z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 0 0.5rem 0.5rem 0.5rem;
-    min-width: 20rem;
-    background: $bg-alt;
-    border: 1px solid $border;
-    box-shadow: 3px 10px 4px rgba(0, 0, 0, 0.4);
+
+    .modal {
+        min-width: 20rem;
+        background: $bg-alt;
+        border: 1px solid $border;
+        box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.3);
+
+        animation-name: dashboard-user-in;
+        animation-duration: 0.5s;
+
+        @keyframes server-down-modal-in {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        &.out {
+            animation-name: server-down-modal-out;
+            animation-duration: 0.2s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes server-down-modal-out {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+        }
+    }
 
     section {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         width: 100%;
-        margin-top: 0.5rem;
-        margin-bottom: 1rem;
+        margin-top: 0.7rem;
+        margin-bottom: 0.5rem;
     }
 
     #close {
         margin: 0 0 0 12rem;
+        margin-right: 1rem;
         padding-left: 16px;
         padding-right: 16px;
         line-height: 36px;
+
+        svg path {
+            transition: all 0.2s;
+        }
+
+        &:hover svg path {
+            fill: lighten($nav-text, 10%);
+        }
+    }
+
+    .text {
+        padding: 0.5rem 3rem 2rem 3rem;
     }
 
     h1 {
         font-weight: $bold;
         font-size: 1.5rem;
-        text-align: center;
+        max-width: 40rem;
     }
 
     p {
-        margin-left: 1rem;
         margin-top: 1rem;
-        text-align: center;
+        max-width: 40rem;
+    }
+
+    .understand {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.5rem;
+
+        button {
+            line-height: 36px;
+            text-transform: none;
+
+            font-weight: $bold;
+            font-size: 1.5rem;
+            padding: 0.6rem 2rem;
+            background: $primary;
+            border-radius: 0.7rem;
+
+            &:hover {
+                background: lighten($primary, 3%);
+            }
+
+            @include tablet {
+                padding: 0.6rem 2.5rem;
+                border-radius: 0.8rem;
+            }
+        }
     }
 }

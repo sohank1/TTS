@@ -1,20 +1,36 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@material-ui/core";
+import { CloseIcon } from "../../icons/CloseIcon";
 
 export const ServerDownModal = () => {
     const [isOpen, setIsOpen] = useState(true);
+    const modal = useRef<HTMLDivElement>(null);
+
+    const close = () => {
+        modal.current.classList.add("out");
+        setTimeout(() => setIsOpen(false), 200)
+    }
 
     return (
         <>
             {isOpen ?
                 <div className="server-down-modal-ui-component">
-                    <section>
-                        <Button onClick={() => setIsOpen(false)} id="close">
-                            <img src="assets/close.svg" />
-                        </Button>
-                    </section>
-                    <h1>Failed to Establish Connection to Websocket Server</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odio, illum aliquam quos expedita, consectetur quisquam hic quam corrupti ipsam nulla ducimus? Tempore molestias obcaecati repudiandae nesciunt vel error dolore!</p>
+                    <div ref={modal} className="modal">
+                        <section>
+                            <Button onClick={close} id="close">
+                                <CloseIcon />
+                            </Button>
+                        </section>
+
+                        <div className="text">
+                            <h1>Failed to Establish Connection to Websocket Server</h1>
+                            <p>The Websocket Server is currently down. Because of this, most of the website will no longer function properly. Please return at (5/1/21 00:00 UTC) to properly use the website.</p>
+                            <div className="understand">
+                                <Button onClick={close} >I Understand</Button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 : null}
         </>

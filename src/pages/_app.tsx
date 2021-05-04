@@ -10,6 +10,7 @@ import { useSaveLoginRedirectPath } from '../modules/auth/useSaveLoginRedirectPa
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from '../lib/queryClient';
 import { HandleConnectionFailed } from '../modules/ws/HandleConnectionFailed';
+import Head from 'next/head';
 
 
 Router.events.on("routeChangeStart", () => NProgress.start());
@@ -40,17 +41,24 @@ function App({ Component, pageProps }: AppProps) {
   useSaveLoginRedirectPath();
 
   return (
-    <WebSocketProvider shouldConnect={true}>
-      <QueryClientProvider client={queryClient}>
-        <StylesProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <HandleConnectionFailed>
-              <Component {...pageProps} />
-            </HandleConnectionFailed>
-          </ThemeProvider>
-        </StylesProvider >
-      </QueryClientProvider>
-    </WebSocketProvider>
+    <>
+      <Head>
+        <title>TTS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, user-scalable=0" />
+      </Head>
+
+      <WebSocketProvider shouldConnect={true}>
+        <QueryClientProvider client={queryClient}>
+          <StylesProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <HandleConnectionFailed>
+                <Component {...pageProps} />
+              </HandleConnectionFailed>
+            </ThemeProvider>
+          </StylesProvider >
+        </QueryClientProvider>
+      </WebSocketProvider>
+    </>
   )
 
 }

@@ -7,8 +7,6 @@ export default class MyDocument extends Document {
         return (
             <Html lang="en">
                 <Head>
-                    <title>TTS</title>
-                    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, user-scalable=0" />
                     <meta property="og:locale" content="en-US" />
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content="https://ttsclan.vercel.app/" />
