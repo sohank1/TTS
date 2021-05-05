@@ -1,19 +1,17 @@
 import { Button, ClickAwayListener, useFormControl } from "@material-ui/core"
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react"
-import { CloseIcon } from "../../../icons/CloseIcon";
-import { isServer } from "../../../lib/isServer";
-import { Role } from "../../../modules/ws/client";
-import { useConn } from "../../../shared-hooks/useConn";
-import { useTypeSafeQuery } from "../../../shared-hooks/useTypeSafeQuery";
+import { CloseIcon } from "../../icons/CloseIcon";
+import { isServer } from "../../lib/isServer";
+import { useConn } from "../../shared-hooks/useConn";
+import { useTypeSafeQuery } from "../../shared-hooks/useTypeSafeQuery";
 
 
 export const DashboardUser = () => {
     const { user } = useConn();
 
-    const { data, isLoading } = useTypeSafeQuery("getContent", { enabled: !isServer, refetchOnMount: "always" });
+    const { data } = useTypeSafeQuery("getContent", { enabled: !isServer, refetchOnMount: "always" });
     const roles = data?.members.find(m => m.id === "481158632008974337").roles;
-
-    useEffect(() => console.log(data), [data])
 
     const [showDetail, setShowDetail] = useState(false);
     const detail = useRef<HTMLDivElement>(null);
@@ -32,7 +30,7 @@ export const DashboardUser = () => {
                 showDetail ?
                     <ClickAwayListener onClickAway={() => handleClick()}>
                         <div className="detail" ref={detail}>
-                            < Button className="on-bg-alt" onClick={() => handleClick(false)}>
+                            <Button className="close on-bg-alt" onClick={() => handleClick(false)}>
                                 <CloseIcon />
                             </Button >
 
@@ -44,13 +42,23 @@ export const DashboardUser = () => {
                                     </article>
                                 ))}
                             </section>
+
+                            <Link href="/logout">
+                                <Button className="logout">
+                                    <div className="content">
+                                        <h3>Logout</h3>
+                                        <img src="assets/icons/logout.svg" />
+                                    </div>
+                                </Button>
+                            </Link>
+
                         </div>
                     </ClickAwayListener>
                     : null}
 
             <Button className="on-card" onClick={() => handleClick(!showDetail)}>
                 <div className="user">
-                    <img src={user.avatarUrl} />
+                    <img className="avatar" src={user.avatarUrl} />
                     <h2>{user.name}</h2>
                     <h4>{user.tag}</h4>
                 </div>

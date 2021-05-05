@@ -17,8 +17,6 @@ export const HandleConnectionFailed: React.FC = ({ children }) => {
     }
     catch { }
 
-    if (isServerDown === null) return null;
-
     if (isServerDown) {
         setTokens({ accessToken: "", refreshToken: "" });
 

@@ -1,2 +1,2 @@
 export { DashboardNavBar } from "./DashboardNavBar";
-export { DashboardUser } from "./DashboardUser";
+export { DashboardUser } from "../DashboardUser";

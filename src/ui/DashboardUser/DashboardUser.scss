@@ -1,4 +1,4 @@
-@import "../../../styles/variables";
+@import "../../styles/variables";
 
 .dashboard-user-ui-component {
     .on-card {
@@ -36,7 +36,7 @@
         margin-bottom: 0.5rem;
     }
 
-    img {
+    .avatar {
         min-width: 3rem;
         max-width: 3rem;
         border-radius: 50%;
@@ -92,7 +92,7 @@
         }
     }
 
-    .on-bg-alt {
+    .close {
         margin: 0.6rem 0.34rem 0 auto;
 
         svg path {
@@ -118,7 +118,7 @@
 
         &::-webkit-scrollbar {
             @include laptop {
-                width: 0.3rem;
+                width: 0.2rem;
             }
         }
 
@@ -171,8 +171,48 @@
         }
     }
 
-    .logout-button {
+    .logout {
         margin: auto;
         margin-bottom: 1rem;
+
+        text-transform: none;
+        line-height: 36px;
+        font-weight: $bold;
+        font-size: 1.4rem;
+        padding: 0.3rem 2.5rem;
+        background: $primary;
+        border-radius: 0.3rem;
+
+        &:hover {
+            background: lighten($primary, 2%);
+        }
+
+        @include phone {
+            padding: 0.3rem 2.5rem;
+            border-radius: 0.3rem;
+        }
+
+        @include tablet {
+            padding: 0.2rem 2.6rem;
+            border-radius: 0.4rem;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            h3 {
+                font-weight: $bold;
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            img {
+                margin-right: -1rem;
+                margin-left: 1rem;
+                width: 1.5rem;
+            }
+        }
     }
 }

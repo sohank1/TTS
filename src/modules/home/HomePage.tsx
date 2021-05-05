@@ -7,10 +7,12 @@ import { Footer } from "../../ui/Footer";
 import { JourneyButton } from "../../ui/JourneyButton";
 import { NavBar } from "../../ui/NavBar";
 import { navLinks } from "../../ui/NavBar/NavLinks";
+import { useConn } from "../../shared-hooks/useConn";
 
 
 export const HomePage = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { user } = useConn();
 
     return (
         <div className="home-page">
@@ -31,9 +33,6 @@ export const HomePage = () => {
                 <Button onClick={() => setIsOpen(true)} className="hamburger">
                     <img src="/assets/hamburger.svg" />
                 </Button>
-                {/* <button className={styles.hamburger}> */}
-                {/* <app-hamburger></app-hamburger> */}
-                {/* </button> */}
             </nav>
 
             <div className="grid">
@@ -44,7 +43,15 @@ export const HomePage = () => {
                 for new members like you!</p>
                     <section>
                         <div className="login-button">
-                            <LoginButton />
+                            {user ?
+                                <Link href="/logout">
+                                    <Button variant="contained" className="logout-button">
+                                        <div className="content">
+                                            <h3>Logout</h3><img src="assets/icons/logout.svg" />
+                                        </div>
+                                    </Button>
+                                </Link>
+                                : <LoginButton />}
                         </div>
                         <div className="join-button">
                             <JoinButton />

@@ -32,7 +32,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
     useSaveTokens();
     const { replace, query, route } = useRouter();
     const [conn, setConn] = useState<V>(null);
-    const [isServerDown, setIsServerDown] = useState(null);
+    const [isServerDown, setIsServerDown] = useState<boolean>(undefined);
     const isConnecting = useRef(false);
     const hasTokens = useHasTokens();
 
@@ -54,7 +54,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
 
 
                 connect(v.accessToken, v.refreshToken, {
-                    url: "https://google.com",
+                    url: BASE_URL,
                     // getAuthOptions: () => {
 
                     // const { accessToken, refreshToken } = useTokenStore.getState();
@@ -83,8 +83,11 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
                         // isConnecting.current = true
                         // }
                         // else {
+
                         setConn(c);
                         isConnecting.current = false;
+                        setIsServerDown(false);
+
                         // }
                     })
                     .catch((err) => {

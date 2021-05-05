@@ -24,8 +24,8 @@ export const useSaveTokens = () => {
             const loginRedirectPath = localStorage.getItem(loginRedirectPathKey);
             console.log(loginRedirectPath)
 
-            if (loginRedirectPath?.startsWith("/"))
-                replace(loginRedirectPath);
+            if (loginRedirectPath?.startsWith("/")) replace(loginRedirectPath);
+            else replace("/dashboard")
 
         }
     }), [accessToken, refreshToken]

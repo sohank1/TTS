@@ -9,7 +9,7 @@ import { BugsIcon } from "../../icons/BugsIcon";
 import { NewsIcon } from "../../icons/NewsIcon";
 import { PatchNotesIcon } from "../../icons/PatchNotesIcon";
 import { LoginButton } from "../LoginButton";
-import { DashboardUser } from "./DashboardUser";
+import { DashboardUser } from "../DashboardUser";
 import { useConn } from "../../shared-hooks/useConn";
 import { Footer } from "../Footer";
 

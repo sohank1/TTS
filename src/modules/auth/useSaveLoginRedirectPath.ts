@@ -9,10 +9,13 @@ export const useSaveLoginRedirectPath = () => {
 
     if (!hasTokens) {
         try {
-            if (!navLinks.some(l => asPath.toLowerCase().includes(l.path)) && asPath.toLowerCase() !== "/save") {
+            if (!navLinks.some(l => asPath.toLowerCase().includes(l.path))) {
+                if (asPath.toLowerCase().startsWith("/save")) return;
+
                 localStorage.setItem(loginRedirectPathKey, "/dashboard");
                 asPath = "/dashboard";
             }
+
             localStorage.setItem(loginRedirectPathKey, asPath);
         } catch { }
     }

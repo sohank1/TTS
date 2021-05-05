@@ -65,10 +65,15 @@ export const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
                         </div>
                     </div>
 
+                    {user ?
+                        <div className="dashboard-user">
+                            <DashboardUser />
+                        </div>
+                        :
+                        <div className="login-button">
+                            <LoginButton />
+                        </div>}
 
-                    <div className="login-button">
-                        {user ? <DashboardUser /> : <LoginButton />}
-                    </div>
                 </div>
             </ClickAwayListener>
 
