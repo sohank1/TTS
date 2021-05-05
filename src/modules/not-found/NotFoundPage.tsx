@@ -34,7 +34,7 @@ export const NotFoundPage = () => {
                 <img src="/assets/lost.svg" className="lost desktop" alt="A picture of a lost man." />
                 <h2>Oh No!</h2>
                 <p>It seems you’re lost! Here are some suggestions.</p>
-                <section>
+                <section className="content">
                     <Button className="issue" href="/">Contact Creeper</Button>
                     <Link href="/bugs">
                         <Button className="bugs">Report a Bug</Button>
