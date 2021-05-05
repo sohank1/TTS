@@ -8,8 +8,9 @@
 @import "../ui/JourneyButton/JourneyButton";
 @import "../ui/NavBar/NavBar";
 @import "../ui/DashboardNavBar/DashboardNavBar";
-@import "../ui/DashboardUser/DashboardUser.scss";
-@import "../ui/ServerDownModal/ServerDownModal.scss";
+@import "../ui/DashboardUser/DashboardUser";
+@import "../ui/ServerDownModal/ServerDownModal";
+@import "../modules/not-found/NotFoundPage";
 
 #nprogress {
     position: relative;

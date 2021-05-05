@@ -1,11 +1,10 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
+import { NotFoundPage } from "../modules/not-found/NotFoundPage";
 
-export default function Custom404() {
-    const router = useRouter();
-    useEffect(() => {
-        router.replace("/");
-    });
-
-    return null;
-}
+export default function NotFound() {
+    return (
+        <WaitForWsAndAuth>
+            <NotFoundPage />
+        </WaitForWsAndAuth>
+    )
+};

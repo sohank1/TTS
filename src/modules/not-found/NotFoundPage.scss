@@ -1,0 +1,179 @@
+@import "../../styles/variables";
+
+.not-found-page {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 5rem;
+        width: 100%;
+
+        @include tablet {
+            margin-top: 1rem;
+        }
+    }
+
+    .tts-button {
+        margin: 1rem 2rem;
+        height: 3rem;
+        font-size: 2.5rem;
+        font-weight: $extra-bold;
+
+        @include tablet {
+            margin-left: 3rem;
+        }
+    }
+
+    .links {
+        display: none;
+
+        @include tablet {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 40rem;
+
+            .a {
+                @include tablet {
+                    display: inline-block;
+                    font-size: 1.1rem;
+                    font-weight: $semi-bold;
+                    color: $nav-text;
+                    margin: 0 0.5rem;
+                    text-transform: none;
+                }
+            }
+        }
+    }
+
+    .hamburger {
+        margin: 1rem;
+        margin-top: 1.5rem;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    h2 {
+        margin: 3rem 0 2.5rem 0;
+        font-weight: $extra-bold;
+        font-size: 2rem;
+        margin-right: 0;
+        text-align: center;
+
+        @include tablet {
+            margin-bottom: 1rem;
+        }
+    }
+
+    p {
+        text-align: center;
+
+        @include tablet {
+            // margin-left: 3rem;
+        }
+    }
+
+    .issue,
+    .bugs {
+        margin: 1rem 2rem;
+        @include tablet {
+            margin-left: 0;
+        }
+    }
+
+    .issue {
+        @include tablet {
+            margin-left: 3rem;
+        }
+    }
+
+    section {
+        margin-top: 2.5rem;
+        margin-bottom: 3rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        @include tablet {
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+    }
+
+    .lost {
+        margin: 0 auto;
+        margin-bottom: 5rem;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    .lost.desktop {
+        display: none;
+
+        @include tablet {
+            display: block;
+            width: 27%;
+            min-width: 22rem;
+            max-width: 32rem;
+            margin-bottom: 0;
+        }
+    }
+
+    .bugs {
+        text-transform: none;
+        line-height: 36px;
+
+        font-weight: $bold;
+        font-size: 1.5rem;
+        background: none;
+        border: 0.3rem solid $blue;
+
+        border-radius: 0.7rem;
+        padding: 0.4rem 2.1rem;
+
+        &:hover {
+            border: 0.3rem solid lighten($blue, 2%);
+        }
+
+        @include tablet {
+            border-radius: 0.6rem;
+            padding: 0.5rem 2.2rem;
+        }
+    }
+
+    .issue {
+        text-transform: none;
+        line-height: 36px;
+
+        font-weight: $bold;
+        font-size: 1.5rem;
+        background: none;
+        background: $blue;
+
+        border-radius: 0.6rem;
+        padding: 0.7rem 1.2rem;
+
+        &:hover {
+            background: lighten($blue, 2%);
+        }
+
+        @include tablet {
+            border-radius: 0.6rem;
+            padding: 0.8rem 1.7rem;
+        }
+    }
+
+    .footer {
+        margin-top: auto;
+    }
+}
