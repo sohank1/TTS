@@ -18,13 +18,13 @@
     z-index: 100;
     
   .bar {
-      background: lighten($primary, 10%) !important;
+      background: $nav-text !important;
     }
   .peg {
-        box-shadow: 0 0 10px lighten($primary, 10%), 0 0 5px lighten($primary, 10%) !important;
+        box-shadow: 0 0 10px $nav-text, 0 0 5px $nav-text !important;
    } 
   .spinner-icon {
-       border-top-color: lighten($primary, 10%) !important;
-       border-left-color: lighten($primary, 10%) !important;
+       border-top-color: $nav-text !important;
+       border-left-color: $nav-text !important;
    }
 }
