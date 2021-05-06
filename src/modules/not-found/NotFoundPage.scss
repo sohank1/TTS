@@ -58,6 +58,7 @@
     .main {
         display: flex;
         flex-direction: column;
+        height: 100vh;
     }
 
     h2 {
@@ -161,7 +162,7 @@
         background: $blue;
 
         border-radius: 0.6rem;
-        padding: 0.7rem 1.2rem;
+        padding: 0.7rem 2.4rem;
 
         &:hover {
             background: lighten($blue, 2%);
@@ -169,7 +170,7 @@
 
         @include tablet {
             border-radius: 0.6rem;
-            padding: 0.8rem 1.7rem;
+            padding: 0.7rem 2.4rem;
         }
     }
 
