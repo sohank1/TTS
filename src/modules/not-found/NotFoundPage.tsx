@@ -40,11 +40,10 @@ export const NotFoundPage = () => {
                         <Button className="bugs">Report a Bug</Button>
                     </Link>
                 </section>
+                <img src="/assets/lost.svg" className="lost" alt="A picture of a lost man." />
+                
+                <div className="footer"><Footer /></div>
             </div>
-
-            <img src="/assets/lost.svg" className="lost" alt="A picture of a lost man." />
-
-            <div className="footer"><Footer /></div>
         </div>
     )
 }
