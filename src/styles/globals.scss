@@ -18,13 +18,13 @@
     z-index: 100;
     
   .bar {
-      background: $nav-text !important;
+      background: $active !important;
     }
   .peg {
-        box-shadow: 0 0 10px $nav-text, 0 0 5px $nav-text !important;
+        box-shadow: 0 0 10px $active, 0 0 5px $active !important;
    } 
   .spinner-icon {
-       border-top-color: $nav-text !important;
-       border-left-color: $nav-text !important;
+       border-top-color: $active !important;
+       border-left-color: $active !important;
    }
 }
