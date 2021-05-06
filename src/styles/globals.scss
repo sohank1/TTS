@@ -1,3 +1,4 @@
+@import "variables";
 @import "reset";
 @import "responsive";
 @import "../modules/home/HomePage";
@@ -15,4 +16,5 @@
 #nprogress {
     position: relative;
     z-index: 100;
+    color: $primary;
 }
