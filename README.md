@@ -24,7 +24,7 @@ TTS makes it easy to view and manage all things in TTS.
 - Open Source
 
 # Basic Features
-- Create account (Discord for now)
+- [Create account](#authentication)
 
 # Patch Notes
 - Patch Notes are a simple way for creators to share release notes of their maps and bots with TTS members
@@ -38,3 +38,11 @@ TTS makes it easy to view and manage all things in TTS.
 
 - TTS Creators and Members can like and dislike Patch Notes
 
+# Authentication
+- You can simply log into TTS by using your Discord account
+- When you first click a log in button you will be redirected to Discord and it will ask you to hit accept
+- If you have already hit accept before you don't have to do it again
+- Once you hit accept if will check if you are in the TTS Discord. If you are not in TTS you will be redirected to the TTS invite link. **(not implemented yet)**
+
+## Technical Details in Authentication
+- When you login...
