@@ -16,7 +16,7 @@
     "react-query": "^3.13.11",
     "sass": "^1.32.8",
     "socket.io-client": "^2.3.0",
-    "zustand": "^3.4.1"
+    "zustand": "^3.5.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.5",
