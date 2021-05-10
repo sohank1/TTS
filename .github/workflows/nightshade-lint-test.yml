@@ -16,7 +16,7 @@ jobs:
 
             - working-directory: ./nightshade
               run: |
-                  yarn
+                  yarn install
                   yarn lint
                   yarn build
                   yarn test
