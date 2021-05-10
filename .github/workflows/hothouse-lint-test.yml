@@ -13,8 +13,7 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 14.x
-            - run: yarn
-            - run: cd ./hothouse
-            - run: yarn lint
-            - run: yarn run build
-            - run: yarn test
+            - run: cd ./hothouse && yarn
+            - run: cd ./hothouse && yarn lint
+            - run: cd ./hothouse && yarn run build
+            - run: cd ./hothouse &&  yarn test
