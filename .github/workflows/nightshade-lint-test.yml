@@ -13,9 +13,8 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 14.x
-            - run: |
-                  yarn
-                  cd ./nightshade
-                  yarn lint
-                  yarn build
-                  yarn test
+            - run: yarn
+            - run: cd ./nightshade
+            - run: yarn lint
+            - run: yarn build
+            - run: yarn test
