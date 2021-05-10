@@ -45,6 +45,7 @@ export class EventsGateway implements OnGatewayConnection {
 
         socket.on("get-user", async (id: string) => {
             let user: UserResponseObject;
+            
             try {
                 user = await this._userService.get(id);
             } catch {}
