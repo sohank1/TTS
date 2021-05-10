@@ -27,7 +27,7 @@
   "dependencies": {
     "@angular-devkit/build-angular": "~0.1001.6",
     "@angular/cli": "~10.1.6",
-    "@angular/compiler": "~10.1.5",
+    "@angular/compiler": "~11.2.13",
     "@angular/compiler-cli": "~10.1.5",
     "@nestjs/cli": "^7.0.0",
     "@nestjs/common": "^7.0.0",
