@@ -48,6 +48,7 @@ export class EventsGateway implements OnGatewayConnection {
             try {
                 user = await this._userService.get(id);
             } catch {}
+
             if (!user)
                 return socket.emit("fetch-done:get-user", {
                     error: {
