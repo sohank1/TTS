@@ -1,0 +1,187 @@
+@import "../../styles/variables.scss";
+
+.dashboard-nav-bar-ui-component {
+    .tts-button {
+        margin: 1rem 2rem;
+        height: 3rem;
+        font-size: 2.5rem;
+        font-weight: $extra-bold;
+
+        @include tablet {
+            margin-left: 3rem;
+        }
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 5rem;
+        width: 100%;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    .footer {
+        @include tablet {
+            display: none;
+        }
+    }
+
+    .hamburger {
+        margin: 1rem;
+        margin-top: 1.5rem;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    section {
+        @include tablet {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .side-nav {
+            display: none;
+            position: fixed;
+            height: 100vh;
+            width: 16rem;
+            background: $card;
+            border-top-right-radius: min(4rem, 10vh);
+            border-bottom-right-radius: min(4rem, 10vh);
+            overflow: auto;
+
+            @include tablet {
+                display: flex;
+                flex-direction: column;
+            }
+
+            &::-webkit-scrollbar {
+                @include laptop {
+                    height: 1rem;
+                    width: 0.3rem;
+                }
+            }
+
+            header {
+                display: flex;
+                margin-top: 1.5rem;
+
+                img {
+                    width: 45%;
+                }
+
+                .tts-button {
+                    height: 3rem;
+                    margin-top: 3rem;
+                    margin-left: -0.7rem;
+                }
+            }
+
+            .links {
+                margin-top: 2rem;
+
+                @include desktop {
+                    margin-top: 10vh;
+                }
+            }
+
+            .link {
+                margin-bottom: 2rem;
+
+                @include desktop {
+                    margin-bottom: 4rem;
+                }
+            }
+
+            .links {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 90%;
+            }
+
+            .link {
+                svg {
+                    margin-right: 0.7rem;
+                    width: 35px;
+                    height: 35px;
+                    &,
+                    path {
+                        fill: $footer-text;
+                    }
+                }
+            }
+
+            .link button {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                text-transform: none;
+
+                font-size: 1.25rem;
+                font-weight: $bold;
+                color: $nav-text;
+                text-align: left;
+                width: 13.5rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.2rem;
+                margin-left: 0.5rem;
+                height: 3rem;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+
+                white-space: nowrap;
+            }
+
+            .active {
+                color: $active !important;
+
+                svg,
+                svg path {
+                    fill: $active !important;
+                }
+
+                border-radius: 1rem;
+                border: 0.2rem solid $active;
+                // height: 2.5rem;
+                // padding-bottom: 2.7rem;
+                width: 14rem;
+                // padding-right: 2rem;
+                height: 3.5rem !important;
+                line-height: 36px;
+                padding-right: 1rem;
+                padding-left: 1rem;
+            }
+
+            .login-button {
+                margin-top: auto;
+                margin-left: 2.5rem;
+                margin-right: auto;
+                margin-bottom: 4.5rem;
+            }
+
+            .dashboard-user {
+                margin-top: auto;
+                margin-left: 1rem;
+                margin-right: auto;
+                margin-bottom: 3rem;
+            }
+        }
+
+        .children {
+            @include tablet {
+                display: flex;
+                flex-direction: column;
+                margin-left: 16rem;
+                height: 100vh;
+                width: 100vw;
+            }
+        }
+    }
+}

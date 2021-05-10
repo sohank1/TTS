@@ -1,0 +1,30 @@
+@import "variables";
+@import "reset";
+@import "responsive";
+@import "../modules/home/HomePage";
+@import "../modules/dashboard/DashboardPage";
+@import "../ui/LoginButton/LoginButton";
+@import "../ui/JoinButton/JoinButton";
+@import "../ui/Footer/Footer";
+@import "../ui/JourneyButton/JourneyButton";
+@import "../ui/NavBar/NavBar";
+@import "../ui/DashboardNavBar/DashboardNavBar";
+@import "../ui/DashboardUser/DashboardUser";
+@import "../ui/ServerDownModal/ServerDownModal";
+@import "../modules/not-found/NotFoundPage";
+
+#nprogress {
+    position: relative;
+    z-index: 100;
+    
+  .bar {
+      background: $active !important;
+    }
+  .peg {
+        box-shadow: 0 0 10px $active, 0 0 5px $active !important;
+   } 
+  .spinner-icon {
+       border-top-color: $active !important;
+       border-left-color: $active !important;
+   }
+}

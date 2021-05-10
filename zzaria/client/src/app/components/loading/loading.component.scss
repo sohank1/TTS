@@ -1,0 +1,59 @@
+@import "../../../scss/variables.scss";
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &.remove {
+        animation: fade-out-section forwards 1.5s ease;
+    }
+}
+
+img {
+    width: 50%;
+    min-width: 18rem;
+    max-width: 35rem;
+    margin: 0 auto;
+    animation: img forwards 1.5s ease;
+    animation-iteration-count: infinite;
+}
+
+.fade {
+    animation: fade forwards 1s ease;
+}
+
+h2 {
+    font-weight: $extra-bold;
+    font-size: 1.3rem;
+}
+
+@keyframes img {
+    50% {
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out-section {
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

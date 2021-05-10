@@ -1,0 +1,30 @@
+<mat-sidenav-container>
+    <mat-sidenav #drawer mode="over" position="end">
+        <section>
+            <button (click)="drawer.toggle()" id="close" mat-button>
+                <app-close></app-close>
+            </button>
+        </section>
+        <ul>
+            <div *ngFor="let link of navBarService.links" class="links">
+                <section class="link">
+                    <a [routerLink]="link.path" routerLinkActive="active" mat-button>
+                        <app-dashboard-icon *ngIf="link.svg === 'app-dashboard'" class="svg"></app-dashboard-icon>
+                        <app-bugs *ngIf="link.svg === 'app-bugs'" class="svg"></app-bugs>
+                        <app-news *ngIf="link.svg === 'app-news'" class="svg"></app-news>
+                        <app-patch-notes *ngIf="link.svg === 'app-patch-notes'" class="svg"></app-patch-notes>
+                        {{ link.name }}
+                    </a>
+                </section>
+            </div>
+
+            <app-user *ngIf="user" [user]="user"></app-user>
+            <app-login *ngIf="!user"></app-login>
+
+        </ul>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

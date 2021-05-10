@@ -1,0 +1,26 @@
+<p>not-found works!</p>
+<app-nav-bar [user]="user">
+    <nav>
+        <button routerLink="/" class="h1" mat-button>TTS</button>
+        <div class="links">
+            <a *ngFor="let link of links" [routerLink]="link.path" mat-button>{{ link.name }}</a>
+        </div>
+        <button (click)="toggleDrawer()" class="hamburger" mat-button>
+            <app-hamburger></app-hamburger>
+        </button>
+    </nav>
+
+    <div class="main">
+        <img class="desktop" src="/assets/lost.svg" alt="A picture of a lost man.">
+        <h2>Oh No!</h2>
+        <p>It seems you’re lost! Here are some suggestions.</p>
+        <section>
+            <a href="https://twitter.com/Creeeper_" class="contact-creeper" mat-raised-button color="warn">Contact Creeper</a>
+            <a routerLink="/bugs" class="bug-button" mat-raised-button color="warn">Report a Bug</a>
+        </section>
+    </div>
+    <img src="/assets/lost.svg" alt="A picture of a lost man.">
+
+    <app-footer></app-footer>
+
+</app-nav-bar>

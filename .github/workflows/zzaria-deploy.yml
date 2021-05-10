@@ -1,0 +1,21 @@
+name: "Deploy: Zzaria"
+
+on:
+    push:
+        branches:
+            - master
+        paths:
+            - zzaria/**
+
+jobs:
+    run:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: cd zzaria
+            - uses: akhileshns/heroku-deploy@v3.12.12
+              with:
+                  heroku_api_key: ${{secrets.ZZARIA_API_KEY}}
+                  heroku_app_name: "tts-api-prod"
+                  heroku_email: ${{secrets.ZZARIA_EMAIL}}
+                  appdir: "zzaria"

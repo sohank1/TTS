@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "@angular/material/theming";
+@import "./scss/reset";
+@import "./scss/responsive";
+
+$custom-typography: mat-typography-config(
+    $font-family: "Open Sans",
+);
+
+@include mat-core($custom-typography);

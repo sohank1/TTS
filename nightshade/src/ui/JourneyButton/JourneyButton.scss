@@ -1,0 +1,20 @@
+@import "../../styles/variables.scss";
+
+.journey-button-ui-component a {
+    line-height: 36px;
+    text-transform: none;
+
+    font-weight: $bold;
+    font-size: 1.5rem;
+    padding: 0.6rem 2.4rem;
+    background: $primary;
+    border-radius: 3rem;
+
+    &:hover {
+        background: lighten($primary, 3%);
+    }
+
+    @include large-phone {
+        padding: 0.8rem 3rem;
+    }
+}

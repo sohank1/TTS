@@ -1,0 +1,88 @@
+@import "../../../scss/variables";
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 69;
+    width: 15rem;
+    height: 14rem;
+    margin: -14.5rem auto 0 auto;
+    background: $bg-alt;
+    border: 1px solid $border;
+    border-radius: 1.8rem;
+    box-shadow: 3px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.on-bg-alt {
+    margin: 0.5rem 0.3rem 0 auto;
+}
+
+.roles {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: -2rem;
+    margin-left: 1rem;
+    height: 7.5rem;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        @include laptop {
+            width: 0.3rem;
+        }
+    }
+
+    article {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #da004e;
+        border-radius: 90px;
+        margin-right: 0.5rem;
+        margin-top: 0.5rem;
+        padding: 0.2rem 0.5rem;
+
+        h3 {
+            font-size: 0.7rem;
+            font-weight: $semi-bold;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: center;
+            max-width: 5rem;
+            margin-left: 0.2rem;
+            margin-top: 0;
+        }
+
+        div {
+            width: 1rem;
+            height: 1rem;
+            background: #da004e;
+            border-radius: 50%;
+        }
+    }
+
+    &.three {
+        justify-content: center;
+        margin-left: 0;
+        margin-top: -2rem;
+        height: 9rem;
+
+        article {
+            padding: 0.2rem 0.7rem;
+            border: 2.2px solid #da004e;
+
+            h3 {
+                max-width: 5.5rem;
+                font-size: 0.8rem;
+                margin-left: 0.3rem;
+            }
+        }
+    }
+}
+
+app-logout {
+    margin: auto;
+    margin-bottom: 1rem;
+}

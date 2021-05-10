@@ -1,0 +1,23 @@
+@import "../../../../scss/variables";
+
+.mat-raised-button {
+    font-weight: $bold;
+    font-size: 1.5rem;
+    padding: 0.5rem 2.5rem;
+    background: $primary;
+    border-radius: 1rem;
+
+    &:hover {
+        background: lighten($primary, 2%);
+    }
+
+    @include phone {
+        padding: 0.7rem 2.5rem;
+        border-radius: 1rem;
+    }
+
+    @include tablet {
+        padding: 0.8rem 2.5rem;
+        border-radius: 0.8rem;
+    }
+}

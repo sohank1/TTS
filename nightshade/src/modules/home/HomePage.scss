@@ -1,0 +1,295 @@
+@import "../../styles/variables";
+
+.home-page {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 5rem;
+        width: 100%;
+
+        @include tablet {
+            margin-top: 1rem;
+        }
+    }
+
+    .tts-button {
+        margin: 1rem 2rem;
+        height: 3rem;
+        font-size: 2.5rem;
+        font-weight: $extra-bold;
+
+        @include tablet {
+            margin-left: 3rem;
+        }
+    }
+
+    .links {
+        display: none;
+
+        @include tablet {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 40rem;
+
+            .a {
+                @include tablet {
+                    display: inline-block;
+                    font-size: 1.1rem;
+                    font-weight: $semi-bold;
+                    color: $nav-text;
+                    margin: 0 0.5rem;
+                    text-transform: none;
+                }
+            }
+        }
+    }
+
+    .hamburger {
+        margin: 1rem;
+        margin-top: 1.5rem;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    h1 {
+        margin: 4rem 2rem 2rem;
+        font-weight: $extra-bold;
+        font-size: 2rem;
+        margin-right: 0;
+
+        @include tablet {
+            margin-left: 3rem;
+        }
+    }
+
+    p {
+        margin: 2rem;
+        max-width: 28rem;
+        margin-right: 1rem;
+
+        @include tablet {
+            margin-left: 3rem;
+            max-width: 28rem;
+            margin-top: 1rem;
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 2fr 0;
+        grid-template-rows: 1fr 1fr 2fr;
+        grid-template-areas:
+            "text ."
+            "text ."
+            "text img";
+
+        @include tablet {
+            grid-template-columns: 2fr 1.5fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: "text img";
+            display: grid;
+        }
+
+        .tomatohead {
+            grid-area: img;
+            display: block;
+            position: relative;
+
+            right: 16rem;
+            bottom: -5rem;
+            max-width: 16rem;
+
+            @include large-phone {
+                bottom: 0;
+                right: 17rem;
+                max-width: 17rem;
+            }
+
+            @include tablet {
+                position: static;
+                max-width: 100%;
+            }
+        }
+
+        .text {
+            grid-area: text;
+
+            section {
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                height: 40vh;
+
+                @include tablet {
+                    flex-direction: row;
+                }
+
+                .login-button,
+                .join-button {
+                    margin: 1rem 2rem;
+                    @include tablet {
+                        margin-left: 0;
+                    }
+                }
+
+                .login-button {
+                    @include tablet {
+                        margin-left: 3rem;
+                    }
+                }
+
+                .logout-button {
+                    line-height: 36px;
+                    text-transform: none;
+
+                    font-weight: $bold;
+                    font-size: 1.5rem;
+                    padding: 0.4rem 2rem;
+                    background: $primary;
+                    border-radius: 0.6rem;
+
+                    &:hover {
+                        background: lighten($primary, 2%);
+                    }
+
+                    @include phone {
+                        padding: 0.7rem 2rem;
+                        border-radius: 0.7rem;
+                    }
+
+                    @include tablet {
+                        padding: 0.8rem 2.3rem;
+                        border-radius: 0.7rem;
+                    }
+
+                    .content {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        h3 {
+                            font-weight: $bold;
+                            font-size: 1.5rem;
+                            text-align: center;
+                        }
+
+                        img {
+                            margin-right: -0.8rem;
+                            margin-left: 1rem;
+                            width: 1.6rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    article {
+        &:first-of-type {
+            background: $bg-alt;
+            grid-template-areas: "image text";
+        }
+
+        background: $bg;
+        grid-template-areas: "text image";
+
+        &:last-of-type {
+            background: $bg-alt;
+            display: flex;
+
+            @include large-phone {
+                text-align: center;
+            }
+
+            .journey-button {
+                margin-left: 2rem;
+            }
+        }
+    }
+
+    article {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5rem 1rem;
+        padding-right: 2.5rem;
+        min-height: 37rem;
+
+        @include tablet {
+            padding: 2rem 4rem;
+            padding-bottom: 5rem;
+        }
+
+        @include laptop {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            place-items: center;
+            padding: 10% 10%;
+            padding-bottom: 5rem;
+            gap: 1rem;
+        }
+
+        @include desktop {
+            padding: 10% 20%;
+        }
+
+        img {
+            grid-area: image;
+            width: 50%;
+            min-width: 18rem;
+            max-width: 35rem;
+            margin: 2rem;
+            margin-bottom: 0;
+
+            @include laptop {
+                margin-left: 3rem;
+                margin: 0;
+                width: 75%;
+            }
+        }
+
+        h1 {
+            margin-top: 2.5rem;
+            margin-bottom: 0;
+
+            @include tablet {
+                margin-top: 4rem;
+            }
+        }
+    }
+
+    // app-login,
+    // app-join,
+    // app-home-logout {
+    //     margin: 1rem 2rem;
+    //     @include tablet {
+    //         margin-left: 0;
+    //     }
+    // }
+
+    // app-login,
+    // app-home-logout {
+    //     @include tablet {
+    //         margin-left: 3rem;
+    //     }
+    // }
+
+    //  .discordimg {
+    //     @include laptop {
+    //         width: 90%;
+    //     }
+    // }
+
+    // Remove the margin inside of grids.
+    article .text > * {
+        @include laptop {
+            margin-left: 0;
+        }
+    }
+}

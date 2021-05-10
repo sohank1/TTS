@@ -1,0 +1,21 @@
+name: "Deploy: Hothouse"
+
+on:
+    push:
+        branches:
+            - master
+        paths:
+            - hothouse/**
+
+jobs:
+    run:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: cd hothouse
+            - uses: akhileshns/heroku-deploy@v3.12.12
+              with:
+                  heroku_api_key: ${{secrets.HOTHOUSE_API_KEY}}
+                  heroku_app_name: "tts-testing"
+                  heroku_email: ${{secrets.HOTHOUSE_EMAIL}}
+                  appdir: "hothouse"

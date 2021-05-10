@@ -1,0 +1,51 @@
+.grid {
+    animation: five forwards 2s;
+}
+
+@keyframes forty {
+    from {
+        opacity: 0;
+        transform: translateY(-40%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes twenty {
+    from {
+        opacity: 0;
+        transform: translateY(-20%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ten {
+    from {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes five {
+    from {
+        opacity: 0;
+        transform: translateY(-5%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

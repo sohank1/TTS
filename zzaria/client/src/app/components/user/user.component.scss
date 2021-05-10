@@ -1,0 +1,45 @@
+@import "../../../scss/variables";
+
+.toggle {
+    height: 5rem;
+    width: 100%;
+}
+
+.user {
+    display: grid;
+    justify-content: flex-start;
+    align-items: center;
+    grid-template-areas:
+        "image username"
+        "image tag";
+}
+
+h2,
+h4 {
+    margin-top: 0.5rem;
+    margin-left: 0.2rem;
+    text-align: start;
+}
+
+h2 {
+    font-size: 0.9rem;
+    grid-area: username;
+}
+
+h4 {
+    font-size: 0.7rem;
+    grid-area: tag;
+    color: $footer-text;
+    text-align: left;
+    margin-top: -1rem;
+}
+
+img {
+    min-width: 3rem;
+    max-width: 3rem;
+    border-radius: 50%;
+    grid-area: image;
+    margin-left: auto;
+
+    margin-right: 0.5rem;
+}

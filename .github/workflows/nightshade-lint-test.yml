@@ -1,0 +1,22 @@
+name: "Lint and Test: Nightshade"
+
+on:
+    push:
+        paths:
+            - nightshade/**
+
+jobs:
+    run:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+
+            - working-directory: ./nightshade
+              run: |
+                  yarn
+                  yarn lint
+                  yarn build
+                  yarn test

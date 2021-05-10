@@ -1,0 +1,62 @@
+$bg: #161826;
+$bg-alt: #191c2c;
+
+$primary: #ff3f3f;
+$secondary: #e94d3d;
+$blue: #3f69ff;
+$card: #272a3f;
+
+$border: #8c8c8c;
+
+$active: #64a0b2;
+
+$nav-text: #8590b7;
+$footer-text: #636b86;
+$light-text: #dddddd;
+
+$light: 300;
+$regular: 400;
+$semi-bold: 600;
+$bold: 700;
+$extra-bold: 800;
+
+@font-face {
+    font-family: Burbank;
+    src: url("/assets/fonts/burbank-big-regular-black-v2.ttf");
+}
+
+@mixin small-phone {
+    @media (min-width: 200px) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media (min-width: 360px) {
+        @content;
+    }
+}
+
+@mixin large-phone {
+    @media (min-width: 400px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 700px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1500px) {
+        @content;
+    }
+}

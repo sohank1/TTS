@@ -1,0 +1,42 @@
+<app-nav-bar [user]="user">
+    <nav>
+        <button routerLink="/" class="h1" mat-button>TTS</button>
+        <button (click)="toggleDrawer()" class="hamburger" mat-button>
+            <app-hamburger></app-hamburger>
+        </button>
+    </nav>
+
+    <section>
+        <div class="side-nav">
+
+            <head>
+                <img src="assets/tts-logo.png" alt="The TTS logo">
+                <button routerLink="/" class="h1 on-card" mat-button>TTS</button>
+            </head>
+
+            <section class="links">
+                <div *ngFor="let link of navBarService.links" class="link">
+                    <a [routerLink]="link.path" routerLinkActive="active" class="on-card" mat-button>
+                        <app-dashboard-icon *ngIf="link.svg === 'app-dashboard'" class="svg"></app-dashboard-icon>
+                        <app-bugs *ngIf="link.svg === 'app-bugs'" class="svg"></app-bugs>
+                        <app-news *ngIf="link.svg === 'app-news'" class="svg"></app-news>
+                        <app-patch-notes *ngIf="link.svg === 'app-patch-notes'" class="svg"></app-patch-notes>
+                        {{ link.name }}
+                    </a>
+                </div>
+            </section>
+
+
+            <!-- <app-user *ngIf="user" [user]="user"></app-user> -->
+            <app-user [user]="userTest"></app-user>
+
+            <!-- <app-login *ngIf="!user"></app-login> -->
+
+        </div>
+
+        <ng-content></ng-content>
+
+    </section>
+
+    <app-footer color="bg-alt"></app-footer>
+</app-nav-bar>

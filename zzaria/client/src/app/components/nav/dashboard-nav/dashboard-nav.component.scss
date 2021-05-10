@@ -1,0 +1,141 @@
+@import "../../../../scss/variables";
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    width: 100vw;
+
+    @include tablet {
+        display: none;
+    }
+
+    .h1 {
+        margin: 1rem 2rem;
+        height: 3rem;
+    }
+}
+
+.hamburger {
+    margin: 1rem;
+    margin-top: 1.5rem;
+}
+
+section {
+    display: flex;
+    justify-content: flex-start;
+}
+
+app-footer {
+    @include tablet {
+        display: none;
+    }
+}
+
+.side-nav {
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 16rem;
+    background: $card;
+    border-top-right-radius: min(4rem, 10vh);
+    border-bottom-right-radius: min(4rem, 10vh);
+    overflow: auto;
+
+    @include tablet {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &::-webkit-scrollbar {
+        @include laptop {
+            height: 1rem;
+            width: 0.3rem;
+        }
+    }
+
+    head {
+        display: flex;
+        margin-top: 1.5rem;
+
+        img {
+            width: 45%;
+        }
+
+        .h1 {
+            height: 3rem;
+            margin-top: 3rem;
+            margin-left: -1rem;
+        }
+    }
+}
+
+.links {
+    margin-top: 2rem;
+}
+
+.link {
+    margin-bottom: 1.5rem;
+}
+
+.links,
+.link {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.link {
+    .svg {
+        margin-right: 0.5rem;
+        width: 35px;
+        height: 35px;
+        &,
+        path {
+            fill: $footer-text;
+        }
+    }
+}
+
+a {
+    font-size: 1.25rem;
+    font-weight: $bold;
+    color: $nav-text;
+    text-align: left;
+    width: 13.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+    margin-left: 0.5rem;
+}
+
+.active {
+    color: $active;
+
+    .svg,
+    .svg path {
+        fill: $active !important;
+        margin-right: 0.4rem;
+    }
+
+    border-radius: 1rem;
+    border: 0.2rem solid $active;
+    height: 2.5rem;
+    padding-bottom: 2.7rem;
+    width: 14rem;
+    padding-right: 2rem;
+}
+
+app-user {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: auto;
+    margin-bottom: 2.5rem;
+}
+
+app-login {
+    margin: auto;
+    margin-left: 3rem;
+    margin-right: auto;
+    margin-top: 1.5rem;
+}
