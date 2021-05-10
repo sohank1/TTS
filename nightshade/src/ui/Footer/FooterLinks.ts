@@ -31,6 +31,6 @@ export const footerLinks: FooterLinks[] = [
     },
     {
         svgPath: "assets/icons/github.svg",
-        url: "https://github.com/CreeperPlanet26/TTS-Client",
+        url: "https://github.com/CreeperPlanet26/TTS",
     },
 ];
