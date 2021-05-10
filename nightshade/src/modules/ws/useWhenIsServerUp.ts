@@ -1,6 +1,6 @@
 /**
  * Calculates when the Websocket Server will be back up
- * Date is automatically converted to client's local time
+ * Date is automatically converted to the client's local time
  */
 export const useWhenIsServerUp = (): string => {
     const month = new Date().getMonth() + 1;
