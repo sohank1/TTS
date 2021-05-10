@@ -15,7 +15,6 @@ export class Embed extends MessageEmbed {
      */
     public sendTo(...args: any[]): Embed {
         for (const c of args) c.send(this);
-
         return this;
     }
 
