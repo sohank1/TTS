@@ -22,9 +22,9 @@ export const WebSocketContext = createContext<{
     conn: null,
     isServerDown: null,
     // eslint-disable-next-line prettier/prettier
-    setUser: () => { },
+    setUser: () => {},
     // eslint-disable-next-line prettier/prettier
-    setConn: () => { },
+    setConn: () => {},
 });
 
 interface WebSocketProviderProps {
