@@ -16,7 +16,7 @@ export class User extends Document {
     tag: string;
 
     /**
-     * The URL to the discord avatar of the user.
+     * The URL to the Discord avatar of the user.
      */
     @Prop({
         default:
