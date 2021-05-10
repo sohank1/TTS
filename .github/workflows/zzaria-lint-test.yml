@@ -13,8 +13,7 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 14.x
-            - run: yarn
-            - run: cd ./zzaria
-            - run: yarn lint
-            - run: yarn run build
-            - run: yarn test
+            - run: cd ./zzaria && yarn
+            - run: cd ./zzaria && yarn lint
+            - run: cd ./zzaria && yarn run build
+            - run: cd ./zzaria && yarn test
