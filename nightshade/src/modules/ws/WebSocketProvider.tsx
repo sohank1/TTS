@@ -7,7 +7,6 @@ import React, {
     useState,
 } from "react";
 import { BASE_URL } from "../../lib/constants";
-import { useHasTokens } from "../auth/useHasTokens";
 import { useSaveTokens } from "../auth/useSaveTokens";
 import { useTokenStore } from "../auth/useTokenStore";
 import { connect, Connection, User } from "./client";
@@ -22,8 +21,10 @@ export const WebSocketContext = createContext<{
 }>({
     conn: null,
     isServerDown: null,
-    setUser: () => {},
-    setConn: () => {},
+    // eslint-disable-next-line prettier/prettier
+    setUser: () => { },
+    // eslint-disable-next-line prettier/prettier
+    setConn: () => { },
 });
 
 interface WebSocketProviderProps {
@@ -40,7 +41,6 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
     const [conn, setConn] = useState<V>(null);
     const [isServerDown, setIsServerDown] = useState<boolean>(undefined);
     const isConnecting = useRef(false);
-    const hasTokens = useHasTokens();
 
     useEffect(() => {
         if (query.accessToken && query.refreshToken) shouldConnect = false;

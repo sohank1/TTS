@@ -7,10 +7,7 @@ import { Guild, GuildSchema } from "src/guild/guild.schema";
 import { UserModule } from "src/user/user.module";
 import { User, UserSchema } from "src/user/user.schema";
 import { AuthController } from "./auth.controller";
-import { AuthSerializer } from "./auth.serializer";
 import { AuthService } from "./auth.service";
-import { AuthStrategy } from "./auth.strategy";
-import { LoginAuthGuard } from "./login-auth.guard";
 
 @Module({
     imports: [
@@ -28,11 +25,7 @@ import { LoginAuthGuard } from "./login-auth.guard";
         UserModule,
     ],
     exports: [AuthService],
-    providers: [
-        AuthService,
-        // AuthStrategy, AuthSerializer,
-        //LoginAuthGuard
-    ],
+    providers: [AuthService],
     controllers: [AuthController],
 })
 export class AuthModule {}

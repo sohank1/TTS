@@ -37,8 +37,8 @@ export class UserComponent {
 
     private convertColors(): void {
         //@ts-ignore
-        for (const r of this.roles)
         //@ts-ignore
+        for (const r of this.roles)
             r.color = this.getHexString(<number>r.color);
     }
 

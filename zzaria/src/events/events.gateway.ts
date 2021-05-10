@@ -1,7 +1,6 @@
 import { HttpStatus } from "@nestjs/common";
 import {
     OnGatewayConnection,
-    OnGatewayInit,
     SubscribeMessage,
     WebSocketGateway,
     WebSocketServer,

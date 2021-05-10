@@ -1,8 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { Strategy as DiscordStrategy, Profile } from "passport-discord";
+import { Strategy as DiscordStrategy } from "passport-discord";
 import { AuthService } from "./auth.service";
-import { User } from "src/user/user.schema";
 import { environment } from "src/environment/environment";
 
 @Injectable()

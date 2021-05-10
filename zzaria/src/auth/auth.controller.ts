@@ -6,10 +6,8 @@ import {
     HttpStatus,
     Req,
     Res,
-    UseGuards,
 } from "@nestjs/common";
 import { Request, Response } from "express";
-import { LoginAuthGuard } from "./login-auth.guard";
 import { AuthService } from "./auth.service";
 import { UserResponseObject } from "src/user/types/UserResponseObject";
 

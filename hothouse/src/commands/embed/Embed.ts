@@ -22,6 +22,7 @@ export default class EmbedCommand extends BaseCommand {
             .addField("Activator", this.options.activator.toString())
             .sendTo(this.message.channel);
 
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         require("axios")
             .get("https://fortnite-api.com/v2/cosmetics/br")
             .then((r) => {

@@ -1,6 +1,6 @@
-import { Button, ClickAwayListener, useFormControl } from "@material-ui/core";
+import { Button, ClickAwayListener } from "@material-ui/core";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { CloseIcon } from "../../icons/CloseIcon";
 import { isServer } from "../../lib/isServer";
 import { useConn } from "../../shared-hooks/useConn";

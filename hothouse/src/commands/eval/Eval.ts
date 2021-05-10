@@ -1,7 +1,6 @@
 import { Message, MessageEmbed } from "discord.js";
 import { client } from "../../client/Client";
 import { inspect } from "util";
-import { Embed } from "../../client/embeds/Embed";
 import { BaseCommand } from "../baseCommand/BaseCommand";
 import { Activator } from "../baseCommand/BaseCommandOptions";
 
@@ -17,6 +16,7 @@ export default class Eval extends BaseCommand {
     }
 
     public async run(): Promise<Message> {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const Client = client;
         const toEval = this.message.content.split(`${client.prefix}eval `)[1];
 
@@ -30,6 +30,7 @@ export default class Eval extends BaseCommand {
             const evaluated = eval(toEval);
             const hrStart = process.hrtime();
             let hrDiff: [number, number];
+            // eslint-disable-next-line prefer-const
             hrDiff = process.hrtime(hrStart);
 
             const embed = new MessageEmbed()

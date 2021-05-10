@@ -24,7 +24,7 @@ export const connect = (
         onUser?: (u: User) => void;
     }
 ): Promise<Connection> =>
-    new Promise((res, rej) => {
+    new Promise((res) => {
         const socket = io(url, {
             transports: ["websocket"],
             upgrade: false,
