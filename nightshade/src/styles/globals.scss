@@ -16,15 +16,17 @@
 #nprogress {
     position: relative;
     z-index: 100;
-    
-  .bar {
-      background: $active !important;
+
+    .bar {
+        background: $active !important;
     }
-  .peg {
+
+    .peg {
         box-shadow: 0 0 10px $active, 0 0 5px $active !important;
-   } 
-  .spinner-icon {
-       border-top-color: $active !important;
-       border-left-color: $active !important;
-   }
+    }
+
+    .spinner-icon {
+        border-top-color: $active !important;
+        border-left-color: $active !important;
+    }
 }
