@@ -16,5 +16,5 @@ jobs:
             - run: yarn
             - run: cd ./nightshade
             - run: yarn lint
-            - run: yarn build
+            - run: yarn run build
             - run: yarn test
