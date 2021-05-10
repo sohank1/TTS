@@ -19,3 +19,4 @@ jobs:
             - run: cd ./zzaria && yarn test:e2e
               env:
                   MONGO_URI: ${{secrets.ZZARIA_MONGO_URI}}
+                  BOT_TOKEN: ${{secrets.ZZARIA_BOT_TOKEN}}
