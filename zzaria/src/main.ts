@@ -7,12 +7,10 @@ import { AppModule } from "./app.module";
 // import * as fileUpload from "express-fileupload";
 import { environment } from "./environment/environment";
 import { NestExpressApplication } from "@nestjs/platform-express";
-import { NotFoundExceptionFilter } from "./not-found-exception.filter";
 
 async function bootstrap(): Promise<void> {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-    app.useGlobalFilters(new NotFoundExceptionFilter());
     app.enableCors({
         origin: [
             "http://localhost:4200",

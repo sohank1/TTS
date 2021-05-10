@@ -1,5 +1,5 @@
 import { PassportSerializer } from "@nestjs/passport";
-import { User } from "src/user/user.schema";
+import { User } from "../user/user.schema";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";

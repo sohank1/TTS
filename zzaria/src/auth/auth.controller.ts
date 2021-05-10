@@ -9,7 +9,7 @@ import {
 } from "@nestjs/common";
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
-import { UserResponseObject } from "src/user/types/UserResponseObject";
+import { UserResponseObject } from "../user/types/UserResponseObject";
 
 @Controller("api")
 export class AuthController {

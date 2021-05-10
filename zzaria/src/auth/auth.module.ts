@@ -3,9 +3,9 @@ import { JwtModule } from "@nestjs/jwt";
 import { MongooseModule } from "@nestjs/mongoose";
 import { PassportModule } from "@nestjs/passport";
 // import { EventsModule } from 'src/events/events.module';
-import { Guild, GuildSchema } from "src/guild/guild.schema";
-import { UserModule } from "src/user/user.module";
-import { User, UserSchema } from "src/user/user.schema";
+import { Guild, GuildSchema } from "../guild/guild.schema";
+import { UserModule } from "../user/user.module";
+import { User, UserSchema } from "../user/user.schema";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 

@@ -6,10 +6,10 @@ import {
     WebSocketServer,
 } from "@nestjs/websockets";
 import { Server, Socket } from "socket.io";
-import { AuthService } from "src/auth/auth.service";
-import { GuildService } from "src/guild/guild.service";
-import { UserResponseObject } from "src/user/types/UserResponseObject";
-import { UserService } from "src/user/user.service";
+import { AuthService } from "../auth/auth.service";
+import { GuildService } from "../guild/guild.service";
+import { UserResponseObject } from "../user/types/UserResponseObject";
+import { UserService } from "../user/user.service";
 import { Events } from "./events";
 
 @WebSocketGateway()

@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
-import { AuthModule } from "src/auth/auth.module";
-import { GuildModule } from "src/guild/guild.module";
-import { UserModule } from "src/user/user.module";
+import { AuthModule } from "../auth/auth.module";
+import { GuildModule } from "../guild/guild.module";
+import { UserModule } from "../user/user.module";
 import { EventsGateway } from "./events.gateway";
 
 @Module({

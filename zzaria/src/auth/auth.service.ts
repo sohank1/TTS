@@ -6,17 +6,17 @@ import {
 } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { JwtService } from "@nestjs/jwt";
-import { User } from "src/user/user.schema";
+import { User } from "../user/user.schema";
 import { Model } from "mongoose";
-import { getTag } from "src/user/util/get-tag.util";
-// import { EventsGateway } from "src/events/events.gateway";
-import { getAvatarUrl } from "src/user/util/get-avatar-url.util";
+import { getTag } from "../user/util/get-tag.util";
+// import { EventsGateway } from "../events/events.gateway";
+import { getAvatarUrl } from "../user/util/get-avatar-url.util";
 import { Request, Response } from "express";
-import { environment } from "src/environment/environment";
-import { UserService } from "src/user/user.service";
-import { Guild } from "src/guild/guild.schema";
-import { getIconUrl } from "src/guild/util/get-icon.util";
-import { UserResponseObject } from "src/user/types/UserResponseObject";
+import { environment } from "../environment/environment";
+import { UserService } from "../user/user.service";
+import { Guild } from "../guild/guild.schema";
+import { getIconUrl } from "../guild/util/get-icon.util";
+import { UserResponseObject } from "../user/types/UserResponseObject";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const DiscordOauth = require("discord-oauth2");
