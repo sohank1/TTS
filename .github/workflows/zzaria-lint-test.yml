@@ -4,9 +4,6 @@ on:
     push:
         paths:
             - zzaria/**
-    pull_request:
-        paths:
-            - zzaria/**
 
 jobs:
     ci:

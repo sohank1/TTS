@@ -4,9 +4,6 @@ on:
     push:
         paths:
             - hothouse/**
-    pull_request:
-        paths:
-            - hothouse/**
 
 jobs:
     ci:
