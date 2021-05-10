@@ -15,7 +15,7 @@ jobs:
                   node-version: 14.x
             - run: cd ./zzaria && yarn
             - run: cd ./zzaria && yarn lint
-            - run: cd ./zzaria && yarn run build
-            - run: cd ./zzaria && yarn test
+            - run: cd ./zzaria && yarn build
+            - run: cd ./zzaria && yarn test:e2e
               env:
                   MONGO_URI: ${{secrets.ZZARIA_MONGO_URI}}

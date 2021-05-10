@@ -15,5 +15,5 @@ jobs:
                   node-version: 14.x
             - run: cd ./nightshade && yarn
             - run: cd ./nightshade && yarn lint
-            - run: cd ./nightshade && yarn run build
+            - run: cd ./nightshade && yarn build
             - run: cd ./nightshade && yarn test

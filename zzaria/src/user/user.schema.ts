@@ -4,7 +4,7 @@ import { Document } from "mongoose";
 @Schema()
 export class User extends Document {
     /**
-     * The discord id of the user.
+     * The Discord id of the user.
      */
     @Prop({ unique: true })
     id: string;
