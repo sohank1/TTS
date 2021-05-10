@@ -10,7 +10,7 @@ export class User extends Document {
     id: string;
 
     /**
-     * The discord tag of the user.
+     * The Discord tag of the user.
      */
     @Prop()
     tag: string;
