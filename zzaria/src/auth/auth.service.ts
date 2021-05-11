@@ -95,10 +95,10 @@ export class AuthService {
             scope: ["identify", "guilds"],
         });
         const user = await this.oauth.getUser(discordAccessToken);
-        await this.validateUser(user);
-
         // if someone is trying to login as test user in prod take them back to home page
         if (!IS_TEST && user.id === "688374951660486661") return res.redirect(environment.CLIENT_BASE_URL);
+
+        await this.validateUser(user);
 
         res.redirect(
             `${environment.CLIENT_BASE_URL}/save?accessToken=${jwt.sign({ userId: user.id }, process.env.JWT_SECERT, {
