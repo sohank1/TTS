@@ -1,6 +1,6 @@
 version: 2
-
 updates:
+
   - package-ecosystem: "npm"
     directory: "/hothouse"
     schedule:
@@ -9,7 +9,6 @@ updates:
       include: scope
       prefix: chore
 
-updates:
   - package-ecosystem: "npm"
     directory: "/nightshade"
     schedule:
@@ -18,7 +17,6 @@ updates:
       include: scope
       prefix: chore
 
-updates:
   - package-ecosystem: "npm"
     directory: "/zzaria"
     schedule:
