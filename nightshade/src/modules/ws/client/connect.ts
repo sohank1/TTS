@@ -58,22 +58,15 @@ export const connect = (
                 socket,
                 user: null,
                 close: () => socket.close(),
-                fetch: (
-                    event: string,
-                    payload?: unknown,
-                    serverEvent?: string
-                ): Promise<any> =>
+                fetch: (event: string, payload?: unknown, serverEvent?: string): Promise<any> =>
                     new Promise((resFetch, rejFetch) => {
                         if (payload) socket.emit(event, payload);
                         else socket.emit(event);
 
-                        socket.on(
-                            serverEvent || `fetch-done:${event}`,
-                            (d: { error?: Error }) => {
-                                if (d.error) rejFetch(d.error);
-                                resFetch(d);
-                            }
-                        );
+                        socket.on(serverEvent || `fetch-done:${event}`, (d: { error?: Error }) => {
+                            if (d.error) rejFetch(d.error);
+                            resFetch(d);
+                        });
                     }),
             };
 
@@ -87,21 +80,14 @@ export const connect = (
                 socket,
                 user: null,
                 close: () => socket.close(),
-                fetch: (
-                    event: string,
-                    payload?: unknown,
-                    serverEvent?: string
-                ): Promise<any> =>
+                fetch: (event: string, payload?: unknown, serverEvent?: string): Promise<any> =>
                     new Promise((resFetch, rejFetch) => {
                         socket.emit(event, payload);
 
-                        socket.on(
-                            serverEvent || `fetch-done:${event}`,
-                            (d: { error?: Error }) => {
-                                if (d.error) rejFetch(d.error);
-                                resFetch(d);
-                            }
-                        );
+                        socket.on(serverEvent || `fetch-done:${event}`, (d: { error?: Error }) => {
+                            if (d.error) rejFetch(d.error);
+                            resFetch(d);
+                        });
                     }),
             };
             res(conn);

@@ -5,10 +5,7 @@ import { CdnService } from "./cdn.service";
 import { File, FileSchema } from "./file/file.schema";
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([{ name: File.name, schema: FileSchema }]),
-        HttpModule,
-    ],
+    imports: [MongooseModule.forFeature([{ name: File.name, schema: FileSchema }]), HttpModule],
     controllers: [CdnController],
     providers: [CdnService],
 })

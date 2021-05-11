@@ -14,16 +14,13 @@ export default class HandleCommand extends BaseEvent {
                 for (const a of c.options.aliases) {
                     if (
                         c.options.activator === Activator.EQUAL_TO &&
-                        message.content.toLowerCase() ===
-                            client.prefix + a.toLowerCase()
+                        message.content.toLowerCase() === client.prefix + a.toLowerCase()
                     ) {
                         c.setMessage(message);
                         c.run();
                     } else if (
                         c.options.activator === Activator.STARTS_WITH &&
-                        message.content
-                            .toLowerCase()
-                            .startsWith(client.prefix + a.toLowerCase())
+                        message.content.toLowerCase().startsWith(client.prefix + a.toLowerCase())
                     ) {
                         c.setMessage(message);
                         c.run();

@@ -22,17 +22,15 @@ client.on("ready", () => {
         // In particular, the values you passed to the interaction when creating it will be passed back here
 
         if (interaction.data.name === "ping") {
-            client.api
-                .interactions(interaction.id, interaction.token)
-                .callback.post({
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                    type: 4,
                     data: {
-                        type: 4,
-                        data: {
-                            content: `Your ping is ${client.ws.ping}ms`,
-                            allowed_mentions: { parse: [] },
-                        },
+                        content: `Your ping is ${client.ws.ping}ms`,
+                        allowed_mentions: { parse: [] },
                     },
-                });
+                },
+            });
         }
     });
 });

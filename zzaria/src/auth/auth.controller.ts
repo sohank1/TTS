@@ -1,12 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {
-    Controller,
-    Get,
-    HttpException,
-    HttpStatus,
-    Req,
-    Res,
-} from "@nestjs/common";
+import { Controller, Get, HttpException, HttpStatus, Query, Req, Res } from "@nestjs/common";
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
 import { UserResponseObject } from "../user/types/UserResponseObject";
@@ -23,10 +16,7 @@ export class AuthController {
 
     @Get("login/redirect")
     // @UseGuards(LoginAuthGuard)
-    public async redirect(
-        @Req() req: Request,
-        @Res() res: Response
-    ): Promise<void> {
+    public async redirect(@Req() req: Request, @Res() res: Response): Promise<void> {
         return this.service.redirect(req, res);
     }
 
@@ -36,12 +26,26 @@ export class AuthController {
     }
 
     @Get("me")
-    public me(@Req() req: Request): Promise<UserResponseObject> {
-        if (!req.header("X-Access-Token"))
-            throw new HttpException(
-                "No access token provided",
-                HttpStatus.BAD_REQUEST
-            );
-        return this.service.me(req.header("X-Access-Token"));
+    public async me(@Req() req: Request): Promise<UserResponseObject> {
+        if (!req.header("X-Access-Token") || !req.header("X-Refresh-Token"))
+            throw new HttpException("No credentials provided", HttpStatus.BAD_REQUEST);
+
+        let d;
+
+        try {
+            d = await this.service.me(req.header("X-Access-Token"), req.header("X-Refresh-Token"));
+        } catch {
+            throw new HttpException("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
+
+        return d;
+    }
+
+    @Get("test/login")
+    public testLogin(
+        @Query("type") type: "tokens",
+        @Req() res: Response
+    ): Promise<void | { accessToken: string; refreshToken: string }> {
+        return this.service.loginWithTestUser(type, res);
     }
 }

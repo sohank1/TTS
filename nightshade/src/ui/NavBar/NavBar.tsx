@@ -22,20 +22,13 @@ export const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
     const { route } = useRouter();
 
     return (
-        <Drawer
-            className="nav-bar-ui-component-outer"
-            open={isOpen}
-            anchor="right"
-        >
+        <Drawer className="nav-bar-ui-component-outer" open={isOpen} anchor="right">
             <ClickAwayListener onClickAway={() => setIsOpen(false)}>
                 <div>
                     <div className="nav-bar-ui-component">
                         <div>
                             <section>
-                                <Button
-                                    onClick={() => setIsOpen(false)}
-                                    id="close"
-                                >
+                                <Button onClick={() => setIsOpen(false)} id="close">
                                     <img src="assets/close.svg" />
                                 </Button>
                             </section>
@@ -45,31 +38,17 @@ export const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
                                     <div className="links" key={l.name}>
                                         <section className="link">
                                             <Link href={l.path}>
-                                                <Button
-                                                    className={`${
-                                                        route === l.path
-                                                            ? "active"
-                                                            : null
-                                                    } on-card`}
-                                                >
+                                                <Button className={`${route === l.path ? "active" : null} on-card`}>
                                                     {(() => {
                                                         switch (l.name) {
                                                             case "Dashboard":
-                                                                return (
-                                                                    <DashboardIcon />
-                                                                );
+                                                                return <DashboardIcon />;
                                                             case "Bugs":
-                                                                return (
-                                                                    <BugsIcon />
-                                                                );
+                                                                return <BugsIcon />;
                                                             case "News":
-                                                                return (
-                                                                    <NewsIcon />
-                                                                );
+                                                                return <NewsIcon />;
                                                             case "Patch Notes":
-                                                                return (
-                                                                    <PatchNotesIcon />
-                                                                );
+                                                                return <PatchNotesIcon />;
                                                         }
                                                     })()}
                                                     {l.name}

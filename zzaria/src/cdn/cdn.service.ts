@@ -1,18 +1,12 @@
-import {
-    HttpException,
-    HttpService,
-    HttpStatus,
-    Injectable,
-} from "@nestjs/common";
+import { HttpException, HttpService, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Client, MessageAttachment, TextChannel } from "discord.js";
 import { Request, Response } from "express";
 import { Model } from "mongoose";
 import { resolve } from "path";
 import { File as FileDoc } from "./file/file.schema";
 
-const client = new Client();
-client.login(process.env.BOT_TOKEN);
+// const client = new Client();
+//  client.login(process.env.BOT_TOKEN);
 
 @Injectable()
 export class CdnService {
@@ -26,8 +20,7 @@ export class CdnService {
         console.log("filesSent", filesSent);
         let files = [];
         for (const name in filesSent) {
-            for (const file in filesSent[name])
-                files.push(filesSent[name][file]);
+            for (const file in filesSent[name]) files.push(filesSent[name][file]);
         }
         console.log(files, "F");
 
@@ -39,24 +32,19 @@ export class CdnService {
 
         console.log(files, "F");
 
-        const channel = <TextChannel>(
-            client.channels.cache.get("795712339785154582")
-        );
+        // const channel = <TextChannel>client.channels.cache.get("795712339785154582");
         console.log("sending");
         for (const f of files) {
             // If the file already exists throw an error.
             if (await this.FileModel.findOne({ path: `/${f.name}` }))
-                throw new HttpException(
-                    "File already exists",
-                    HttpStatus.BAD_REQUEST
-                );
+                throw new HttpException("File already exists", HttpStatus.BAD_REQUEST);
 
-            const a = new MessageAttachment(f.data, f.name);
-            const { attachments } = await channel.send(a);
+            // const a = new MessageAttachment(f.data, f.name);
+            // const { attachments } = await channel.send(a);
 
             await this.FileModel.create({
                 path: `/${f.name}`,
-                url: attachments.first().url,
+                // url: attachments.first().url,
             });
 
             res.send({ message: "Created file." });
@@ -67,8 +55,7 @@ export class CdnService {
         const path = req.url.split("/cdn")[1];
 
         const file = await this.FileModel.findOne({ path });
-        if (!file)
-            return res.sendFile(resolve("./client/dist/TTS-Client/index.html"));
+        if (!file) return res.sendFile(resolve("./client/dist/TTS-Client/index.html"));
 
         const r = await this._http.axiosRef({
             method: "get",
@@ -82,9 +69,7 @@ export class CdnService {
         return this.FileModel.find();
     }
 
-    public async deleteFile(
-        req: Request
-    ): Promise<{ message: string; status: number }> {
+    public async deleteFile(req: Request): Promise<{ message: string; status: number }> {
         console.log(req.url);
         // const path = req.url.split('/cdn')[1];
 

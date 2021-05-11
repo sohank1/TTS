@@ -5,9 +5,7 @@ import { GuildController } from "./guild.controller";
 import { GuildService } from "./guild.service";
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([{ name: Guild.name, schema: GuildSchema }]),
-    ],
+    imports: [MongooseModule.forFeature([{ name: Guild.name, schema: GuildSchema }])],
     exports: [GuildService],
     controllers: [GuildController],
     providers: [GuildService],

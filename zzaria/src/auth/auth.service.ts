@@ -1,18 +1,13 @@
-import {
-    HttpException,
-    HttpService,
-    HttpStatus,
-    Injectable,
-} from "@nestjs/common";
+import { HttpException, HttpService, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { JwtService } from "@nestjs/jwt";
+import * as jwt from "jsonwebtoken";
 import { User } from "../user/user.schema";
 import { Model } from "mongoose";
 import { getTag } from "../user/util/get-tag.util";
 // import { EventsGateway } from "../events/events.gateway";
 import { getAvatarUrl } from "../user/util/get-avatar-url.util";
 import { Request, Response } from "express";
-import { environment } from "../environment/environment";
+import { environment, IS_TEST } from "../environment/environment";
 import { UserService } from "../user/user.service";
 import { Guild } from "../guild/guild.schema";
 import { getIconUrl } from "../guild/util/get-icon.util";
@@ -37,8 +32,7 @@ export class AuthService {
         private GuildModel: Model<Guild>,
         // private events: EventsGateway,
         private _userService: UserService,
-        private _http: HttpService,
-        private _jwt: JwtService
+        private _http: HttpService
     ) {}
 
     public async validateUser(data: {
@@ -89,47 +83,46 @@ export class AuthService {
         res.redirect(
             this.oauth.generateAuthUrl({
                 scope: ["identify", "guilds"],
+                prompt: "none",
             })
         );
     }
 
     public async redirect(req: Request, res: Response): Promise<void> {
-        const { access_token: discordAccessToken } =
-            await this.oauth.tokenRequest({
-                code: req.query.code,
-                grantType: "authorization_code",
-                scope: ["identify", "guilds"],
-            });
+        const { access_token: discordAccessToken } = await this.oauth.tokenRequest({
+            code: req.query.code,
+            grantType: "authorization_code",
+            scope: ["identify", "guilds"],
+        });
         const user = await this.oauth.getUser(discordAccessToken);
         await this.validateUser(user);
 
+        // if someone is trying to login as test user in prod take them back to home page
+        if (!IS_TEST && user.id === "688374951660486661") return res.redirect(environment.CLIENT_BASE_URL);
+
         res.redirect(
-            `${environment.CLIENT_BASE_URL}/save?accessToken=${this._jwt.sign(
-                { userId: user.id },
-                { expiresIn: "60s" }
-            )}&refreshToken=${this._jwt.sign(
-                { userId: user.id },
-                { expiresIn: "2m" }
-            )}`
+            `${environment.CLIENT_BASE_URL}/save?accessToken=${jwt.sign({ userId: user.id }, process.env.JWT_SECERT, {
+                // 1 min
+                expiresIn: 1000,
+            })}&refreshToken=${jwt.sign({ userId: user.id }, process.env.JWT_SECERT, {
+                // 1 day
+                expiresIn: 86400000,
+            })}`
         );
     }
 
     public logout(req: Request, res: Response): void {
-        if (!req.user)
-            throw new HttpException(
-                "Cannot logout when not logged in.",
-                HttpStatus.BAD_REQUEST
-            );
+        if (!req.user) throw new HttpException("Cannot logout when not logged in.", HttpStatus.BAD_REQUEST);
         // this.events.emitUserLogout(<User>req.user);
         req.logOut();
 
-        req.query.redirect
-            ? res.redirect(<string>req.query.redirect)
-            : res.redirect(environment.CLIENT_BASE_URL);
+        req.query.redirect ? res.redirect(<string>req.query.redirect) : res.redirect(environment.CLIENT_BASE_URL);
     }
 
-    public async me(accessToken: string): Promise<UserResponseObject> {
-        const { userId } = <{ userId: string }>this._jwt.decode(accessToken);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public async me(accessToken: string, refreshToken: string): Promise<UserResponseObject> {
+        // TODO logic with refresh tokens
+        const { userId } = <{ userId: string }>jwt.verify(accessToken, process.env.JWT_SECERT);
         return this._userService.get(userId);
     }
 
@@ -137,21 +130,16 @@ export class AuthService {
         const tts = await this.GuildModel.findOne();
 
         this._http
-            .get(
-                `https://discord.com/api/v8/guilds/${environment.TTS_DISCORD_SERVER_ID}/members?limit=1000`,
-                {
-                    headers: {
-                        Authorization: `Bot ${process.env.BOT_TOKEN}`,
-                    },
-                }
-            )
+            .get(`https://discord.com/api/v8/guilds/${environment.TTS_DISCORD_SERVER_ID}/members?limit=1000`, {
+                headers: {
+                    Authorization: `Bot ${process.env.BOT_TOKEN}`,
+                },
+            })
             .subscribe(async (r) => {
                 tts.members = [];
                 for (const m of r.data)
                     if (!m.user.bot) {
-                        const roles = m.roles.map((id: string) =>
-                            tts.roles.find((r) => r.id === id)
-                        );
+                        const roles = m.roles.map((id: string) => tts.roles.find((r) => r.id === id));
 
                         tts.members.push({
                             id: m.user.id,
@@ -168,14 +156,11 @@ export class AuthService {
 
     public async fetchGuild(tts: Guild): Promise<void> {
         this._http
-            .get(
-                `https://discord.com/api/v8/guilds/${environment.TTS_DISCORD_SERVER_ID}`,
-                {
-                    headers: {
-                        Authorization: `Bot ${process.env.BOT_TOKEN}`,
-                    },
-                }
-            )
+            .get(`https://discord.com/api/v8/guilds/${environment.TTS_DISCORD_SERVER_ID}`, {
+                headers: {
+                    Authorization: `Bot ${process.env.BOT_TOKEN}`,
+                },
+            })
 
             .subscribe(async (r) => {
                 for (const role of r.data.roles) {
@@ -190,6 +175,33 @@ export class AuthService {
                 await tts.updateOne(tts);
                 await tts.save();
             });
+    }
+
+    public async loginWithTestUser(
+        type: "tokens",
+        res: Response
+    ): Promise<void | { accessToken: string; refreshToken: string }> {
+        if (!IS_TEST) throw new HttpException("Bad Request", HttpStatus.BAD_REQUEST);
+
+        let user = await this.UserModel.findOne();
+        if (!user) {
+            user = await this.UserModel.create({
+                id: "688374951660486661",
+                tag: "Test1#2277",
+                avatarUrl: "https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png",
+            });
+        }
+
+        const d = {
+            accessToken: jwt.sign({ userId: user.id }, process.env.JWT_SECERT),
+            refreshToken: jwt.sign({ userId: user.id }, process.env.JWT_SECERT),
+        };
+
+        if (type === "tokens") return d;
+
+        return res.redirect(
+            `${environment.CLIENT_BASE_URL}/save?accessToken=${d.accessToken}&refreshToken=${d.refreshToken}`
+        );
     }
 
     // public async login(res: Response): Promise<void> {

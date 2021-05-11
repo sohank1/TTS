@@ -1,11 +1,5 @@
 import { useRouter } from "next/router";
-import React, {
-    createContext,
-    useEffect,
-    useMemo,
-    useRef,
-    useState,
-} from "react";
+import React, { createContext, useEffect, useMemo, useRef, useState } from "react";
 import { BASE_URL } from "../../lib/constants";
 import { useSaveTokens } from "../auth/useSaveTokens";
 import { useTokenStore } from "../auth/useTokenStore";
@@ -31,10 +25,7 @@ interface WebSocketProviderProps {
     shouldConnect: boolean;
 }
 
-export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
-    shouldConnect,
-    children,
-}) => {
+export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConnect, children }) => {
     console.log("ws providor");
     useSaveTokens();
     const { replace, query, route } = useRouter();

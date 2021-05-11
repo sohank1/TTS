@@ -18,17 +18,12 @@ export class CdnController {
     }
 
     @Delete(":file")
-    public deleteFile(
-        @Res() req: Request
-    ): Promise<{ message: string; status: number }> {
+    public deleteFile(@Res() req: Request): Promise<{ message: string; status: number }> {
         return this._service.deleteFile(req);
     }
 
     @Post()
-    public createFile(
-        @Req() req: Request,
-        @Res() res: Response
-    ): Promise<void> {
+    public createFile(@Req() req: Request, @Res() res: Response): Promise<void> {
         //@ts-ignore
         return this._service.createFiles(req.files, res);
     }

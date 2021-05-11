@@ -8,12 +8,7 @@ export const useSaveTokens = () => {
     const { accessToken, refreshToken } = query;
 
     useEffect(() => {
-        if (
-            typeof accessToken === "string" &&
-            typeof refreshToken === "string" &&
-            accessToken &&
-            refreshToken
-        ) {
+        if (typeof accessToken === "string" && typeof refreshToken === "string" && accessToken && refreshToken) {
             try {
                 useTokenStore.getState().setTokens({
                     accessToken,
@@ -21,8 +16,7 @@ export const useSaveTokens = () => {
                 });
             } catch {}
 
-            const loginRedirectPath =
-                localStorage.getItem(loginRedirectPathKey);
+            const loginRedirectPath = localStorage.getItem(loginRedirectPathKey);
             console.log(loginRedirectPath);
 
             if (loginRedirectPath?.startsWith("/")) replace(loginRedirectPath);

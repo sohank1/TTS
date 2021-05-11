@@ -32,14 +32,10 @@ export const ServerDownModal = () => {
                     </section>
 
                     <div className="text">
-                        <h1>
-                            Failed to Establish Connection to Websocket Server
-                        </h1>
+                        <h1>Failed to Establish Connection to Websocket Server</h1>
                         <p>
-                            The Websocket Server is currently down. Because of
-                            this, most of the website will no longer function
-                            properly. Please return at {serverUpAt} to properly
-                            use the website.
+                            The Websocket Server is currently down. Because of this, most of the website will no longer
+                            function properly. Please return at {serverUpAt} to properly use the website.
                         </p>
                         <div className="understand">
                             <Button onClick={close}>I Understand</Button>

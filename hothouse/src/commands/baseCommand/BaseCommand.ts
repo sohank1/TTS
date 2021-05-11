@@ -22,11 +22,7 @@ export abstract class BaseCommand {
         const files = await fs.readdir(join(dir));
 
         for (const f of files) {
-            if (
-                (await fs.lstat(join(dir, f))).isDirectory() &&
-                f !== "baseCommand"
-            )
-                this.register(join(dir, f));
+            if ((await fs.lstat(join(dir, f))).isDirectory() && f !== "baseCommand") this.register(join(dir, f));
             else if (f !== "baseCommand")
                 try {
                     const { default: Command } = await import(join(dir, f));

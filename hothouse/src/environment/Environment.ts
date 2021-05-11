@@ -14,5 +14,4 @@ class Prod {
     URL_SHORTENER = "http://tts-app.netlify.app";
 }
 
-export const Environment =
-    process.env.NODE_ENV === "production" ? new Prod() : new Dev();
+export const Environment = process.env.NODE_ENV === "production" ? new Prod() : new Dev();

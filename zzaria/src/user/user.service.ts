@@ -1,9 +1,4 @@
-import {
-    HttpException,
-    HttpService,
-    HttpStatus,
-    Injectable,
-} from "@nestjs/common";
+import { HttpException, HttpService, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Request, Response } from "express";
 import { Model } from "mongoose";
@@ -19,11 +14,7 @@ export class UserService {
     ) {}
 
     public toResponseObject(doc: User): UserResponseObject {
-        if (!doc)
-            throw new HttpException(
-                "User was not found.",
-                HttpStatus.NOT_FOUND
-            );
+        if (!doc) throw new HttpException("User was not found.", HttpStatus.NOT_FOUND);
         const obj = <UserResponseObject>{ ...doc.toObject() };
 
         // Split the name by #. 'cre#eper#4717' => ['cre', 'eper', '4717']
@@ -40,8 +31,7 @@ export class UserService {
 
     public async getAll(): Promise<UserResponseObject[]> {
         const users: UserResponseObject[] = [];
-        for (const u of await this.UserModel.find())
-            users.push(this.toResponseObject(u));
+        for (const u of await this.UserModel.find()) users.push(this.toResponseObject(u));
 
         return users;
     }
@@ -51,9 +41,7 @@ export class UserService {
     }
 
     public async getAvatar(req: Request, res: Response): Promise<void> {
-        const user = this.toResponseObject(
-            await this.UserModel.findOne({ id: req.params.id })
-        );
+        const user = this.toResponseObject(await this.UserModel.findOne({ id: req.params.id }));
 
         const r = await this._http.axiosRef({
             url: user.avatarUrl,

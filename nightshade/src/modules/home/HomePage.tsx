@@ -38,18 +38,14 @@ export const HomePage = () => {
                 <div className="text">
                     <h1>The Tomatohead Society</h1>
                     <p>
-                        The Tomatohead Society (TTS) is a Fortnite clan that
-                        strongly supports Team Pizza and is always looking for
-                        new members like you!
+                        The Tomatohead Society (TTS) is a Fortnite clan that strongly supports Team Pizza and is always
+                        looking for new members like you!
                     </p>
                     <section>
                         <div className="login-button">
                             {user ? (
                                 <Link href="/logout">
-                                    <Button
-                                        variant="contained"
-                                        className="logout-button"
-                                    >
+                                    <Button variant="contained" className="logout-button">
                                         <div className="content">
                                             <h3>Logout</h3>
                                             <img src="assets/icons/logout.svg" />
@@ -65,11 +61,7 @@ export const HomePage = () => {
                         </div>
                     </section>
                 </div>
-                <img
-                    className="tomatohead"
-                    src="/assets/tomatohead.png"
-                    alt="A picture of tomatohead."
-                />
+                <img className="tomatohead" src="/assets/tomatohead.png" alt="A picture of tomatohead." />
             </div>
 
             <article className="team-pizza">
@@ -77,10 +69,8 @@ export const HomePage = () => {
                 <div className="text">
                     <h1>Team Pizza</h1>
                     <p>
-                        Team Pizza is the team for Tomatohead in the Food war
-                        and was the biggest motivator for creating TTS. We
-                        heavily support Team Pizza, so If you’d like to join, we
-                        recommend you support them too.
+                        Team Pizza is the team for Tomatohead in the Food war and was the biggest motivator for creating
+                        TTS. We heavily support Team Pizza, so If you’d like to join, we recommend you support them too.
                     </p>
                 </div>
             </article>
@@ -90,11 +80,9 @@ export const HomePage = () => {
                 <div className="text">
                     <h1>Discord</h1>
                     <p>
-                        We have a Discord server! our server, is where you can
-                        talk to the mods, do tryouts, attend giveaways, share
-                        your opinion on polls, and so much more! We do most of
-                        our stuff on Discord, so you should join if you want to
-                        see what’s happening!
+                        We have a Discord server! our server, is where you can talk to the mods, do tryouts, attend
+                        giveaways, share your opinion on polls, and so much more! We do most of our stuff on Discord, so
+                        you should join if you want to see what’s happening!
                     </p>
                 </div>
             </article>
@@ -104,9 +92,8 @@ export const HomePage = () => {
                 <div className="text">
                     <h1>Something</h1>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Bibendum magna morbi facilisis tellus diam amet. Enim
-                        magna. changed
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum magna morbi facilisis tellus
+                        diam amet. Enim magna. changed
                     </p>
                     <div className="journey-button">
                         <JourneyButton />

@@ -11,11 +11,7 @@ export const HandleConnectionFailed: React.FC = ({ children }) => {
     const setTokens = useTokenStore((s) => s.setTokens);
 
     try {
-        if (
-            isServerDown &&
-            navLinks.some((l) => route.toLowerCase().includes(l.path))
-        )
-            replace("/");
+        if (isServerDown && navLinks.some((l) => route.toLowerCase().includes(l.path))) replace("/");
     } catch {}
 
     if (isServerDown) {

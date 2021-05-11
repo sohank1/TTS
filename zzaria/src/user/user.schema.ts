@@ -19,8 +19,7 @@ export class User extends Document {
      * The URL to the discord avatar of the user.
      */
     @Prop({
-        default:
-            "https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png",
+        default: "https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png",
         required: false,
     })
     avatarUrl: string;

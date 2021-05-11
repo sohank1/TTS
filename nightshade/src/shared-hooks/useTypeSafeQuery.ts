@@ -7,10 +7,7 @@ type Await<T> = T extends Promise<infer U> ? U : T;
 
 type Query = ReturnType<typeof wrap>["query"];
 type QueryKeys = keyof Query;
-type PaginatedQueryKeys<K extends QueryKeys> = [
-    K,
-    ...(string | number | boolean)[]
-];
+type PaginatedQueryKeys<K extends QueryKeys> = [K, ...(string | number | boolean)[]];
 
 export const useTypeSafeQuery = <K extends QueryKeys>(
     key: K | PaginatedQueryKeys<K>,
@@ -22,9 +19,7 @@ export const useTypeSafeQuery = <K extends QueryKeys>(
     return useQuery<Await<ReturnType<Query[K]>>>(
         key,
         () => {
-            const fn = conn.query[
-                typeof key === "string" ? key : key[0]
-            ] as any;
+            const fn = conn.query[typeof key === "string" ? key : key[0]] as any;
             return fn(...(params || []));
         },
         {

@@ -2,6 +2,10 @@ name: "Lint and Test: Zzaria"
 
 on:
     push:
+        branches: master
+        paths:
+            - zzaria/**
+    pull_request_target:
         paths:
             - zzaria/**
 
@@ -13,9 +17,15 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 14.x
+            - uses: supercharge/mongodb-github-action@1.4.0
+              with:
+                  mongodb-version: 4.0
+
             - run: cd ./zzaria && yarn
             - run: cd ./zzaria && yarn lint
             - run: cd ./zzaria && yarn build
             - run: cd ./zzaria && yarn test:e2e
               env:
-                  MONGO_URI: ${{secrets.ZZARIA_MONGO_URI}}
+                  MONGO_URI: mongodb://localhost/test
+                  JWT_SECERT: test
+                  BOT_TOKEN: ${{secrets.ZZARIA_BOT_TOKEN}}

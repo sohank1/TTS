@@ -31,11 +31,7 @@ export const NotFoundPage = () => {
             </nav>
 
             <div className="main">
-                <img
-                    src="/assets/lost.svg"
-                    className="lost desktop"
-                    alt="A picture of a lost man."
-                />
+                <img src="/assets/lost.svg" className="lost desktop" alt="A picture of a lost man." />
                 <h2>Oh No!</h2>
                 <p>It seems you’re lost! Here are some suggestions.</p>
                 <section className="content">
@@ -50,11 +46,7 @@ export const NotFoundPage = () => {
                         <Button className="bugs">Report a Bug</Button>
                     </Link>
                 </section>
-                <img
-                    src="/assets/lost.svg"
-                    className="lost"
-                    alt="A picture of a lost man."
-                />
+                <img src="/assets/lost.svg" className="lost" alt="A picture of a lost man." />
 
                 <div className="footer">
                     <Footer />

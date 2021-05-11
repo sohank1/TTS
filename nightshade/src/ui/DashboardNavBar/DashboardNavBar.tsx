@@ -44,11 +44,7 @@ export const DashboardNavBar: React.FC = ({ children }) => {
                         {navLinks.map((l) => (
                             <div className="link" key={l.name}>
                                 <Link href={l.path}>
-                                    <Button
-                                        className={`${
-                                            route === l.path ? "active" : null
-                                        } on-card`}
-                                    >
+                                    <Button className={`${route === l.path ? "active" : null} on-card`}>
                                         {(() => {
                                             switch (l.name) {
                                                 case "Dashboard":

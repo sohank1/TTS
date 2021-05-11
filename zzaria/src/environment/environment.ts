@@ -22,6 +22,7 @@ class Prod {
     public CLIENT_DASHBOARD_URL = `${this.CLIENT_BASE_URL}/dashboard`;
 }
 
-export let environment: Dev | Prod = new Dev();
+export const IS_TEST = process.env.MONGO_URI === "mongodb://localhost/test";
 
+export let environment: Dev | Prod = new Dev();
 if (process.env.NODE_ENV === "production") environment = new Prod();

@@ -9,10 +9,7 @@ export default class MyDocument extends Document {
                 <Head>
                     <meta property="og:locale" content="en-US" />
                     <meta property="og:type" content="website" />
-                    <meta
-                        property="og:url"
-                        content="https://ttsclan.vercel.app/"
-                    />
+                    <meta property="og:url" content="https://ttsclan.vercel.app/" />
                     <meta property="og:site_name" content="TTS" />
                     <meta
                         property="og:keywords"
@@ -23,33 +20,15 @@ export default class MyDocument extends Document {
                         property="og:description"
                         content="The Tomatohead Society (TTS) is a Fortnite clan that strongly supports Team Pizza and is always looking for new members like you!"
                     />
-                    <meta
-                        property="og:image"
-                        content="https://ttsclan.vercel.app/assets/preview.png"
-                    />
+                    <meta property="og:image" content="https://ttsclan.vercel.app/assets/preview.png" />
                     <meta name="theme-color" content="#ff3f3f" />
 
-                    <meta
-                        property="twitter:card"
-                        content="summary_large_image"
-                    />
+                    <meta property="twitter:card" content="summary_large_image" />
                     <meta property="twitter:site" content="@TheTomatoHeads" />
-                    <meta
-                        property="twitter:site:id"
-                        content="@TheTomatoHeads"
-                    />
-                    <meta
-                        property="twitter:creator"
-                        content="@TheTomatoHeads"
-                    />
-                    <meta
-                        property="twitter:creator:id"
-                        content="@TheTomatoHeads"
-                    />
-                    <meta
-                        property="twitter:image"
-                        content="https://ttsclan.vercel.app/assets/preview.png"
-                    />
+                    <meta property="twitter:site:id" content="@TheTomatoHeads" />
+                    <meta property="twitter:creator" content="@TheTomatoHeads" />
+                    <meta property="twitter:creator:id" content="@TheTomatoHeads" />
+                    <meta property="twitter:image" content="https://ttsclan.vercel.app/assets/preview.png" />
                 </Head>
                 <body>
                     <Main />
@@ -73,9 +52,6 @@ MyDocument.getInitialProps = async (ctx) => {
 
     return {
         ...initialProps,
-        styles: [
-            ...React.Children.toArray(initialProps.styles),
-            sheets.getStyleElement(),
-        ],
+        styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
     };
 };

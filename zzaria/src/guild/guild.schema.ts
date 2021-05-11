@@ -21,8 +21,7 @@ export class Guild extends Document {
      * The URL to the icon of the TTS server.
      */
     @Prop({
-        default:
-            "https://cdn.discordapp.com/icons/570349873337991203/7f945e4de66e287e33e029043c99dd76.png?size=2048",
+        default: "https://cdn.discordapp.com/icons/570349873337991203/7f945e4de66e287e33e029043c99dd76.png?size=2048",
         required: false,
     })
     iconUrl: string;

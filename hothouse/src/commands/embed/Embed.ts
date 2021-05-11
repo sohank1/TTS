@@ -30,12 +30,9 @@ export default class EmbedCommand extends BaseCommand {
                 r.data.data.forEach((c, i) => {
                     if (c.shopHistory) {
                         console.log(i);
-                        const date = new Date(
-                            c.shopHistory[c.shopHistory.length - 1]
-                        );
+                        const date = new Date(c.shopHistory[c.shopHistory.length - 1]);
 
-                        const differenceInDays =
-                            (Date.now() - date.getTime()) / (1000 * 3600 * 24);
+                        const differenceInDays = (Date.now() - date.getTime()) / (1000 * 3600 * 24);
                         console.log(date, differenceInDays);
                         if (differenceInDays >= 300) missing.push(c);
                     }
@@ -46,9 +43,7 @@ export default class EmbedCommand extends BaseCommand {
                 );
                 missing.forEach((e, i) =>
                     this.message.channel.send(
-                        `${i}/${missing.length} Missing ${e.name} ${
-                            e.images.icon
-                        } Last Seen: ${new Date(
+                        `${i}/${missing.length} Missing ${e.name} ${e.images.icon} Last Seen: ${new Date(
                             e.shopHistory[e.shopHistory.length - 1]
                         ).toLocaleString()} There are ${
                             missing.length

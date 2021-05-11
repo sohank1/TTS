@@ -1,5 +1,4 @@
 import { HttpModule, Module } from "@nestjs/common";
-import { JwtModule } from "@nestjs/jwt";
 import { MongooseModule } from "@nestjs/mongoose";
 import { PassportModule } from "@nestjs/passport";
 // import { EventsModule } from 'src/events/events.module';
@@ -15,10 +14,6 @@ import { AuthService } from "./auth.service";
             { name: User.name, schema: UserSchema },
             { name: Guild.name, schema: GuildSchema },
         ]),
-        JwtModule.register({
-            secret: process.env.JWT_SECERT,
-            signOptions: { expiresIn: "60s" },
-        }),
         PassportModule.register({ session: true }),
         HttpModule,
         // EventsModule,

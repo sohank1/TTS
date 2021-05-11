@@ -12,11 +12,7 @@ async function bootstrap(): Promise<void> {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
     app.enableCors({
-        origin: [
-            "http://localhost:4200",
-            "https://tts-api-prod.herokuapp.com",
-            "https://ttsclan.vercel.app",
-        ],
+        origin: ["http://localhost:4200", "https://tts-api-prod.herokuapp.com", "https://ttsclan.vercel.app"],
         credentials: true,
     });
 

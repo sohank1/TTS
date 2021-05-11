@@ -12,11 +12,7 @@ export abstract class BaseEvent {
         const files = await fs.readdir(join(dir));
 
         for (const f of files) {
-            if (
-                (await fs.lstat(join(dir, f))).isDirectory() &&
-                f !== "baseEvent"
-            )
-                this.register(join(dir, f));
+            if ((await fs.lstat(join(dir, f))).isDirectory() && f !== "baseEvent") this.register(join(dir, f));
             else if (f !== "baseEvent")
                 try {
                     const { default: Event } = await import(join(dir, f));
