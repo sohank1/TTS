@@ -1,4 +1,4 @@
-import { HttpException, HttpService, HttpStatus, Injectable } from "@nestjs/common";
+import { HttpService, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Request, Response } from "express";
 import { Model } from "mongoose";
@@ -16,39 +16,34 @@ export class CdnService {
         private _http: HttpService
     ) {}
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public async createFiles(filesSent: any, res: Response): Promise<void> {
-        console.log("filesSent", filesSent);
-        let files = [];
-        for (const name in filesSent) {
-            for (const file in filesSent[name]) files.push(filesSent[name][file]);
-        }
-        console.log(files, "F");
-
-        files = files.map((n) => {
-            console.log(".map()", n);
-            n = this.genFileName(n);
-            return n;
-        });
-
-        console.log(files, "F");
-
-        // const channel = <TextChannel>client.channels.cache.get("795712339785154582");
-        console.log("sending");
-        for (const f of files) {
-            // If the file already exists throw an error.
-            if (await this.FileModel.findOne({ path: `/${f.name}` }))
-                throw new HttpException("File already exists", HttpStatus.BAD_REQUEST);
-
-            // const a = new MessageAttachment(f.data, f.name);
-            // const { attachments } = await channel.send(a);
-
-            await this.FileModel.create({
-                path: `/${f.name}`,
-                // url: attachments.first().url,
-            });
-
-            res.send({ message: "Created file." });
-        }
+        // console.log("filesSent", filesSent);
+        // let files = [];
+        // for (const name in filesSent) {
+        //     for (const file in filesSent[name]) files.push(filesSent[name][file]);
+        // }
+        // console.log(files, "F");
+        // files = files.map((n) => {
+        //     console.log(".map()", n);
+        //     n = this.genFileName(n);
+        //     return n;
+        // });
+        // console.log(files, "F");
+        // // const channel = <TextChannel>client.channels.cache.get("795712339785154582");
+        // console.log("sending");
+        // for (const f of files) {
+        //     // If the file already exists throw an error.
+        //     if (await this.FileModel.findOne({ path: `/${f.name}` }))
+        //         throw new HttpException("File already exists", HttpStatus.BAD_REQUEST);
+        //     // const a = new MessageAttachment(f.data, f.name);
+        //     // const { attachments } = await channel.send(a);
+        //     await this.FileModel.create({
+        //         path: `/${f.name}`,
+        //         // url: attachments.first().url,
+        //     });
+        //     res.send({ message: "Created file." });
+        // }
     }
 
     public async getFile(req: Request, res: Response): Promise<void> {
