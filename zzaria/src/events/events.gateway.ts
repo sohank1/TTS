@@ -25,7 +25,8 @@ export class EventsGateway implements OnGatewayConnection {
             let user: UserResponseObject;
 
             try {
-                user = await this._auth.me(accessToken);
+                // TODO refresh token
+                user = await this._auth.me(accessToken, "");
             } catch (err) {
                 return socket.emit("auth-error", {
                     error: {
