@@ -1,9 +1,15 @@
 name: "Lint and Test: Zzaria"
 
-on:
-    push:
-        paths:
-            - zzaria/**
+on: 
+
+     push:
+         branches: master
+         paths:
+              - zzaria/**
+     pull_request_target: 
+         paths: 
+               - zzaria/**
+ 
 
 jobs:
     ci:
