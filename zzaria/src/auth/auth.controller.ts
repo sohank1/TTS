@@ -38,7 +38,7 @@ export class AuthController {
             throw new HttpException("Invalid credentials", HttpStatus.UNAUTHORIZED);
         }
 
-        return d;
+        return d.user;
     }
 
     @Get("test/login")

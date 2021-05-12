@@ -13,15 +13,17 @@ export const connect = (
         url = apiUrl,
         getAuthOptions,
         onUser,
+        onNewTokens,
     }: {
         onConnectionFailed?: () => void;
         onClearTokens?: () => void;
         url?: string;
         getAuthOptions?: () => Partial<{
-            token: Token;
+            accessToken: Token;
             refreshToken: Token;
         }>;
         onUser?: (u: User) => void;
+        onNewTokens?: (accessToken: string, refreshToken: string) => void;
     }
 ): Promise<Connection> =>
     new Promise((res) => {
@@ -52,6 +54,8 @@ export const connect = (
             }
             // rej(error);
         });
+
+        socket.on("new-tokens", onNewTokens);
 
         socket.on("connect", () => {
             const conn: Connection = {

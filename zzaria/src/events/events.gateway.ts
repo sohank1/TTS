@@ -21,22 +21,26 @@ export class EventsGateway implements OnGatewayConnection {
     public handleConnection(socket: Socket) {
         console.log(`Client connected: ${socket.id}`);
 
-        socket.on("auth", async ({ accessToken }: { accessToken: string }) => {
-            let user: UserResponseObject;
-
-            try {
-                // TODO refresh token
-                user = await this._auth.me(accessToken, "");
-            } catch (err) {
-                socket.emit("auth-error", {
-                    error: {
-                        message: "Invalid token",
-                        code: HttpStatus.BAD_REQUEST,
-                    },
+        socket.on("auth", async ({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }) => {
+            // TODO refresh token
+            this._auth
+                .me(accessToken, refreshToken)
+                .then(({ user, raw }) => {
+                    if (user) socket.emit("auth-success", user);
+                    if (raw.type === "refresh") {
+                        socket.emit("new-tokens", raw.tokens);
+                        accessToken = raw.tokens.accessToken;
+                        refreshToken = raw.tokens.refreshToken;
+                    }
+                })
+                .catch(() => {
+                    socket.emit("auth-error", {
+                        error: {
+                            message: "Invalid tokens",
+                            code: HttpStatus.BAD_REQUEST,
+                        },
+                    });
                 });
-            }
-
-            user && socket.emit("auth-success", user);
         });
 
         socket.on("get-user", async (id: string) => {

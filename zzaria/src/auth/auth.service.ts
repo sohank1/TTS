@@ -11,7 +11,6 @@ import { environment, IS_TEST } from "../environment/environment";
 import { UserService } from "../user/user.service";
 import { Guild } from "../guild/guild.schema";
 import { getIconUrl } from "../guild/util/get-icon.util";
-import { UserResponseObject } from "../user/types/UserResponseObject";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const DiscordOauth = require("discord-oauth2");
@@ -101,11 +100,9 @@ export class AuthService {
         await this.validateUser(user);
 
         res.redirect(
-            `${environment.CLIENT_BASE_URL}/save?accessToken=${jwt.sign({ userId: user.id }, process.env.JWT_SECERT, {
-                expiresIn: "1m",
-            })}&refreshToken=${jwt.sign({ userId: user.id }, process.env.JWT_SECERT, {
-                expiresIn: "30d",
-            })}`
+            `${environment.CLIENT_BASE_URL}/save?accessToken=${this._signAccessToken(
+                user.id
+            )}&refreshToken=${this._signRefreshToken(user.id)}`
         );
     }
 
@@ -118,10 +115,54 @@ export class AuthService {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async me(accessToken: string, refreshToken: string): Promise<UserResponseObject> {
+    public async me(accessToken: string, refreshToken: string, fetchUser = true) {
         // TODO logic with refresh tokens
-        const { userId } = <{ userId: string }>jwt.verify(accessToken, process.env.JWT_SECERT);
-        return this._userService.get(userId);
+        try {
+            const raw = await this.validateTokens(accessToken, refreshToken);
+            return { user: fetchUser ? await this._userService.get(raw.userId) : null, raw };
+        } catch {}
+    }
+
+    public async validateTokens(
+        accessToken: string,
+        refreshToken: string
+    ): Promise<{
+        userId: string;
+        type: "success" | "refresh" | "error";
+        tokens?: { accessToken: string; refreshToken: string };
+    }> {
+        return new Promise((res, rej) => {
+            const a = <{ userId?: string; type: "access" }>jwt.verify(accessToken, process.env.JWT_SECERT);
+            const r = <{ userId?: string; type: "refresh" }>jwt.verify(refreshToken, process.env.JWT_SECERT);
+            console.log(a, r);
+            if (a.type === "access")
+                res({
+                    type: "success",
+                    userId: a.userId,
+                });
+
+            if (r.type === "refresh") {
+                // If no access token but refresh token then refresh the tokens
+                res({
+                    type: "refresh",
+                    userId: r.userId,
+                    tokens: {
+                        accessToken: this._signAccessToken(r.userId),
+                        refreshToken: this._signRefreshToken(r.userId),
+                    },
+                });
+            }
+
+            rej();
+        });
+    }
+
+    private _signAccessToken(userId: string): string {
+        return jwt.sign({ userId, type: "access" }, process.env.JWT_SECERT, { expiresIn: "10s" });
+    }
+
+    private _signRefreshToken(userId: string): string {
+        return jwt.sign({ userId, type: "refresh" }, process.env.JWT_SECERT, { expiresIn: "30d" });
     }
 
     public async fetchUsers(): Promise<Guild> {
