@@ -28,7 +28,7 @@ export class EventsGateway implements OnGatewayConnection {
                 // TODO refresh token
                 user = await this._auth.me(accessToken, "");
             } catch (err) {
-                return socket.emit("auth-error", {
+                socket.emit("auth-error", {
                     error: {
                         message: "Invalid token",
                         code: HttpStatus.BAD_REQUEST,
@@ -36,7 +36,7 @@ export class EventsGateway implements OnGatewayConnection {
                 });
             }
 
-            socket.emit("auth-success", user);
+            user && socket.emit("auth-success", user);
         });
 
         socket.on("get-user", async (id: string) => {
