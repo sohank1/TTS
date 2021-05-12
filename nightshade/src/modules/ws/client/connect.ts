@@ -76,7 +76,7 @@ export const connect = (
         });
 
         socket.on("connect_error", (e) => {
-            console.log(e)
+            console.log(e);
             const conn: Connection = {
                 socket,
                 user: null,
