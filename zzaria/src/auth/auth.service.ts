@@ -148,7 +148,7 @@ export class AuthService {
                     userId: r.userId,
                     tokens: {
                         accessToken: this._signAccessToken(r.userId),
-                        refreshToken: this._signRefreshToken(r.userId),
+                        refreshToken: r
                     },
                 });
             }
