@@ -37,7 +37,7 @@ export const NotFoundPage = () => {
                 <section className="content">
                     <Button
                         className="issue"
-                        href="https://github.com/CreeperPlanet26/TTS-Client/issues"
+                        href="https://github.com/CreeperPlanet26/TTS/issues"
                         target="_blank"
                     >
                         Open a Issue
