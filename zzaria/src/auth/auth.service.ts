@@ -102,11 +102,9 @@ export class AuthService {
 
         res.redirect(
             `${environment.CLIENT_BASE_URL}/save?accessToken=${jwt.sign({ userId: user.id }, process.env.JWT_SECERT, {
-                // 1 min
-                expiresIn: 1000,
+                expiresIn: "1m",
             })}&refreshToken=${jwt.sign({ userId: user.id }, process.env.JWT_SECERT, {
-                // 1 day
-                expiresIn: 86400000,
+                expiresIn: "30d",
             })}`
         );
     }
