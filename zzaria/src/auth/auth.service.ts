@@ -161,6 +161,7 @@ export class AuthService {
 
                 rej("failed");
             } catch (err) {
+                console.log("a and r in catch", a, r)
                 if (a?.type === "access" && r?.type === "refresh" && a?.userId === r?.userId)
                     res({
                         type: "refresh",
