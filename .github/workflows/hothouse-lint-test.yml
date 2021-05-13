@@ -9,7 +9,29 @@ on:
             - .github/workflows/hothouse-lint-test.yml
 
 jobs:
-    ci:
+
+    lint: 
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+                  
+            - uses: actions/cache@v2
+              id: cache
+              with:
+                  path: "**/node_modules"
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+            - name: Install Dependencies
+              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+              run: cd ./hothouse && yarn
+            - name: Lint  
+              run: cd ./hothouse && yarn lint
+
+    test:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -24,10 +46,10 @@ jobs:
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
                       ${{ runner.os }}-yarn-
-
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./hothouse && yarn
-            - run: cd ./hothouse && yarn lint
-            - run: cd ./hothouse && yarn build
-            - run: cd ./hothouse && yarn test
+            - name: Build
+              run: cd ./hothouse && yarn build
+            - name: Test
+              run: cd ./hothouse && yarn test
