@@ -11,7 +11,7 @@ export class Client extends DiscordClient {
 
     private _init(): void {
         this.login(process.env.BOT_TOKEN);
-        this.on("ready", () => console.log(`${this.user.tag} has logged on.`));
+        this.on("ready", () => console.log(`${this.user.tag} logged in`));
     }
 }
 

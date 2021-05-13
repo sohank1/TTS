@@ -1,3 +1,5 @@
+import "../styles/globals.scss";
+import "nprogress/nprogress.css";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import Router from "next/router";
@@ -9,8 +11,6 @@ import { useSaveLoginRedirectPath } from "../modules/auth/useSaveLoginRedirectPa
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "../lib/queryClient";
 import { HandleConnectionFailed } from "../modules/ws/HandleConnectionFailed";
-import "../styles/globals.scss";
-import "nprogress/nprogress.css";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
