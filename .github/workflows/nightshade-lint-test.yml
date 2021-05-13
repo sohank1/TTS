@@ -4,6 +4,9 @@ on:
     push:
         paths:
             - nightshade/**
+            - eslintrc.json
+            - prettierrc.js
+            - .github/workflows/nightshade-lint-test.yml
 
 jobs:
     ci:
@@ -16,14 +19,14 @@ jobs:
             - uses: actions/cache@v2
               id: cache
               with:
-                 path: "**/node_modules"
-                 key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-                 restore-keys: |
-                    ${{ runner.os }}-yarn-
+                  path: "**/node_modules"
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
 
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-              run: cd ./nightshade yarn
+              run: cd ./nightshade && yarn
             - run: cd ./nightshade && yarn lint
             - run: cd ./nightshade && yarn build
             - run: cd ./nightshade && yarn test

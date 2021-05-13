@@ -5,9 +5,15 @@ on:
         branches: master
         paths:
             - zzaria/**
+            - eslintrc.json
+            - prettierrc.js
+            - .github/workflows/zzaria-lint-test.yml
     pull_request_target:
         paths:
             - zzaria/**
+            - eslintrc.json
+            - prettierrc.js
+            - .github/workflows/zzaria-lint-test.yml
 
 jobs:
     ci:
@@ -20,19 +26,18 @@ jobs:
             - uses: supercharge/mongodb-github-action@1.4.0
               with:
                   mongodb-version: 4.0
-                  
+
             - uses: actions/cache@v2
               id: cache
               with:
-                 path: "**/node_modules"
-                 key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-                 restore-keys: |
-                    ${{ runner.os }}-yarn-
+                  path: "**/node_modules"
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
 
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-              run: cd ./zzaria yarn
-              
+              run: cd ./zzaria && yarn
             - run: cd ./zzaria && yarn lint
             - run: cd ./zzaria && yarn build
             - run: cd ./zzaria && yarn test:e2e
