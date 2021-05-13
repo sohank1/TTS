@@ -24,10 +24,20 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 14.x
+                  
+            - uses: actions/cache@v2
+              id: cache
+              with:
+                  path: "**/node_modules"
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./zzaria && yarn
-            - run: cd ./zzaria && yarn lint
+            - name: Lint  
+              run: cd ./zzaria && yarn lint
 
     test:
         runs-on: ubuntu-latest
@@ -51,8 +61,10 @@ jobs:
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./zzaria && yarn
-            - run: cd ./zzaria && yarn build
-            - run: cd ./zzaria && yarn test:e2e
+            - name: Build
+              run: cd ./zzaria && yarn build
+            - name: Test
+              run: cd ./zzaria && yarn test:e2e
               env:
                   MONGO_URI: mongodb://localhost/test
                   JWT_SECERT: test
