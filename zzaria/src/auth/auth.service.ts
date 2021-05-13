@@ -249,8 +249,8 @@ export class AuthService {
         }
 
         const d = {
-            accessToken: jwt.sign({ userId: user.id }, process.env.JWT_SECERT),
-            refreshToken: jwt.sign({ userId: user.id }, process.env.JWT_SECERT),
+            accessToken: this._signAccessToken(user.id),
+            refreshToken: this._signRefreshToken(user.id),
         };
 
         if (type === "tokens") return d;
