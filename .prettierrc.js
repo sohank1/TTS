@@ -5,5 +5,5 @@ module.exports = {
     singleQuote: false,
     arrowParens: "always",
     useTabs: false,
-    printWidth: 120,
+    printWidth: 120
 };
