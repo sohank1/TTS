@@ -158,6 +158,8 @@ export class AuthService {
                         type: "success",
                         userId: a.userId,
                     });
+                
+                rej("failed");
             } catch (err) {
                 if (!a && r?.type === "refresh")
                     res({
