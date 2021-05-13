@@ -28,6 +28,7 @@
             "error",
             "double"
         ],
-        "no-empty": "off"
+        "no-empty": "off",
+        "no-async-promise-executor": "off"
     }
 }

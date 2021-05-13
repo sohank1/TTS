@@ -30,15 +30,13 @@ export class AuthController {
         if (!req.header("X-Access-Token") || !req.header("X-Refresh-Token"))
             throw new HttpException("No credentials provided", HttpStatus.BAD_REQUEST);
 
-        let d;
-
         try {
-            d = await this.service.me(req.header("X-Access-Token"), req.header("X-Refresh-Token"));
+            return <UserResponseObject>(
+                (await this.service.me(req.header("X-Access-Token"), req.header("X-Refresh-Token"))).user
+            );
         } catch {
             throw new HttpException("Invalid credentials", HttpStatus.UNAUTHORIZED);
         }
-
-        return d.user;
     }
 
     @Get("test/login")

@@ -11,6 +11,7 @@ import { environment, IS_TEST } from "../environment/environment";
 import { UserService } from "../user/user.service";
 import { Guild } from "../guild/guild.schema";
 import { getIconUrl } from "../guild/util/get-icon.util";
+import { UserResponseObject } from "src/user/types/UserResponseObject";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const DiscordOauth = require("discord-oauth2");
@@ -114,13 +115,26 @@ export class AuthService {
         req.query.redirect ? res.redirect(<string>req.query.redirect) : res.redirect(environment.CLIENT_BASE_URL);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async me(accessToken: string, refreshToken: string, fetchUser = true) {
-        // TODO logic with refresh tokens
-        try {
-            const raw = await this.validateTokens(accessToken, refreshToken);
-            return { user: fetchUser ? await this._userService.get(raw.userId) : null, raw };
-        } catch {}
+    public me(
+        accessToken: string,
+        refreshToken: string,
+        fetchUser = true
+    ): Promise<{
+        user: UserResponseObject;
+        raw: {
+            userId: string;
+            type: "success" | "refresh" | "error";
+            tokens?: { accessToken: string; refreshToken: string };
+        };
+    }> {
+        return new Promise(async (res, rej) => {
+            try {
+                const raw = await this.validateTokens(accessToken, refreshToken);
+                res({ user: fetchUser ? await this._userService.get(raw.userId) : null, raw });
+            } catch (err) {
+                rej(err);
+            }
+        });
     }
 
     public async validateTokens(
@@ -132,33 +146,36 @@ export class AuthService {
         tokens?: { accessToken: string; refreshToken: string };
     }> {
         return new Promise((res, rej) => {
-            const a = <{ userId?: string; type: "access" }>jwt.verify(accessToken, process.env.JWT_SECERT);
-            const r = <{ userId?: string; type: "refresh" }>jwt.verify(refreshToken, process.env.JWT_SECERT);
-            console.log(a, r);
-            if (a.type === "access")
-                res({
-                    type: "success",
-                    userId: a.userId,
-                });
+            let r: { userId?: string; type: "refresh" };
+            let a: { userId?: string; type: "access" };
 
-            if (r.type === "refresh") {
-                // If no access token but refresh token then refresh the tokens
-                res({
-                    type: "refresh",
-                    userId: r.userId,
-                    tokens: {
-                        accessToken: this._signAccessToken(r.userId),
-                        refreshToken,
-                    },
-                });
+            try {
+                r = jwt.verify(refreshToken, process.env.JWT_SECERT) as any;
+                a = jwt.verify(accessToken, process.env.JWT_SECERT) as any;
+
+                if (a?.type === "access")
+                    res({
+                        type: "success",
+                        userId: a.userId,
+                    });
+            } catch (err) {
+                if (!a && r?.type === "refresh")
+                    res({
+                        type: "refresh",
+                        userId: r.userId,
+                        tokens: {
+                            accessToken: this._signAccessToken(r.userId),
+                            refreshToken,
+                        },
+                    });
+
+                rej("failed");
             }
-
-            rej();
         });
     }
 
     private _signAccessToken(userId: string): string {
-        return jwt.sign({ userId, type: "access" }, process.env.JWT_SECERT, { expiresIn: "10s" });
+        return jwt.sign({ userId, type: "access" }, process.env.JWT_SECERT, { expiresIn: "5m" });
     }
 
     private _signRefreshToken(userId: string): string {

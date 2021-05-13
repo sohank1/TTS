@@ -26,7 +26,35 @@ export class EventsGateway implements OnGatewayConnection {
             this._auth
                 .me(accessToken, refreshToken)
                 .then(({ user, raw }) => {
-                    if (user) socket.emit("auth-success", user);
+                    if (user) {
+                        socket.emit("auth-success", user);
+
+                        const i = setInterval(() => {
+                            console.log(`running interval: ${socket.id}`);
+                            this._auth
+                                .me(accessToken, refreshToken, false)
+                                .then(({ raw }) => {
+                                    console.log("raw", raw);
+                                    if (raw.type === "refresh") {
+                                        socket.emit("new-tokens", raw.tokens);
+                                        accessToken = raw.tokens.accessToken;
+                                        refreshToken = raw.tokens.refreshToken;
+                                    }
+                                })
+                                .catch((e) => {
+                                    console.log(e);
+                                    socket.emit("auth-error", {
+                                        error: {
+                                            message: "Invalid tokens",
+                                            code: HttpStatus.BAD_REQUEST,
+                                        },
+                                    });
+                                    clearInterval(i);
+                                });
+                        }, 290000);
+
+                        socket.on("disconnect", () => clearInterval(i));
+                    }
                     if (raw.type === "refresh") {
                         socket.emit("new-tokens", raw.tokens);
                         accessToken = raw.tokens.accessToken;

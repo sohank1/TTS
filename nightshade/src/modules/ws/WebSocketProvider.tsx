@@ -15,8 +15,10 @@ export const WebSocketContext = createContext<{
 }>({
     conn: null,
     isServerDown: null,
+    // prettier-ignore
     // eslint-disable-next-line prettier/prettier
     setUser: () => { },
+    // prettier-ignore
     // eslint-disable-next-line prettier/prettier
     setConn: () => { },
 });
@@ -68,11 +70,8 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConn
                         replace("/logout");
                         // setConn(null);
                     },
-                    onNewTokens: (accessToken, refreshToken) => {
-                        useTokenStore.getState().setTokens({
-                            accessToken,
-                            refreshToken,
-                        });
+                    onNewTokens: (t) => {
+                        useTokenStore.getState().setTokens(t);
                     },
                     onUser: (user) => {
                         console.log("user", user);

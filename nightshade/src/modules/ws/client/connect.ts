@@ -23,7 +23,7 @@ export const connect = (
             refreshToken: Token;
         }>;
         onUser?: (u: User) => void;
-        onNewTokens?: (accessToken: string, refreshToken: string) => void;
+        onNewTokens?: (tokens: { accessToken: string; refreshToken: string }) => void;
     }
 ): Promise<Connection> =>
     new Promise((res) => {
