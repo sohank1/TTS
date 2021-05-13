@@ -4,8 +4,8 @@ on:
     push:
         paths:
             - nightshade/**
-            - eslintrc.json
-            - prettierrc.js
+            - .eslintrc.json
+            - .prettierrc.js
             - .github/workflows/nightshade-lint-test.yml
 
 jobs:

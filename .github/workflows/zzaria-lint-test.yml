@@ -5,8 +5,8 @@ on:
         branches: master
         paths:
             - zzaria/**
-            - eslintrc.json
-            - prettierrc.js
+            - .eslintrc.json
+            - .prettierrc.js
             - .github/workflows/zzaria-lint-test.yml
     pull_request_target:
         paths:

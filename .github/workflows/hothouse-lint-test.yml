@@ -4,8 +4,8 @@ on:
     push:
         paths:
             - hothouse/**
-            - eslintrc.json
-            - prettierrc.js
+            - .eslintrc.json
+            - .prettierrc.js
             - .github/workflows/hothouse-lint-test.yml
 
 jobs:
