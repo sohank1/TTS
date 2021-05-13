@@ -161,7 +161,7 @@ export class AuthService {
 
                 rej("failed");
             } catch (err) {
-                if (!a && r?.type === "refresh")
+                if (a?.type === "access" && r?.type === "refresh" && a?.userId === r?.userId)
                     res({
                         type: "refresh",
                         userId: r.userId,
