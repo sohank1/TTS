@@ -16,7 +16,20 @@ on:
             - .github/workflows/zzaria-lint-test.yml
 
 jobs:
-    ci:
+
+    lint: 
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+            - name: Install Dependencies
+              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+              run: cd ./zzaria && yarn
+            - run: cd ./zzaria && yarn lint
+
+    test:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -38,7 +51,6 @@ jobs:
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./zzaria && yarn
-            - run: cd ./zzaria && yarn lint
             - run: cd ./zzaria && yarn build
             - run: cd ./zzaria && yarn test:e2e
               env:
