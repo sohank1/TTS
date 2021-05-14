@@ -161,7 +161,7 @@ export class AuthService {
 
                 rej("failed");
             } catch (err) {
-                if (r.type === "refresh" && err.name === "TokenExpiredError")
+                if (r?.type === "refresh" && err.name === "TokenExpiredError")
                     res({
                         type: "refresh",
                         userId: r.userId,
