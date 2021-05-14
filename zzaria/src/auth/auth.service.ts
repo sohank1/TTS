@@ -153,7 +153,7 @@ export class AuthService {
                 r = jwt.verify(refreshToken, process.env.JWT_SECERT) as any;
                 a = jwt.verify(accessToken, process.env.JWT_SECERT) as any;
 
-                if (a?.type === 'access' && r?.type === 'refresh' && a?.userId === r?.userId")
+                if (a?.type === "access" && r?.type === "refresh" && a?.userId === r?.userId)
                     res({
                         type: "success",
                         userId: a.userId,
@@ -161,7 +161,7 @@ export class AuthService {
 
                 rej("failed");
             } catch (err) {
-                if (r.type="refresh" && err.name === 'TokenExpiredError')
+                if (r.type="refresh" && err.name === "TokenExpiredError")
                     res({
                         type: "refresh",
                         userId: r.userId,
