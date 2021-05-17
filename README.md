@@ -63,4 +63,10 @@ TTS makes it easy to view and manage all things in TTS.
 
 ## Technical Details in Authentication
 
--   When you login...
+-   Data from the TTS Server is fetched and saved in the database
+-   If user is in TTS their account is created or updated in the database 
+-   Otherwise they are redirected to the TTS Discord Server invite link and the login process fails
+-   If everything goes well and user is in TTS an access token and a refresh token for that user will be generated 
+-   The user will be redirected to `/save?accessToken=whatever_the_access_token_is&refreshToken=whatever_the_refresh_token_is`
+-   The client will save the access token and refresh token in local storage
+-   Then a Websocket connection between the server and the client will established
