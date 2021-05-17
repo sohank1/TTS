@@ -20,9 +20,9 @@ export class EventsGateway implements OnGatewayConnection {
 
     public handleConnection(socket: Socket) {
         console.log(`Client connected: ${socket.id}`);
-        setInterval(() => socket.emit("test", "5 second passed"), 5000);   
-        
-        socket.on("auth", async ({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }) => {       
+        setInterval(() => socket.emit("test", "5 second passed"), 5000);
+
+        socket.on("auth", async ({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }) => {
             this._auth
                 .me(accessToken, refreshToken)
                 .then(({ user, raw }) => {
