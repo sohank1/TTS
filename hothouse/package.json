@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^15.0.2",
-    "@types/socket.io-client": "^1.4.36",
+    "@types/socket.io-client": "^3.0.0",
     "axios": "^0.21.1",
     "discord.js": "^12.5.1",
     "dotenv": "^9.0.2",
