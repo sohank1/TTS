@@ -59,7 +59,7 @@ TTS makes it easy to view and manage all things in TTS.
 -   You can simply log into TTS by using your Discord account
 -   When you first click a log in button you will be redirected to Discord and it will ask you to hit accept
 -   If you have already hit accept before you don't have to do it again
--   Once you hit accept if will check if you are in the TTS Discord. If you are not in TTS you will be redirected to the TTS invite link. **(not implemented yet)**
+-   Once you hit accept if will check if you are in the TTS Discord. If you are not in TTS you will be redirected to the TTS invite link. **(not implemented yet. See [#40](/../../issues/40) for more details)**
 
 ## Technical Details in Authentication
 
