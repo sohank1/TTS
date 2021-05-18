@@ -42,7 +42,7 @@ export class AuthController {
     @Get("test/login")
     public testLogin(
         @Query("type") type: "tokens",
-        @Req() res: Response
+        @Res() res: Response
     ): Promise<void | { accessToken: string; refreshToken: string }> {
         return this.service.loginWithTestUser(type, res);
     }

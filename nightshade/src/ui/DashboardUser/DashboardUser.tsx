@@ -13,7 +13,7 @@ export const DashboardUser = () => {
         enabled: !isServer,
         refetchOnMount: "always",
     });
-    const roles = data?.members.find((m) => m.id === "481158632008974337").roles;
+    const roles = data?.members?.find((m) => m.id === "481158632008974337").roles;
 
     const [showDetail, setShowDetail] = useState(false);
     const detail = useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ export const DashboardUser = () => {
                         </Button>
 
                         <section className="roles">
-                            {roles.map((r) => (
+                            {roles?.map((r) => (
                                 <article style={{ borderColor: r.color }} key={r.id}>
                                     <div style={{ background: r.color }}></div>
                                     <h3>{r.name}</h3>
