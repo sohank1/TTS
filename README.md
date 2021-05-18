@@ -72,10 +72,17 @@ TTS makes it easy to view and manage all things in TTS.
 -   The client will save the access token and refresh token in local storage
 -   Then a Websocket connection between the server and the client will established
 -   The tokens are sent through a WS message (Websocket Message): 
-```js
+```json
 ["auth", {"accessToken": "whatever_the_access_token_is", "refreshToken": "whatever_the_refresh_token_is"}]
 ```
  -  If the access token and refresh token are valid then the server will respond with a WS message like this that contains the user details:
- ```js
-["auth-success", {"avatarUrl": "https://cdn.discordapp.com/avatars/481158632008974337/d9712404dc60ea0f39712a91f7b914d4.png?size=2048","_id": "5fd0e32d087b692d04143ca2", "id": "481158632008974337", "tag": "Creeper#4717", "__v": 0, "name": "Creeper"}]
+ ```json
+["auth-success", {
+  "avatarUrl": "https://cdn.discordapp.com/avatars/481158632008974337/d9712404dc60ea0f39712a91f7b914d4.png?size=2048",
+  "id": "481158632008974337",
+  "name": "Creeper",
+  "tag": "Creeper#4717",
+   "_id": "5fd0e32d087b692d04143ca2",
+  "__v": 0
+}]
 ``` 
