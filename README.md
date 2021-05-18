@@ -66,7 +66,16 @@ TTS makes it easy to view and manage all things in TTS.
 -   Data from the TTS Server is fetched and saved in the database
 -   If user is in TTS their account is created or updated in the database 
 -   Otherwise they are redirected to the TTS Discord Server invite link and the login process fails
--   If everything goes well and user is in TTS an access token and a refresh token for that user will be generated 
--   The user will be redirected to `/save?accessToken=whatever_the_access_token_is&refreshToken=whatever_the_refresh_token_is`
+-   If everything goes well and user is in TTS an access token and a refresh token for that user will be generated
+-   This access token and refresh tokens are secert keys that are used to know who you are. Do not share these otherwise the person you shared it with can log in as you! They will be able to get your data and do actions as if they are you.
+-   After tokens are created the user will be redirected to `/save?accessToken=whatever_the_access_token_is&refreshToken=whatever_the_refresh_token_is`
 -   The client will save the access token and refresh token in local storage
 -   Then a Websocket connection between the server and the client will established
+-   The tokens are sent through a WS message (Websocket Message): 
+```js
+["auth", {"accessToken": "whatever_the_access_token_is", "refreshToken": "whatever_the_refresh_token_is"}]
+```
+ -  If the access token and refresh token are valid then the server will respond with a WS message like this that contains the user details:
+ ```js
+["auth-success", {"avatarUrl": "https://cdn.discordapp.com/avatars/481158632008974337/d9712404dc60ea0f39712a91f7b914d4.png?size=2048","_id": "5fd0e32d087b692d04143ca2", "id": "481158632008974337", "tag": "Creeper#4717", "__v": 0, "name": "Creeper"}]
+``` 
