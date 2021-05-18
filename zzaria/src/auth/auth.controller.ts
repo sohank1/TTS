@@ -44,6 +44,7 @@ export class AuthController {
         @Query("type") type: "tokens",
         @Res() res: Response
     ): Promise<void | { accessToken: string; refreshToken: string }> {
+        console.log(type);
         return this.service.loginWithTestUser(type, res);
     }
 }

@@ -255,11 +255,11 @@ export class AuthService {
             refreshToken: this._signRefreshToken(user.id),
         };
 
-        if (type === "tokens") return d;
-
-        return res.redirect(
-            `${environment.CLIENT_BASE_URL}/save?accessToken=${d.accessToken}&refreshToken=${d.refreshToken}`
-        );
+        if (type === "tokens") res.send(d);
+        else
+            return res.redirect(
+                `${environment.CLIENT_BASE_URL}/save?accessToken=${d.accessToken}&refreshToken=${d.refreshToken}`
+            );
     }
 
     // public async login(res: Response): Promise<void> {
