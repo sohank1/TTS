@@ -4,16 +4,16 @@ on:
     push:
         branches: master
         paths:
-            - zzaria/**
+            - nightshade/**
             - .eslintrc.json
             - .prettierrc.js
-            - .github/workflows/zzaria-lint-test.yml
+            - .github/workflows/nightshade-lint-test.yml
     pull_request_target:
         paths:
-            - zzaria/**
+            - nightshade/**
             - eslintrc.json
             - prettierrc.js
-            - .github/workflows/zzaria-lint-test.yml
+            - .github/workflows/nightshade-lint-test.yml
 
 jobs:
     lint: 
