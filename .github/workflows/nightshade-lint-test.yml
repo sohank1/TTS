@@ -64,11 +64,11 @@ jobs:
                       ${{ runner.os }}-cypress-  
               
             - name: Install Dependencies
-              if: ${{ steps.cache.outputs.deps-hit != 'true' }}
+              if: ${{ steps.deps.outputs.deps-hit != 'true' }}
               run: cd ./nightshade && yarn
               
             - name: Install Cypress
-              if: ${{ steps.cache.outputs.cypress-hit != 'true' }}
+              if: ${{ steps.cypress.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn run cypress install  
               
             - name: Build
@@ -83,6 +83,6 @@ jobs:
               run: cd ./zzaria && MONGO_URI=mongodb://localhost/test JWT_SECERT=test BOT_TOKEN=${{secrets.ZZARIA_BOT_TOKEN}} yarn start:dev & cd ./nightshade && yarn dev &
               
             - name: Run Tests
-              run: cd ./nightshade && yarn run cypress run --headless --browser chrome
+              run: cd ./nightshade && yarn run cypress run
             
             
