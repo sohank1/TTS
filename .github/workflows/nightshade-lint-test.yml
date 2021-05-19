@@ -53,11 +53,13 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-yarn-  
               
-            - name: Install Cypress
-#               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+            - name: Install Dependencies
+              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
             - name: Build
               run: cd ./nightshade && yarn build
+            - name: Install Cypress
+              run: cd ./nightshade && yarn run cypress install
             - uses: supercharge/mongodb-github-action@1.4.0
               with:
                   mongodb-version: 4.0
