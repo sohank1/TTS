@@ -2,14 +2,20 @@ name: "Lint and Test: Nightshade"
 
 on:
     push:
+        branches: master
         paths:
-            - nightshade/**
+            - zzaria/**
             - .eslintrc.json
             - .prettierrc.js
-            - .github/workflows/nightshade-lint-test.yml
+            - .github/workflows/zzaria-lint-test.yml
+    pull_request_target:
+        paths:
+            - zzaria/**
+            - eslintrc.json
+            - prettierrc.js
+            - .github/workflows/zzaria-lint-test.yml
 
 jobs:
-
     lint: 
         runs-on: ubuntu-latest
         steps:
@@ -51,5 +57,19 @@ jobs:
               run: cd ./nightshade && yarn
             - name: Build
               run: cd ./nightshade && yarn build
+            - name: Install Mongodb
+            - uses: supercharge/mongodb-github-action@1.4.0
+              with:
+                  mongodb-version: 4.0
             - name: Test
-              run: cd ./nightshade && yarn test
+            - uses: cypress-io/github-action@v2
+              with:
+               working-directory: ./nightshade
+               start: |
+                 cd ./zzaria && yarn start:dev
+                 cd ./nightshade && yarn dev
+               wait-on: 'http://localhost:8000, http://localhost:3000'
+              env:
+                MONGO_URI: mongodb://localhost/test
+                JWT_SECERT: test
+                BOT_TOKEN: ${{secrets.ZZARIA_BOT_TOKEN}}
