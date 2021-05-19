@@ -46,7 +46,7 @@ jobs:
                   node-version: 14.x
 
             - uses: actions/cache@v2
-              id: cache
+              id: deps
               with:
                   path: "**/node_modules"
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -62,11 +62,15 @@ jobs:
                       ${{ runner.os }}-cypress-  
               
             - name: Install Dependencies
-              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+              if: ${{ steps.cache.outputs.deps-hit != 'true' }}
               run: cd ./nightshade && yarn
+            - name: Install Cypress
+              if: ${{ steps.cache.outputs.cypress-hit != 'true' }}
+              run: cd ./nightshade && yarn            
             - name: Build
               run: cd ./nightshade && yarn build
-            - uses: supercharge/mongodb-github-action@1.4.0
+            - name: Install MongoDB
+              uses: supercharge/mongodb-github-action@1.4.0
               with:
                   mongodb-version: 4.0
             - name: Start Servers
