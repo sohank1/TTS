@@ -57,11 +57,9 @@ jobs:
               run: cd ./nightshade && yarn
             - name: Build
               run: cd ./nightshade && yarn build
-            - name: Install Mongodb
             - uses: supercharge/mongodb-github-action@1.4.0
               with:
                   mongodb-version: 4.0
-            - name: Test
             - uses: cypress-io/github-action@v2
               with:
                working-directory: ./nightshade
