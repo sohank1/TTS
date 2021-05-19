@@ -90,6 +90,6 @@ jobs:
               uses: actions/upload-artifact@v2
               with:
                 name: Cypress E2E Videos
-                path: ./nightshade/cypress/videos
+                path: ./nightshade/cypress/videos/*.mp4
             
             
