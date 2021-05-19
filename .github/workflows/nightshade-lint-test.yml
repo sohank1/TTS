@@ -52,20 +52,26 @@ jobs:
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
                       ${{ runner.os }}-yarn-  
+                      
+            - uses: actions/cache@v2
+              id: cypress
+              with:
+                  path: "/home/runner/.cache/Cypress/"
+                  key: ${{ runner.os }}-cypress-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-cypress-  
               
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
             - name: Build
               run: cd ./nightshade && yarn build
-            - name: Install Cypress
-              run: cd ./nightshade && yarn run cypress install
             - uses: supercharge/mongodb-github-action@1.4.0
               with:
                   mongodb-version: 4.0
             - name: Start Servers
               run: cd ./zzaria && MONGO_URI=mongodb://localhost/test JWT_SECERT=test BOT_TOKEN=${{secrets.ZZARIA_BOT_TOKEN}} yarn start:dev & cd ./nightshade && yarn dev &
             - name: Run Tests
-              run: cd ./nightshade && yarn run cypress run
+              run: cd ./nightshade && yarn run cypress run --headless --browser chrome
             
             
