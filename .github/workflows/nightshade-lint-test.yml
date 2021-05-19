@@ -62,9 +62,7 @@ jobs:
               with:
                   mongodb-version: 4.0
             - name: Start Servers
-              run: |
-                 cd ./zzaria && MONGO_URI=mongodb://localhost/test JWT_SECERT=test BOT_TOKEN=${{secrets.ZZARIA_BOT_TOKEN}} yarn start:dev
-                 cd ./nightshade && yarn dev &
+              run: cd ./zzaria && MONGO_URI=mongodb://localhost/test JWT_SECERT=test BOT_TOKEN=${{secrets.ZZARIA_BOT_TOKEN}} yarn start:dev & cd ./nightshade && yarn dev &
             - name: Run Tests
               run: |
                  yarn run cypress run
