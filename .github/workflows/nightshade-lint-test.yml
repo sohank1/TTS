@@ -63,7 +63,7 @@ jobs:
                   mongodb-version: 4.0
             - uses: cypress-io/github-action@v2
               with:
-               working-directory: ./nightshade
+#                working-directory: ./nightshade
                start: |
                  cd ./zzaria && yarn start:dev
                  cd ./nightshade && yarn dev
