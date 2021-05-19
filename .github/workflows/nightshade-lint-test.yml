@@ -53,23 +53,20 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-yarn-  
               
-            - name: Install Dependencies
-              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+            - name: Install Cypress
+#               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
             - name: Build
               run: cd ./nightshade && yarn build
             - uses: supercharge/mongodb-github-action@1.4.0
               with:
                   mongodb-version: 4.0
-            - uses: cypress-io/github-action@v2
-              with:
-#                working-directory: ./nightshade
-               start: |
-                 cd ./zzaria && yarn start:dev
-                 cd ./nightshade && yarn dev
-               wait-on: 'http://localhost:8000, http://localhost:3000'
-               install: false
-              env:
-                MONGO_URI: mongodb://localhost/test
-                JWT_SECERT: test
-                BOT_TOKEN: ${{secrets.ZZARIA_BOT_TOKEN}}
+            - name: Start Servers
+              run: |
+                 cd ./zzaria && MONGO_URI=mongodb://localhost/test JWT_SECERT=test BOT_TOKEN=${{secrets.ZZARIA_BOT_TOKEN}} yarn start:dev
+                 cd ./nightshade && yarn dev &
+            - name: Run Tests
+              run: |
+                 yarn run cypress run
+            
+            
