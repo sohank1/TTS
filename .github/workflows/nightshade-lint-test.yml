@@ -64,7 +64,7 @@ jobs:
                       ${{ runner.os }}-cypress-  
               
             - name: Install Dependencies
-              if: ${{ steps.deps.outputs.deps-hit != 'true' }}
+              if: ${{ steps.deps.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
               
             - name: Install Cypress
@@ -86,9 +86,10 @@ jobs:
               run: cd ./nightshade && yarn run cypress run
              
             - name: Upload Videos
+              if: always()
               uses: actions/upload-artifact@v2
               with:
                 name: Cypress E2E Videos
-                path: cypress/videos
+                path: ./nightshade/cypress/videos
             
             
