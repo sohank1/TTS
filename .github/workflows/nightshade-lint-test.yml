@@ -31,9 +31,11 @@ jobs:
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
                       ${{ runner.os }}-yarn-
+                      
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
+              
             - name: Lint  
               run: cd ./nightshade && yarn lint
 
@@ -64,17 +66,22 @@ jobs:
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.deps-hit != 'true' }}
               run: cd ./nightshade && yarn
+              
             - name: Install Cypress
               if: ${{ steps.cache.outputs.cypress-hit != 'true' }}
-              run: cd ./nightshade && yarn run cypress install            
+              run: cd ./nightshade && yarn run cypress install  
+              
             - name: Build
               run: cd ./nightshade && yarn build
+              
             - name: Install MongoDB
               uses: supercharge/mongodb-github-action@1.4.0
               with:
                   mongodb-version: 4.0
+                  
             - name: Start Servers
               run: cd ./zzaria && MONGO_URI=mongodb://localhost/test JWT_SECERT=test BOT_TOKEN=${{secrets.ZZARIA_BOT_TOKEN}} yarn start:dev & cd ./nightshade && yarn dev &
+              
             - name: Run Tests
               run: cd ./nightshade && yarn run cypress run --headless --browser chrome
             
