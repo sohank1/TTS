@@ -51,18 +51,10 @@ jobs:
                   path: "**/node_modules"
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
-                      ${{ runner.os }}-yarn-
-                      
-            - uses: actions/cache@v2
-              id: cypress
-              with:
-                  path: "/home/runner/.cache/Cypress/7.3.0/Cypress/Cypress"
-                  key: ${{ runner.os }}-cypress-${{ hashFiles('**/yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-cypress-       
+                      ${{ runner.os }}-yarn-  
               
             - name: Install Dependencies
-              if: ${{ steps.cache.outputs.cache-hit != 'true' && steps.cypress.outputs.cache-hit != 'true' }}
+              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
             - name: Build
               run: cd ./nightshade && yarn build
@@ -76,6 +68,7 @@ jobs:
                  cd ./zzaria && yarn start:dev
                  cd ./nightshade && yarn dev
                wait-on: 'http://localhost:8000, http://localhost:3000'
+               install: false
               env:
                 MONGO_URI: mongodb://localhost/test
                 JWT_SECERT: test
