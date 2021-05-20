@@ -83,7 +83,7 @@ jobs:
                   mongodb-version: 4.0
               
             - name: Run Tests
-              run: cd ./nightshade && yarn run cypress run --headless --browser chrome
+              run: cd ./nightshade && yarn run cypress run --browser chrome
              
             - name: Upload Videos
               if: always()
