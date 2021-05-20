@@ -1,7 +1,9 @@
 # Home
 
 <p align="center">
+  <a href="https://ttsclan.vercel.app">
 <img height=300 src="https://cdn.discordapp.com/icons/570349873337991203/7f945e4de66e287e33e029043c99dd76.png?size=512"/>
+  </a>
 </p>
 <p align="center">
   <strong>
