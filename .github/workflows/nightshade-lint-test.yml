@@ -83,7 +83,7 @@ jobs:
                   mongodb-version: 4.0
               
             - name: Run Tests
-              run: cd ./nightshade && yarn run cypress run --browser chrome
+              run: cd ./nightshade && yarn run cypress run
              
             - name: Upload Videos
               if: always()
@@ -91,5 +91,11 @@ jobs:
               with:
                 name: Cypress E2E Videos
                 path: ./nightshade/cypress/videos/*.mp4
+
             
-            
+            - name: Upload Screenshot
+              if: always()
+              uses: actions/upload-artifact@v2
+              with:
+                name: Cypress E2E Screenshots
+                path: ./nightshade/cypress/screenshots
