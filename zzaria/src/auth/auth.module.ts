@@ -1,7 +1,7 @@
-import { HttpModule, Module } from "@nestjs/common";
+import { forwardRef, HttpModule, Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { PassportModule } from "@nestjs/passport";
-// import { EventsModule } from 'src/events/events.module';
+import { WebSocketModule } from "../ws/websocket.module";
 import { Guild, GuildSchema } from "../guild/guild.schema";
 import { UserModule } from "../user/user.module";
 import { User, UserSchema } from "../user/user.schema";
@@ -16,7 +16,7 @@ import { AuthService } from "./auth.service";
         ]),
         PassportModule.register({ session: true }),
         HttpModule,
-        // EventsModule,
+        forwardRef(() => WebSocketModule),
         UserModule,
     ],
     exports: [AuthService],

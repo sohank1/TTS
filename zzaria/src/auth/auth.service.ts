@@ -1,10 +1,10 @@
-import { HttpException, HttpService, HttpStatus, Injectable } from "@nestjs/common";
+import { forwardRef, HttpException, HttpService, HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import * as jwt from "jsonwebtoken";
 import { User } from "../user/user.schema";
 import { Model } from "mongoose";
 import { getTag } from "../user/util/get-tag.util";
-// import { EventsGateway } from "../events/events.gateway";
+import { WebSocketGateway } from "../ws/websocket.gateway";
 import { getAvatarUrl } from "../user/util/get-avatar-url.util";
 import { Request, Response } from "express";
 import { environment, IS_TEST } from "../environment/environment";
@@ -30,7 +30,8 @@ export class AuthService {
         private UserModel: Model<User>,
         @InjectModel(Guild.name)
         private GuildModel: Model<Guild>,
-        // private events: EventsGateway,
+        @Inject(forwardRef(() => WebSocketGateway))
+        private _ws: WebSocketGateway,
         private _userService: UserService,
         private _http: HttpService
     ) {}

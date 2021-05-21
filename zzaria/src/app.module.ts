@@ -4,7 +4,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
-import { EventsModule } from "./events/events.module";
+import { WebSocketModule } from "./ws/websocket.module";
 import { GuildModule } from "./guild/guild.module";
 import { CdnModule } from "./cdn/cdn.module";
 
@@ -15,7 +15,7 @@ import { CdnModule } from "./cdn/cdn.module";
         UserModule,
         GuildModule,
         CdnModule,
-        EventsModule,
+        WebSocketModule,
     ],
     controllers: [AppController],
     providers: [AppService],

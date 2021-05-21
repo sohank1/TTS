@@ -11,8 +11,6 @@ export class GuildService {
     ) {}
 
     public async getTTS(): Promise<Guild | any> {
-        // If testing return empty object because db doesn't have the user
-        //  if (IS_TEST) this.GuildModel.findOne();
         return (
             (await this.GuildModel.findOne()) || {
                 error: {
