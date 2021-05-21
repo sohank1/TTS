@@ -93,6 +93,10 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConn
                         isConnecting.current = false;
                         setIsServerDown(false);
 
+                        c.socket.on("disconnect", () => {
+                            setConn(null);
+                        });
+
                         // }
                     })
                     .catch((err) => {
@@ -108,12 +112,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConn
                     });
             }, 90);
         }
-    }, [replace]);
-
-    useEffect(() => {
-        if (!conn) return;
-        // logic to handle new tokens
-    }, [conn]);
+    }, [replace, conn]);
 
     return (
         <WebSocketContext.Provider

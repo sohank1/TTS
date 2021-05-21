@@ -23,6 +23,9 @@ class Prod {
 }
 
 export const IS_TEST = process.env.MONGO_URI === "mongodb://localhost/test";
+export const TTS_BOT = { ID: "674378932476444704", TEST_ID: "704722603767496765" };
 
 export let environment: Dev | Prod = new Dev();
 if (process.env.NODE_ENV === "production") environment = new Prod();
+
+// 674378932476444704

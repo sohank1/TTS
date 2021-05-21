@@ -6,11 +6,13 @@ import { WebSocketContext } from "../modules/ws/WebSocketProvider";
 const LogoutPage = () => {
     const { replace } = useRouter();
     const setTokens = useTokenStore((s) => s.setTokens);
-    const { setUser } = useContext(WebSocketContext);
+    const { conn, setConn, setUser } = useContext(WebSocketContext);
 
     useEffect(() => {
+        conn.close();
         setUser(null);
         replace("/");
+        setConn(null);
         setTokens({ accessToken: "", refreshToken: "" });
     }, [replace, setTokens]);
 

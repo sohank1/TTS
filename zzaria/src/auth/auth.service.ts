@@ -7,7 +7,7 @@ import { getTag } from "../user/util/get-tag.util";
 import { WebSocketGateway } from "../ws/websocket.gateway";
 import { getAvatarUrl } from "../user/util/get-avatar-url.util";
 import { Request, Response } from "express";
-import { environment, IS_TEST } from "../environment/environment";
+import { environment, IS_TEST, TTS_BOT } from "../environment/environment";
 import { UserService } from "../user/user.service";
 import { Guild } from "../guild/guild.schema";
 import { getIconUrl } from "../guild/util/get-icon.util";
@@ -131,7 +131,8 @@ export class AuthService {
         return new Promise(async (res, rej) => {
             try {
                 const raw = await this.validateTokens(accessToken, refreshToken);
-                res({ user: fetchUser ? await this._userService.get(raw.userId) : null, raw });
+                if (raw.userId === TTS_BOT.ID || raw.userId === TTS_BOT.TEST_ID) return res({ user: null, raw });
+                return res({ user: fetchUser ? await this._userService.get(raw.userId) : null, raw });
             } catch (err) {
                 rej(err);
             }

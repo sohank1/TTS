@@ -1,5 +1,7 @@
 import { HttpStatus } from "@nestjs/common";
 import { Socket } from "socket.io";
+import { UserService } from "../user/user.service";
+import { connections } from "../ws/ConnectionHandler";
 import { OpCodes } from "../ws/OpCodes";
 import { AuthService } from "./auth.service";
 
@@ -9,7 +11,7 @@ interface Tokens {
 }
 
 export class AuthWebSocket {
-    constructor(private socket: Socket, private _authService: AuthService) {
+    constructor(private socket: Socket, private _authService: AuthService, private _userService: UserService) {
         socket.on(OpCodes.AUTH, (d) => this.login(d));
     }
 
@@ -18,7 +20,15 @@ export class AuthWebSocket {
             .me(accessToken, refreshToken)
             .then(({ user, raw }) => {
                 if (user) {
+                    console.log("asfd");
                     this.socket.emit(OpCodes.AUTH_SUCCESS, user);
+                    if (user === null) connections.set(this.socket.id, { userId: user.id, isTTSBot: true });
+                    else
+                        connections.set(this.socket.id, {
+                            userId: user.id,
+                            getUser: () => this._userService.get(user.id),
+                            isTTSBot: false,
+                        });
 
                     const i = setInterval(() => {
                         this._authService
@@ -38,6 +48,7 @@ export class AuthWebSocket {
                                     },
                                 });
                                 clearInterval(i);
+                                connections.delete(this.socket.id);
                             });
                     }, 290000);
 
@@ -56,6 +67,7 @@ export class AuthWebSocket {
                         code: HttpStatus.BAD_REQUEST,
                     },
                 });
+                connections.delete(this.socket.id);
             });
     }
 }
