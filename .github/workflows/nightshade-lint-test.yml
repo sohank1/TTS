@@ -47,9 +47,9 @@ jobs:
               with:
                   node-version: 14.x
 
-             - uses: actions/cache@v2
-               id: deps
-               with:
+            - uses: actions/cache@v2
+              id: deps
+              with:
                    path: "**/node_modules"
                    key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                    restore-keys: |
