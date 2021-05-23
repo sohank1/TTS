@@ -47,13 +47,13 @@ jobs:
               with:
                   node-version: 14.x
 
-            - uses: actions/cache@v2
-              id: deps
-              with:
-                  path: "**/node_modules"
-                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-yarn-  
+      #      - uses: actions/cache@v2
+         #     id: deps
+           #   with:
+               #   path: "**/node_modules"
+               #   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+               #   restore-keys: |
+                #      ${{ runner.os }}-yarn-  
                       
             - uses: actions/cache@v2
               id: cypress
@@ -64,7 +64,7 @@ jobs:
                       ${{ runner.os }}-cypress-  
               
             - name: Install Dependencies
-              if: ${{ steps.deps.outputs.cache-hit != 'true' }}
+           #   if: ${{ steps.deps.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
               
             - name: Install Cypress
