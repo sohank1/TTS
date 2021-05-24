@@ -1,5 +1,5 @@
 import { TextChannel } from "discord.js";
-import * as io from "socket.io-client";
+import io from "socket.io-client";
 import { client } from "../client/Client";
 import { Environment } from "../environment/Environment";
 // import { Events } from "./Events";
