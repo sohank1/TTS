@@ -18,7 +18,10 @@ export class WebSocket {
         this.socket.on("message", (d) => console.log(d));
         this.socket.on("connect", () => console.log("connected"));
         this.socket.on("reconnect_attempt", (d) => console.log("reconnect attempt", d));
-        this.socket.on("reconnect", (d) => console.log("reconnect", d));
+        this.socket.on("reconnect", (d) => {
+            console.log("reconnect", d);
+            this.socket.emit("auth", { refreshToken: process.env.REFRESH_TOKEN, accessToken: process.env.ACCESS_TOKEN });
+        });
         this.socket.on("ping", (d) => console.log("ping", d));
         this.socket.on("auth-success", (d) => console.log(d));
         this.socket.on("auth-error", (d) => console.log(d));
