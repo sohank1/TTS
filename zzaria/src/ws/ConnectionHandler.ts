@@ -1,4 +1,5 @@
 import { Server, Socket } from "socket.io";
+import { TTS_BOT } from "../environment/environment";
 import { UserResponseObject } from "../user/types/UserResponseObject";
 import { OpCodes } from "./OpCodes";
 
@@ -18,13 +19,11 @@ export class ConnectionHandler {
         });
     }
 
-    public emitNewUser(user: UserResponseObject): boolean {
-        const TTSBot = [...connections.entries()].find((c) => c[1].isTTSBot);
-        return TTSBot && this.server.to(TTSBot[0]).emit(OpCodes.NEW_USER, user);
+    public emitNewUser(user: UserResponseObject): void {
+        this.server.to(TTS_BOT.ROOM).emit(OpCodes.NEW_USER, user);
     }
 
-    public emitUserUpdate(user: UserResponseObject): boolean {
-        const TTSBot = [...connections.entries()].find((c) => c[1].isTTSBot);
-        return TTSBot && this.server.to(TTSBot[0]).emit(OpCodes.USER_UPDATE, user);
+    public emitUserUpdate(user: UserResponseObject): void {
+        this.server.to(TTS_BOT.ROOM).emit(OpCodes.USER_UPDATE, user);
     }
 }

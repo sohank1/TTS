@@ -134,7 +134,7 @@ export class AuthService {
                 if (raw.userId === TTS_BOT.ID || raw.userId === TTS_BOT.TEST_ID) return res({ user: null, raw });
                 return res({ user: fetchUser ? await this._userService.get(raw.userId) : null, raw });
             } catch (err) {
-                rej(err);
+                return rej(err);
             }
         });
     }
@@ -156,15 +156,15 @@ export class AuthService {
                 a = jwt.verify(accessToken, process.env.JWT_SECERT) as any;
 
                 if (a?.type === "access" && r?.type === "refresh" && a?.userId === r?.userId)
-                    res({
+                    return res({
                         type: "success",
                         userId: a.userId,
                     });
 
-                rej("failed");
+                return rej("failed");
             } catch (err) {
                 if (r?.type === "refresh" && err.name === "TokenExpiredError")
-                    res({
+                    return res({
                         type: "refresh",
                         userId: r.userId,
                         tokens: {
@@ -172,8 +172,7 @@ export class AuthService {
                             refreshToken,
                         },
                     });
-
-                rej("failed");
+                return rej("failed");
             }
         });
     }
