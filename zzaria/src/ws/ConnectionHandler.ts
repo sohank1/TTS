@@ -14,9 +14,11 @@ export const connections = new Map<string, Connection>();
 export class ConnectionHandler {
     constructor(private server: Server) {
         this.server.on("connection", (socket: Socket) => {
+            console.log(`${socket.id} connected`);
             connections.set(socket.id, {});
 
             socket.on("disconnect", async () => {
+                console.log(`${socket.id} disconnected`);
                 const conn = connections.get(socket.id);
                 if (conn?.getUser) this.emitUserLogout(await conn.getUser());
                 connections.delete(socket.id);
