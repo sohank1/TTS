@@ -1,2 +1,1 @@
-
- ## Nightshade / Next.js Frontend
+ # Nightshade / Next.js Frontend
