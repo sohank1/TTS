@@ -5,7 +5,7 @@ import { Environment } from "../environment/Environment";
 // import { Events } from "./Events";
 
 export class WebSocket {
-    public socket = io(Environment.BASE_URL);
+    public socket = io(Environment.BASE_URL, { transports: ["websocket"], upgrade: false     });
 
     constructor() {
         const c = <TextChannel>client.channels.cache.find((c: TextChannel) => c.name.includes("mod-logs"));
