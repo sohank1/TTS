@@ -167,7 +167,6 @@ export class AuthService {
                             refreshToken,
                         },
                     });
-                console.log(err, r);
                 return rej("failed");
             }
         });
