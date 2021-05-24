@@ -18,7 +18,7 @@ export class ConnectionHandler {
 
             socket.on("disconnect", async () => {
                 const conn = connections.get(socket.id);
-                if (conn.getUser) this.emitUserLogout(await conn.getUser());
+                if (conn?.getUser) this.emitUserLogout(await conn.getUser());
                 connections.delete(socket.id);
             });
         });
