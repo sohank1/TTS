@@ -28,6 +28,7 @@ export class WebSocketGateway implements OnGatewayInit, OnGatewayConnection {
         private _userService: UserService,
         private _guildService: GuildService
     ) {}
+
     public afterInit(server: Server) {
         this.connectionHandler = new ConnectionHandler(server);
     }

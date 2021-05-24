@@ -10,6 +10,7 @@ export const OpCodes = {
     GET_CONTENT: "get-content",
     GET_CONTENT_FETCH_DONE: "fetch-done:get-content",
     LOGIN: "login",
+    LOGOUT: "logout",
     NEW_USER: "new-user",
     USER_UPDATE: "user-update",
 } as const;

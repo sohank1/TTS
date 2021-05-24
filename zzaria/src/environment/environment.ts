@@ -2,6 +2,7 @@ import "dotenv/config";
 
 class Dev {
     public TTS_DISCORD_SERVER_ID = "570349873337991203";
+    public TTS_DISCORD_SERVER_INVITE = "https://discord.gg/RNTemwY";
 
     public PORT = 8000;
     public BASE_URL = `http://localhost:${this.PORT}/api`;
@@ -13,6 +14,7 @@ class Dev {
 
 class Prod {
     public TTS_DISCORD_SERVER_ID = "570349873337991203";
+    public TTS_DISCORD_SERVER_INVITE = "https://discord.gg/RNTemwY";
 
     public PORT = process.env.PORT;
     public BASE_URL = "https://tts-api-prod.herokuapp.com/api";

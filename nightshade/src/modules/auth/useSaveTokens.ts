@@ -4,11 +4,18 @@ import { loginRedirectPathKey } from "../../lib/constants";
 import { useTokenStore } from "./useTokenStore";
 
 export const useSaveTokens = () => {
-    const { query, replace } = useRouter();
+    const { route, query, replace } = useRouter();
     const { accessToken, refreshToken } = query;
 
     useEffect(() => {
-        if (typeof accessToken === "string" && typeof refreshToken === "string" && accessToken && refreshToken) {
+        console.log("routeee", route);
+        if (
+            route === "/save" &&
+            typeof accessToken === "string" &&
+            typeof refreshToken === "string" &&
+            accessToken &&
+            refreshToken
+        ) {
             try {
                 useTokenStore.getState().setTokens({
                     accessToken,
@@ -21,7 +28,7 @@ export const useSaveTokens = () => {
 
             if (loginRedirectPath?.startsWith("/")) replace(loginRedirectPath);
             else replace("/dashboard");
-        }
+        } else if (route === "/save" && !accessToken && !refreshToken) replace("/");
     }),
         [accessToken, refreshToken];
 };

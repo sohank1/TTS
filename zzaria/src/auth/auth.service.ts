@@ -41,11 +41,13 @@ export class AuthService {
         username: string;
         avatar: string;
         discriminator: string;
-    }): Promise<User> {
+    }): Promise<User | "redirect"> {
         try {
             // await this.GuildModel.create({ iconUrl: '', members: [], name: '', roles: [] });
             const tts = await this.fetchUsers();
-            await this.fetchGuild(tts);
+            const g = await this.fetchGuild(tts);
+
+            if (!g.members.some((m) => m.id === data.id)) return "redirect";
 
             const user = await this.UserModel.findOne({ id: data.id });
             if (user) {
@@ -59,8 +61,8 @@ export class AuthService {
                     : url;
                 user.tag = tag;
 
+                this._ws.connectionHandler.emitUserUpdate(this._userService.toResponseObject(user));
                 await user.save();
-                // this.events.emitUserUpdate(this._userService.toResponseObject(user));
                 return user;
             } else {
                 const url = getAvatarUrl(data.id, data.avatar);
@@ -73,8 +75,8 @@ export class AuthService {
                         : url,
                 });
 
+                this._ws.connectionHandler.emitNewUser(this._userService.toResponseObject(newUser));
                 await newUser.save();
-                // this.events.emitNewUser(this._userService.toResponseObject(newUser));
             }
         } catch (err) {
             console.log(err);
@@ -99,21 +101,14 @@ export class AuthService {
         // if someone is trying to login as test user in prod take them back to home page
         if (!IS_TEST && user.id === "688374951660486661") return res.redirect(environment.CLIENT_BASE_URL);
 
-        await this.validateUser(user);
+        if ((await this.validateUser(user)) === "redirect") return res.redirect(environment.TTS_DISCORD_SERVER_INVITE);
 
+        this._ws.connectionHandler.emitUserLogin(await this._userService.get(user.id));
         res.redirect(
             `${environment.CLIENT_BASE_URL}/save?accessToken=${this._signAccessToken(
                 user.id
             )}&refreshToken=${this._signRefreshToken(user.id)}`
         );
-    }
-
-    public logout(req: Request, res: Response): void {
-        if (!req.user) throw new HttpException("Cannot logout when not logged in.", HttpStatus.BAD_REQUEST);
-        // this.events.emitUserLogout(<User>req.user);
-        req.logOut();
-
-        req.query.redirect ? res.redirect(<string>req.query.redirect) : res.redirect(environment.CLIENT_BASE_URL);
     }
 
     public me(
@@ -213,27 +208,27 @@ export class AuthService {
         return tts;
     }
 
-    public async fetchGuild(tts: Guild): Promise<void> {
-        this._http
+    public async fetchGuild(tts: Guild): Promise<Guild> {
+        const r = await this._http
             .get(`https://discord.com/api/v8/guilds/${environment.TTS_DISCORD_SERVER_ID}`, {
                 headers: {
                     Authorization: `Bot ${process.env.BOT_TOKEN}`,
                 },
             })
+            .toPromise();
 
-            .subscribe(async (r) => {
-                for (const role of r.data.roles) {
-                    role.color = `#${role.color.toString(16).padStart(6, "0")}`;
-                }
+        for (const role of r.data.roles) {
+            role.color = `#${role.color.toString(16).padStart(6, "0")}`;
+        }
 
-                tts.id = r.data.id;
-                tts.name = r.data.name;
-                tts.iconUrl = getIconUrl(tts.id, r.data.icon);
-                tts.roles = r.data.roles;
+        tts.id = r.data.id;
+        tts.name = r.data.name;
+        tts.iconUrl = getIconUrl(tts.id, r.data.icon);
+        tts.roles = r.data.roles;
 
-                await tts.updateOne(tts);
-                await tts.save();
-            });
+        await tts.updateOne(tts);
+        await tts.save();
+        return tts;
     }
 
     public async loginWithTestUser(

@@ -20,11 +20,6 @@ export class AuthController {
         return this.service.redirect(req, res);
     }
 
-    @Get("logout")
-    public logout(@Req() req: Request, @Res() res: Response): void {
-        return this.service.logout(req, res);
-    }
-
     @Get("me")
     public async me(@Req() req: Request): Promise<UserResponseObject> {
         if (!req.header("X-Access-Token") || !req.header("X-Refresh-Token"))
