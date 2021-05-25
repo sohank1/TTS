@@ -10,11 +10,6 @@ export class WebSocket {
     constructor() {
         const c = <TextChannel>client.channels.cache.find((c: TextChannel) => c.name.includes("mod-logs"));
         this.socket.emit("auth", { refreshToken: process.env.REFRESH_TOKEN, accessToken: process.env.ACCESS_TOKEN });
-        // console.log(this.socket)
-        // this.socket.on(Events.LOGIN, (data) => {
-        //     console.log(this.socket);
-        //     console.log(data);
-        // });
         this.socket.on("message", (d) => console.log(d));
         this.socket.on("connect", () => console.log("connected"));
         this.socket.on("reconnect_attempt", (d) => console.log("reconnect attempt", d));
