@@ -2,8 +2,7 @@
   "name": "@tts/zzaria",
   "version": "0.0.1",
   "description": "Nest.js backend",
-  "author": "",
-  "private": true,
+  "author": "Creeper",
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
