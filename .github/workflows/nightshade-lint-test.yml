@@ -17,14 +17,14 @@ on:
             - .github/workflows/nightshade-lint-test.yml
 
 jobs:
-    lint: 
+    lint:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
               with:
                   node-version: 14.x
-                  
+
             - uses: actions/cache@v2
               id: deps
               with:
@@ -32,12 +32,15 @@ jobs:
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
                       ${{ runner.os }}-yarn-
-                      
+
             - name: Install Dependencies
               if: ${{ steps.deps.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
-              
-            - name: Lint  
+
+            - name: Build Crustina
+              run: cd ./crustina && yarn build
+
+            - name: Lint
               run: cd ./nightshade && yarn lint
 
     test:
@@ -54,49 +57,51 @@ jobs:
                   path: "**/node_modules"
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
-                       ${{ runner.os }}-yarn-  
-                      
+                      ${{ runner.os }}-yarn-
+
             - uses: actions/cache@v2
               id: cypress
               with:
                   path: "/home/runner/.cache/Cypress/"
                   key: ${{ runner.os }}-cypress-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
-                      ${{ runner.os }}-cypress-  
-              
+                      ${{ runner.os }}-cypress-
+
             - name: Install Dependencies
               if: ${{ steps.deps.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
-              
+
+            - name: Build Crustina
+              run: cd ./crustina && yarn build
+
             - name: Install Cypress
               if: ${{ steps.cypress.outputs.cache-hit != 'true' }}
-              run: cd ./nightshade && yarn run cypress install  
-              
+              run: cd ./nightshade && yarn run cypress install
+
             - name: Start Servers
               run: cd ./zzaria && MONGO_URI=mongodb://localhost/test JWT_SECERT=test BOT_TOKEN=${{secrets.ZZARIA_BOT_TOKEN}} yarn start:dev & cd ./nightshade && yarn dev &
-              
+
             - name: Build
               run: cd ./nightshade && yarn build
-              
+
             - name: Install MongoDB
               uses: supercharge/mongodb-github-action@1.4.0
               with:
                   mongodb-version: 4.0
-              
+
             - name: Run Tests
               run: cd ./nightshade && yarn run cypress run
-             
+
             - name: Upload Videos
               if: always()
               uses: actions/upload-artifact@v2
               with:
-                name: Cypress E2E Videos
-                path: ./nightshade/cypress/videos/*.mp4
+                  name: Cypress E2E Videos
+                  path: ./nightshade/cypress/videos/*.mp4
 
-            
             - name: Upload Screenshots
               if: always()
               uses: actions/upload-artifact@v2
               with:
-                name: Cypress E2E Screenshots
-                path: ./nightshade/cypress/screenshots
+                  name: Cypress E2E Screenshots
+                  path: ./nightshade/cypress/screenshots

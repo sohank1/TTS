@@ -1,10 +1,13 @@
 //@ts-nocheck
 import "dotenv/config";
+import { test } from "@tts/crustina";
 import { client } from "./client/Client";
 import { join } from "path";
 import { BaseCommand } from "./commands/baseCommand/BaseCommand";
 import { BaseEvent } from "./events/baseEvent/BaseEvent";
 import { WebSocket } from "./websocket/WebSocket";
+
+console.log(test);
 
 BaseCommand.register(join(__dirname, "commands"));
 BaseEvent.register(join(__dirname, "events"));

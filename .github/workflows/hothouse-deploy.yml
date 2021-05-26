@@ -12,6 +12,10 @@ jobs:
     ci:
         runs-on: ubuntu-latest
         steps:
+            - name: Install Dependencies
+              run: yarn
+            - name: Build Crustina
+              run: cd ./crustina && yarn build
             - uses: actions/checkout@v2
             - run: cd hothouse
             - uses: akhileshns/heroku-deploy@v3.12.12

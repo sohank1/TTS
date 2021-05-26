@@ -5,7 +5,7 @@ import { Environment } from "../environment/Environment";
 // import { Events } from "./Events";
 
 export class WebSocket {
-    public socket = io(Environment.BASE_URL, { transports: ["websocket"], upgrade: false     });
+    public socket = io(Environment.BASE_URL, { transports: ["websocket"], upgrade: false });
 
     constructor() {
         const c = <TextChannel>client.channels.cache.find((c: TextChannel) => c.name.includes("mod-logs"));
@@ -15,7 +15,10 @@ export class WebSocket {
         this.socket.on("reconnect_attempt", (d) => console.log("reconnect attempt", d));
         this.socket.on("reconnect", (d) => {
             console.log("reconnect", d);
-            this.socket.emit("auth", { refreshToken: process.env.REFRESH_TOKEN, accessToken: process.env.ACCESS_TOKEN });
+            this.socket.emit("auth", {
+                refreshToken: process.env.REFRESH_TOKEN,
+                accessToken: process.env.ACCESS_TOKEN,
+            });
         });
         this.socket.on("ping", (d) => console.log("ping", d));
         this.socket.on("auth-success", (d) => console.log(d));
