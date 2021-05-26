@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc",
-    "oldbuild": "cd ../crustina && yarn build && cd ../hothouse && tsc",
     "start": "node dist/index.js",
     "lint": "eslint \"./**/*.ts\"",
     "lint:fix": "eslint \"./**/*.ts\" --fix",
