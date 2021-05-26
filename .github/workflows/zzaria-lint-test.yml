@@ -5,6 +5,7 @@ on:
         branches: master
         paths:
             - zzaria/**
+            - yarn.lock
             - .eslintrc.json
             - .prettierrc.js
             - .github/workflows/zzaria-lint-test.yml
