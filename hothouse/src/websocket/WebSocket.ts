@@ -2,7 +2,6 @@ import { TextChannel } from "discord.js";
 import * as io from "socket.io-client";
 import { client } from "../client/Client";
 import { Environment } from "../environment/Environment";
-// import { Events } from "./Events";
 
 export class WebSocket {
     public socket = io(Environment.BASE_URL, { transports: ["websocket"], upgrade: false });
