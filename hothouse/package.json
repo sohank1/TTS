@@ -15,7 +15,6 @@
   "keywords": [],
   "author": "Creeper",
   "dependencies": {
-    "@tts/crustina": "*",
     "@types/node": "^15.0.2",
     "@types/socket.io-client": "^1.4.36",
     "axios": "^0.21.1",
