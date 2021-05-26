@@ -37,9 +37,6 @@ jobs:
               if: ${{ steps.deps.outputs.cache-hit != 'true' }}
               run: cd ./nightshade && yarn
 
-            - name: Build Crustina
-              run: cd ./crustina && yarn build
-
             - name: Lint
               run: cd ./nightshade && yarn lint
 
