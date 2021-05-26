@@ -1,0 +1,32 @@
+name: Update Lock File
+
+on:
+    push:
+        branches: master
+        paths:
+            - /**/package.json
+            - .github/workflows/update-lock-file.yml
+    pull_request_target:
+        paths:
+            - /**/package.json
+            - .github/workflows/update-lock-file.yml
+
+jobs:
+    update:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+                  
+            - name: Install Deps
+              run: yarn
+              
+            - name: Commit Lock File   
+              run: |
+                  git config user.name github-actions
+                  git config user.email github-actions@github.com
+                  git add .
+                  git commit -m 'chore(deps): update lock file'
+                  git push
