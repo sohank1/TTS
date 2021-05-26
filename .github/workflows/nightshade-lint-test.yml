@@ -5,6 +5,7 @@ on:
         branches: master
         paths:
             - nightshade/**
+            - yarn.lock
             - .eslintrc.json
             - .prettierrc.js
             - .github/workflows/nightshade-lint-test.yml
