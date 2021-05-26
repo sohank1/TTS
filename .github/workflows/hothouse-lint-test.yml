@@ -4,6 +4,7 @@ on:
     push:
         paths:
             - hothouse/**
+            - yarn.lock
             - .eslintrc.json
             - .prettierrc.js
             - .github/workflows/hothouse-lint-test.yml
