@@ -28,8 +28,7 @@ jobs:
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: yarn
-            - name: Build Crustina
-              run: cd ./crustina && yarn build
+              
             - name: Lint
               run: cd ./hothouse && yarn lint
 
