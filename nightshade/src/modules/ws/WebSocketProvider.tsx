@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React, { createContext, useEffect, useMemo, useRef, useState } from "react";
+import { connect, Connection, User } from "@tts/crustina";
 import { BASE_URL } from "../../lib/constants";
 import { useSaveTokens } from "../auth/useSaveTokens";
 import { useTokenStore } from "../auth/useTokenStore";
-import { connect, Connection, User } from "@tts/crustina";
 
 type V = Connection | null;
 
@@ -79,6 +79,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConn
                         isConnecting.current = false;
                     },
                     onConnectionFailed: () => {
+                        setConn((c) => ({ ...c, user: null }));
                         setIsServerDown(true);
                     },
                 })
@@ -93,9 +94,9 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConn
                         isConnecting.current = false;
                         setIsServerDown(false);
 
-                        c.socket.on("disconnect", () => {
-                            setConn(null);
-                        });
+                        // c.socket.on("disconnect", () => {
+                        //     setConn(null);
+                        // });
 
                         // }
                     })
@@ -112,7 +113,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConn
                     });
             }, 90);
         }
-    }, [replace, conn]);
+    }, [replace]);
 
     return (
         <WebSocketContext.Provider

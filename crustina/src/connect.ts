@@ -1,4 +1,4 @@
-import io from "socket.io-client";
+import * as io from "socket.io-client";
 import { User } from "./entities";
 import { Connection, Token, Error } from "./types";
 
@@ -30,29 +30,26 @@ export const connect = (
         const socket = io(url, {
             transports: ["websocket"],
             upgrade: false,
-            reconnection: false,
         });
 
-        // socket.on("connect", () => {
-        const data = {
-            accessToken: token,
-            refreshToken,
-            ...getAuthOptions?.(),
-        };
-        console.log(data);
-        if (data.accessToken && data.refreshToken) {
-            console.log("emitting auth");
-            socket.emit("auth", data);
-        }
-        // })
+        socket.on("connect", () => {
+            const data = {
+                accessToken: token,
+                refreshToken,
+                ...getAuthOptions?.(),
+            };
+            console.log(data);
+            if (data.accessToken && data.refreshToken) {
+                console.log("emitting auth");
+                socket.emit("auth", data);
+            }
+        });
 
         socket.on("auth-error", ({ error }: { error: Error }) => {
             if (error.code === 400) {
                 console.log(error);
-                // socket.close();
                 onClearTokens();
             }
-            // rej(error);
         });
 
         socket.on("new-tokens", onNewTokens);
@@ -80,7 +77,7 @@ export const connect = (
         });
 
         socket.on("connect_error", (e) => {
-            console.log(e);
+            console.log("connect error", e);
             const conn: Connection = {
                 socket,
                 user: null,

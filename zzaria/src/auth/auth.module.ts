@@ -1,6 +1,5 @@
 import { forwardRef, HttpModule, Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { PassportModule } from "@nestjs/passport";
 import { WebSocketModule } from "../ws/websocket.module";
 import { Guild, GuildSchema } from "../guild/guild.schema";
 import { UserModule } from "../user/user.module";
@@ -14,7 +13,6 @@ import { AuthService } from "./auth.service";
             { name: User.name, schema: UserSchema },
             { name: Guild.name, schema: GuildSchema },
         ]),
-        PassportModule.register({ session: true }),
         HttpModule,
         forwardRef(() => WebSocketModule),
         UserModule,
