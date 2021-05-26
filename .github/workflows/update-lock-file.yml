@@ -23,10 +23,9 @@ jobs:
             - name: Install Deps
               run: yarn
               
-            - name: Commit Lock File   
-              run: |
-                  git config user.name github-actions
-                  git config user.email github-actions@github.com
-                  git add .
-                  git commit -m 'chore(deps): update lock file' --allow-empty
-                  git push
+            - name: Commit Lock File
+              uses: EndBug/add-and-commit@v7
+              with:
+                author_name: github-actions
+                author_email: github-actions@github.com
+                message: 'chore(deps): update lock file'
