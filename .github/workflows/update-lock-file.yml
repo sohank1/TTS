@@ -26,6 +26,4 @@ jobs:
             - name: Commit Lock File
               uses: EndBug/add-and-commit@v7
               with:
-                author_name: CreeperPlanet26
-                author_email: fortniteplanet26@gmail.com
                 message: 'chore(deps): update lock file'
