@@ -2,7 +2,8 @@
   "name": "@tts/hothouse",
   "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc",
