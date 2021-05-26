@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "API Client",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "dev": "tsc -w",

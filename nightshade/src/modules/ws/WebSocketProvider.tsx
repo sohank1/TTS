@@ -7,6 +7,10 @@ import { useTokenStore } from "../auth/useTokenStore";
 
 type V = Connection | null;
 
+interface Test {
+    t: string
+}
+
 export const WebSocketContext = createContext<{
     conn: V;
     isServerDown: boolean;
@@ -75,11 +79,23 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConn
                     },
                     onUser: (user) => {
                         console.log("user", user);
-                        setConn((c) => ({ ...c, user }));
+
+                        setConn((c) => ({
+                            close: c.close,
+                            fetch: c.fetch,
+                            socket: c.socket,
+                            user,
+                        }));
+
                         isConnecting.current = false;
                     },
                     onConnectionFailed: () => {
-                        setConn((c) => ({ ...c, user: null }));
+                        setConn((c) => ({
+                            close: c.close,
+                            fetch: c.fetch,
+                            socket: c.socket,
+                            user: null,
+                        }));
                         setIsServerDown(true);
                     },
                 })
@@ -124,10 +140,12 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConn
                     setConn,
                     setUser: (user: User) => {
                         if (conn) {
-                            setConn({
-                                ...conn,
+                            setConn((c) => ({
+                                close: c.close,
+                                fetch: c.fetch,
+                                socket: c.socket,
                                 user,
-                            });
+                            }));
                         }
                     },
                 }),

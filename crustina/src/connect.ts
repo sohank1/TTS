@@ -1,6 +1,7 @@
 import * as io from "socket.io-client";
+import { Connection } from "./Connection";
 import { User } from "./entities";
-import { Connection, Token, Error } from "./types";
+import { Token, Error } from "./types";
 
 const apiUrl = "https://tts-api-prod.herokuapp.com";
 
@@ -55,44 +56,14 @@ export const connect = (
         socket.on("new-tokens", onNewTokens);
 
         socket.on("connect", () => {
-            const conn: Connection = {
-                socket,
-                user: null,
-                close: () => socket.close(),
-                fetch: (event: string, payload?: unknown, serverEvent?: string): Promise<any> =>
-                    new Promise((resFetch, rejFetch) => {
-                        if (payload) socket.emit(event, payload);
-                        else socket.emit(event);
-
-                        socket.on(serverEvent || `fetch-done:${event}`, (d: { error?: Error }) => {
-                            if (d.error) rejFetch(d.error);
-                            resFetch(d);
-                        });
-                    }),
-            };
-
             socket.on("auth-success", (u: User) => onUser(u));
 
-            res(conn);
+            res(new Connection(socket, null));
         });
 
         socket.on("connect_error", (e) => {
             console.log("connect error", e);
-            const conn: Connection = {
-                socket,
-                user: null,
-                close: () => socket.close(),
-                fetch: (event: string, payload?: unknown, serverEvent?: string): Promise<any> =>
-                    new Promise((resFetch, rejFetch) => {
-                        socket.emit(event, payload);
-
-                        socket.on(serverEvent || `fetch-done:${event}`, (d: { error?: Error }) => {
-                            if (d.error) rejFetch(d.error);
-                            resFetch(d);
-                        });
-                    }),
-            };
-            res(conn);
+            res(new Connection(socket, null));
             onConnectionFailed();
         });
     });

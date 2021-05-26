@@ -1,5 +1,5 @@
 import { Guild, User } from "./entities";
-import { Connection } from "./types";
+import { Connection } from "./Connection";
 
 export const wrap = (conn: Connection) => ({
     conn,
