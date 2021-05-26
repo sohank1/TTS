@@ -1,7 +1,7 @@
 {
   "name": "@tts/hothouse",
   "version": "2.0.0",
-  "description": "",
+  "description": "TTS Bot",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "scripts": {
