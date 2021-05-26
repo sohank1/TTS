@@ -7,7 +7,7 @@ import { BaseCommand } from "./commands/baseCommand/BaseCommand";
 import { BaseEvent } from "./events/baseEvent/BaseEvent";
 import { WebSocket } from "./websocket/WebSocket";
 
-console.log(test);
+console.log(`test: ${test}`);
 
 BaseCommand.register(join(__dirname, "commands"));
 BaseEvent.register(join(__dirname, "events"));
