@@ -25,8 +25,7 @@ jobs:
               
             - name: Build Crustina
               run: cd ./crustina && yarn build
-                       
-              
+                                
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
                   heroku_api_key: ${{secrets.HOTHOUSE_API_KEY}}
