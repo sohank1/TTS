@@ -62,8 +62,13 @@ jobs:
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: cd ./zzaria && yarn
+              
             - name: Build
               run: cd ./zzaria && yarn build
+        
+            - name: Build Axeroni
+              run: cd ./axeroni && yarn build  
+              
             - name: Test
               run: cd ./zzaria && yarn test:e2e
               env:
