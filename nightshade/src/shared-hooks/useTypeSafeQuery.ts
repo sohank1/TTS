@@ -18,7 +18,7 @@ export const useTypeSafeQuery = <K extends QueryKeys>(
     return useQuery<Await<ReturnType<Query[K]>>>(
         key,
         //@ts-ignore
-        () => conn.query[typeof key === "string" ? key : key[0]](...(params || [])),
+        () => <any>conn.query[typeof key === "string" ? key : key[0]](...(params || [])),
         {
             enabled: !!conn && !isServer,
             ...options,
