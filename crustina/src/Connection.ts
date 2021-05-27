@@ -1,4 +1,5 @@
 import { User } from "./entities";
+import { Query } from "./Query";
 
 export class Connection {
     public user: User = null;
@@ -18,4 +19,6 @@ export class Connection {
             });
         });
     };
+
+    public query = new Query(this.fetch);
 }
