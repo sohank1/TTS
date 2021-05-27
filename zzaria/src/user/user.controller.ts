@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Req, Res } from "@nestjs/common";
+import { UserResponseObject } from "@tts/axeroni";
 import { Request, Response } from "express";
-import { UserResponseObject } from "./types/UserResponseObject";
 import { UserService } from "./user.service";
 
 @Controller("api")

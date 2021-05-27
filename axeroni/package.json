@@ -1,0 +1,17 @@
+{
+  "name": "@tts/axeroni",
+  "author": "Creeper",
+  "version": "1.0.0",
+  "description": "Typings for TTS",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "lint": "eslint \"./**/*.ts\"",
+    "lint:fix": "eslint \"./**/*.ts\" --fix"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}

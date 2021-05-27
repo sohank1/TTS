@@ -1,7 +1,6 @@
 import { Schema, SchemaFactory, Prop } from "@nestjs/mongoose";
+import { Member, Role } from "@tts/axeroni";
 import { Document } from "mongoose";
-import { Member } from "./types/member.type";
-import { Role } from "./types/role.type";
 
 @Schema()
 export class Guild extends Document {

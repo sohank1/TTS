@@ -1,9 +1,9 @@
 import { HttpStatus } from "@nestjs/common";
+import { OpCodes } from "@tts/axeroni";
 import { Socket } from "socket.io";
 import { TTS_BOT } from "../environment/environment";
 import { UserService } from "../user/user.service";
 import { connections } from "../ws/ConnectionHandler";
-import { OpCodes } from "../ws/OpCodes";
 import { AuthService } from "./auth.service";
 
 interface Tokens {
@@ -13,7 +13,7 @@ interface Tokens {
 
 export class AuthWebSocket {
     constructor(private socket: Socket, private _authService: AuthService, private _userService: UserService) {
-        socket.on(OpCodes.AUTH, (d) => this.login(d));
+        socket.on(OpCodes.auth, (d) => this.login(d));
     }
 
     private login({ accessToken, refreshToken }: Tokens) {
@@ -29,20 +29,20 @@ export class AuthWebSocket {
                         getUser: () => this._userService.get(user.id),
                         isTTSBot: false,
                     });
-                this.socket.emit(OpCodes.AUTH_SUCCESS, user);
+                this.socket.emit(OpCodes["auth:success"], user);
 
                 const i = setInterval(() => {
                     this._authService
                         .me(accessToken, refreshToken, false)
                         .then(({ raw }) => {
                             if (raw.type === "refresh") {
-                                this.socket.emit(OpCodes.NEW_TOKENS, raw.tokens);
+                                this.socket.emit(OpCodes["auth:new_tokens"], raw.tokens);
                                 accessToken = raw.tokens.accessToken;
                                 refreshToken = raw.tokens.refreshToken;
                             }
                         })
                         .catch(() => {
-                            this.socket.emit(OpCodes.AUTH_ERROR, {
+                            this.socket.emit(OpCodes["auth:error"], {
                                 error: {
                                     message: "Invalid tokens",
                                     code: HttpStatus.BAD_REQUEST,
@@ -56,13 +56,13 @@ export class AuthWebSocket {
                 this.socket.on("disconnect", () => clearInterval(i));
 
                 if (raw.type === "refresh") {
-                    this.socket.emit(OpCodes.NEW_TOKENS, raw.tokens);
+                    this.socket.emit(OpCodes["auth:new_tokens"], raw.tokens);
                     accessToken = raw.tokens.accessToken;
                     refreshToken = raw.tokens.refreshToken;
                 }
             })
             .catch(() => {
-                this.socket.emit(OpCodes.AUTH_ERROR, {
+                this.socket.emit(OpCodes["auth:error"], {
                     error: {
                         message: "Invalid tokens",
                         code: HttpStatus.BAD_REQUEST,

@@ -1,6 +1,6 @@
 import * as io from "socket.io-client";
+import { OpCodes, UserResponseObject } from "@tts/axeroni";
 import { Connection } from "./Connection";
-import { User } from "./entities";
 import { Token, Error } from "./types";
 
 const apiUrl = "https://tts-api-prod.herokuapp.com";
@@ -23,7 +23,7 @@ export const connect = (
             accessToken: Token;
             refreshToken: Token;
         }>;
-        onUser?: (u: User) => void;
+        onUser?: (u: UserResponseObject) => void;
         onNewTokens?: (tokens: { accessToken: string; refreshToken: string }) => void;
     }
 ): Promise<Connection> =>
@@ -42,21 +42,21 @@ export const connect = (
             console.log(data);
             if (data.accessToken && data.refreshToken) {
                 console.log("emitting auth");
-                socket.emit("auth", data);
+                socket.emit(OpCodes["auth"], data);
             }
         });
 
-        socket.on("auth-error", ({ error }: { error: Error }) => {
+        socket.on(OpCodes["auth:error"], ({ error }: { error: Error }) => {
             if (error.code === 400) {
                 console.log(error);
                 onClearTokens();
             }
         });
 
-        socket.on("new-tokens", onNewTokens);
+        socket.on(OpCodes["auth:new_tokens"], onNewTokens);
 
         socket.on("connect", () => {
-            socket.on("auth-success", (u: User) => onUser(u));
+            socket.on(OpCodes["auth:success"], (u: UserResponseObject) => onUser(u));
 
             res(new Connection(socket));
         });

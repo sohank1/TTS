@@ -1,8 +1,8 @@
 import { HttpException, HttpService, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
+import { UserResponseObject } from "@tts/axeroni";
 import { Request, Response } from "express";
 import { Model } from "mongoose";
-import { UserResponseObject } from "./types/UserResponseObject";
 import { User } from "./user.schema";
 
 @Injectable()

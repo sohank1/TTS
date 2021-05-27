@@ -10,9 +10,7 @@ import { AuthWebSocket } from "../auth/auth.ws";
 import { UserWebSocket } from "../user/user.ws";
 import { AuthService } from "../auth/auth.service";
 import { GuildService } from "../guild/guild.service";
-// import { UserResponseObject } from "../user/types/UserResponseObject";
 import { UserService } from "../user/user.service";
-// import { OpCodes } from "./OpCodes";
 import { GuildWebSocket } from "../guild/guild.ws";
 import { ConnectionHandler } from "./ConnectionHandler";
 

@@ -1,0 +1,58 @@
+name: "Lint and Test: Crustina"
+
+on:
+    push:
+        paths:
+            - crustina/**
+            - yarn.lock
+            - .eslintrc.json
+            - .prettierrc.js
+            - .github/workflows/crustina-lint-test.yml
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+
+            - uses: actions/cache@v2
+              id: cache
+              with:
+                  path: "**/node_modules"
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+            - name: Install Dependencies
+              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+              run: yarn
+
+            - name: Lint
+              run: cd ./crustina && yarn lint
+
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+
+            - uses: actions/cache@v2
+              id: cache
+              with:
+                  path: "**/node_modules"
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+            - name: Install Dependencies
+              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+              run: yarn
+
+            - name: Build
+              run: cd ./crustina && yarn build
+
+            - name: Test
+              run: cd ./crustina && yarn test

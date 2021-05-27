@@ -1,19 +1,19 @@
-import { User } from "./entities";
+import { OpCode, UserResponseObject } from "@tts/axeroni";
 import { Query } from "./Query";
 
 export class Connection {
-    public user: User = null;
+    public user: UserResponseObject = null;
 
     constructor(public socket: SocketIOClient.Socket) {}
 
     public close = () => this.socket.close();
 
-    public fetch = (event: string, payload?: unknown, serverEvent?: string): Promise<any> => {
+    public fetch = (event: OpCode, payload?: unknown, serverEvent?: OpCode): Promise<any> => {
         return new Promise((resFetch, rejFetch) => {
             if (payload) this.socket.emit(event, payload);
             else this.socket.emit(event);
 
-            this.socket.on(serverEvent || `fetch-done:${event}`, (d: { error?: Error }) => {
+            this.socket.on(serverEvent || `${event}:fetch_done`, (d: { error?: Error }) => {
                 if (d.error) rejFetch(d.error);
                 resFetch(d);
             });

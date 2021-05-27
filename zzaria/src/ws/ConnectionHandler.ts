@@ -1,7 +1,6 @@
+import { OpCodes, UserResponseObject } from "@tts/axeroni";
 import { Server, Socket } from "socket.io";
 import { TTS_BOT } from "../environment/environment";
-import { UserResponseObject } from "../user/types/UserResponseObject";
-import { OpCodes } from "./OpCodes";
 
 interface Connection {
     userId?: string;
@@ -27,18 +26,18 @@ export class ConnectionHandler {
     }
 
     public emitUserLogin(user: UserResponseObject): void {
-        this.server.to(TTS_BOT.ROOM).emit(OpCodes.LOGIN, user);
+        this.server.to(TTS_BOT.ROOM).emit(OpCodes["auth:login"], user);
     }
 
     public emitUserLogout(user: UserResponseObject): void {
-        this.server.to(TTS_BOT.ROOM).emit(OpCodes.LOGOUT, user);
+        this.server.to(TTS_BOT.ROOM).emit(OpCodes["auth:logout"], user);
     }
 
     public emitNewUser(user: UserResponseObject): void {
-        this.server.to(TTS_BOT.ROOM).emit(OpCodes.NEW_USER, user);
+        this.server.to(TTS_BOT.ROOM).emit(OpCodes["user:new"], user);
     }
 
     public emitUserUpdate(user: UserResponseObject): void {
-        this.server.emit(OpCodes.USER_UPDATE, user);
+        this.server.emit(OpCodes["user:update"], user);
     }
 }

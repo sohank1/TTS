@@ -1,13 +1,13 @@
+import { OpCodes } from "@tts/axeroni";
 import { Socket } from "socket.io";
-import { OpCodes } from "../ws/OpCodes";
 import { GuildService } from "./guild.service";
 
 export class GuildWebSocket {
     constructor(private socket: Socket, private _guildService: GuildService) {
-        socket.on(OpCodes.GET_CONTENT, () => this.getTTS());
+        socket.on(OpCodes["content:get"], () => this.getTTS());
     }
 
     private async getTTS() {
-        this.socket.emit(OpCodes.GET_CONTENT_FETCH_DONE, await this._guildService.getTTS());
+        this.socket.emit(OpCodes["content:get:fetch_done"], await this._guildService.getTTS());
     }
 }
