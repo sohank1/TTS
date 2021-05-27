@@ -54,6 +54,9 @@ jobs:
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: yarn
               
+            - name: Build Axeroni
+              run: cd ./axeroni && yarn build  
+              
             - name: Build Crustina
               run: cd ./crustina && yarn build
               
