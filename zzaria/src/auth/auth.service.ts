@@ -57,7 +57,7 @@ export class AuthService {
                 if (user.avatarUrl === url && user.tag === tag) return user;
 
                 user.avatarUrl = url.includes("null")
-                    ? "https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png"
+                    ? "https://cdn.discordapp.com/embed/avatars/4.png"
                     : url;
                 user.tag = tag;
 
