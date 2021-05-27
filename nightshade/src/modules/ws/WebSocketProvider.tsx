@@ -82,7 +82,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ shouldConn
                     },
                     onConnectionFailed: () => {
                         console.log("onConnectionFailed called", isServerDown)
-                        if (isServerDown === false) {
+                        if (isServerDown === undefined || isServerDown === false) {
                             setConn((c) => ({ ...c, user: null }));
                             setIsServerDown(true);  
                         }
