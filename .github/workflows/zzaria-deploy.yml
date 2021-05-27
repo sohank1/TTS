@@ -24,7 +24,6 @@ jobs:
             - name: Build Axeroni
               run: cd ./axeroni && yarn build    
               
-            - uses: actions/checkout@v2
             - run: cd zzaria
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
