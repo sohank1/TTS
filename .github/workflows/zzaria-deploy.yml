@@ -24,7 +24,7 @@ jobs:
             - name: Build Axeroni
               run: cd ./axeroni && yarn build    
               
-            - run: cd zzaria
+            - run: cd axeroni/lib && ls && cat index.js && cat index.d.ts
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
                   heroku_api_key: ${{secrets.ZZARIA_API_KEY}}
