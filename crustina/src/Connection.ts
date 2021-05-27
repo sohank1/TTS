@@ -1,13 +1,13 @@
 import { User } from "./entities";
 
 export class Connection {
-    constructor(public socket: SocketIOClient.Socket, public user: User) {}
+    public user: User = null;
 
-    public close(): void {
-        this.socket.close();
-    }
+    constructor(public socket: SocketIOClient.Socket) {}
 
-    public fetch(event: string, payload?: unknown, serverEvent?: string): Promise<any> {
+    public close = () => this.socket.close();
+
+    public fetch = (event: string, payload?: unknown, serverEvent?: string): Promise<any> => {
         return new Promise((resFetch, rejFetch) => {
             if (payload) this.socket.emit(event, payload);
             else this.socket.emit(event);
@@ -17,5 +17,5 @@ export class Connection {
                 resFetch(d);
             });
         });
-    }
+    };
 }

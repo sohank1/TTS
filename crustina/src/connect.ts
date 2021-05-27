@@ -58,12 +58,12 @@ export const connect = (
         socket.on("connect", () => {
             socket.on("auth-success", (u: User) => onUser(u));
 
-            res(new Connection(socket, null));
+            res(new Connection(socket));
         });
 
         socket.on("connect_error", (e) => {
             console.log("connect error", e);
-            res(new Connection(socket, null));
+            res(new Connection(socket));
             onConnectionFailed();
         });
     });
