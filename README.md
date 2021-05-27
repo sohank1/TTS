@@ -25,6 +25,7 @@ TTS makes it easy to view and manage all things in TTS.
 
 | Codebase                 | Description      |
 | ------------------------ | ---------------- |
+| [crustina](crustina)     | API Client       |
 | [hothouse](hothouse)     | Discord.js Bot   |
 | [nightshade](nightshade) | Next.js Frontend |
 | [zzaria](zzaria)         | Nest.js Backend  |
