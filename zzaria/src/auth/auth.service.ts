@@ -56,9 +56,7 @@ export class AuthService {
 
                 if (user.avatarUrl === url && user.tag === tag) return user;
 
-                user.avatarUrl = url.includes("null")
-                    ? "https://cdn.discordapp.com/embed/avatars/4.png"
-                    : url;
+                user.avatarUrl = url.includes("null") ? "https://cdn.discordapp.com/embed/avatars/4.png" : url;
                 user.tag = tag;
 
                 this._ws.connectionHandler.emitUserUpdate(this._userService.toResponseObject(user));

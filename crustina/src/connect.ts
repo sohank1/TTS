@@ -60,7 +60,7 @@ export const connect = (
 
             res(new Connection(socket));
         });
-        
+
         let didEmitConnFailed = false;
         socket.on("connect_error", (e) => {
             console.log("connect error", e);
