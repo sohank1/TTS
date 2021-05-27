@@ -13,6 +13,17 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+                  
+            - name: Install Deps
+              run: yarn
+              
+            - name: Build Axeroni
+              run: cd ./axeroni && yarn build    
+              
+            - uses: actions/checkout@v2
             - run: cd zzaria
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
