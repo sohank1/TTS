@@ -1,4 +1,4 @@
-name: "Lint and Test: Axeroni"
+name: "Lint and Build: Axeroni"
 
 on:
     push:
