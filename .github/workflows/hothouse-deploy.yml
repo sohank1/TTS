@@ -20,11 +20,12 @@ jobs:
             - name: Install Deps
               run: yarn
               
+            - name: Build Axeroni
+              run: cd ./axeroni && yarn build     
+              
             - name: Build Crustina
               run: cd ./crustina && yarn build
-              
-            - name: Build Axeroni
-              run: cd ./axeroni && yarn build              
+                       
               
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
