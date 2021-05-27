@@ -6,7 +6,7 @@ export const WaitForWsAndAuth: React.FC = ({ children }) => {
     const hasTokens = useHasTokens();
 
     // If there is no websocket connection return nothing
-    if (!conn) return null;
+    if (!conn) return <h1>loading</h1>;
 
     // If user is not logged in just show the page
     if (!hasTokens) return <>{children}</>;
