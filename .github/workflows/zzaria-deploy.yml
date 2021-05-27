@@ -24,10 +24,24 @@ jobs:
             - name: Build Axeroni
               run: cd ./axeroni && yarn build    
               
-            - run: cd axeroni/lib && ls && cat index.js && cat index.d.ts
-            - uses: akhileshns/heroku-deploy@v3.12.12
-              with:
-                  heroku_api_key: ${{secrets.ZZARIA_API_KEY}}
-                  heroku_app_name: "tts-api-prod"
-                  heroku_email: ${{secrets.ZZARIA_EMAIL}}
-                  appdir: "zzaria"
+            - name: Heroku login credentials
+              run: |
+                cat > ~/.netrc <<EOF
+                 machine api.heroku.com
+                   login $HEROKU_EMAIL
+                   password $HEROKU_API_KEY
+                machine git.heroku.com
+                   login $HEROKU_EMAIL
+                   password $HEROKU_API_KEY
+                EOF
+              env:
+                HEROKU_API_KEY: ${ {secrets.ZZARIA_API_KEY }}
+                HEROKU_EMAIL: ${{secrets.ZZARIA_EMAIL}}
+          
+            - name: Add Heroku remote
+              run: cd zzaria && heroku git:remote --app tts-api-prod
+              env:
+                 HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+              
+            - name: Push to Heroku
+              run: cd zzaria && git push heroku master
