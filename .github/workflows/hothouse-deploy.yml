@@ -7,6 +7,7 @@ on:
         paths:
             - hothouse/**
             - yarn.lock
+            - .github/workflows/hothouse-deploy.yml
 
 jobs:
     deploy:
@@ -25,7 +26,9 @@ jobs:
               
             - name: Build Crustina
               run: cd ./crustina && yarn build
-                                
+              
+            - run: cd hothouse                  
+             
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
                   heroku_api_key: ${{secrets.HOTHOUSE_API_KEY}}
