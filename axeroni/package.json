@@ -4,6 +4,7 @@
   "version": "1.0.1",
   "description": "Typings for TTS",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "dev": "tsc -w",

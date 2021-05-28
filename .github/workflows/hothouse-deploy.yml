@@ -7,6 +7,7 @@ on:
         paths:
             - hothouse/**
             - yarn.lock
+            - .github/workflows/hothouse-deploy.yml
 
 jobs:
     deploy:
@@ -16,16 +17,7 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 14.x
-                  
-            - name: Install Deps
-              run: yarn
-              
-            - name: Build Crustina
-              run: cd ./crustina && yarn build
-              
-            - name: Build Axeroni
-              run: cd ./axeroni && yarn build              
-              
+
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
                   heroku_api_key: ${{secrets.HOTHOUSE_API_KEY}}
