@@ -48,11 +48,11 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-yarn-
             - name: Install Dependencies
-              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+              # if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: yarn
-              
+
             - name: Build Axeroni
-              run: cd ./axeroni && yarn build   
+              run: cd ./axeroni && yarn build
 
             - name: Build
               run: cd ./crustina && yarn build
