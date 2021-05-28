@@ -28,7 +28,7 @@ jobs:
             - name: Install Dependencies
               if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: yarn
-              
+
             - name: Lint
               run: cd ./hothouse && yarn lint
 
@@ -48,17 +48,17 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-yarn-
             - name: Install Dependencies
-              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+              # if: ${{ steps.cache.outputs.cache-hit != 'true' }}
               run: yarn
-              
+
             - name: Build Axeroni
-              run: cd ./axeroni && yarn build  
-              
+              run: cd ./axeroni && yarn build
+
             - name: Build Crustina
               run: cd ./crustina && yarn build
-              
+
             - name: Build Hothouse
               run: cd ./hothouse && yarn build
-              
+
             - name: Test
               run: cd ./hothouse && yarn test
