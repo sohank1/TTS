@@ -1,5 +1,5 @@
 import * as io from "socket.io-client";
-import { OpCodes, UserResponseObject } from "@tts/axeroni";
+import { OpCodes, UserResponseObject } from "axeroni";
 import { Connection } from "./Connection";
 import { Token, Error } from "./types";
 

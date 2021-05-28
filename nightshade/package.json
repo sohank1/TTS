@@ -12,7 +12,8 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
-    "@tts/crustina": "*",
+    "crustina": "*",
+    "axeroni": "*",
     "@material-ui/core": "^4.11.4",
     "@material-ui/styles": "^4.11.4",
     "eslint-plugin-react": "^7.23.2",

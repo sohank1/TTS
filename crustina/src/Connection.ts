@@ -1,4 +1,4 @@
-import { OpCode, UserResponseObject } from "@tts/axeroni";
+import { OpCode, UserResponseObject } from "axeroni";
 import { Query } from "./Query";
 
 export class Connection {

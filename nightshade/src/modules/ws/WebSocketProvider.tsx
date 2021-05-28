@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { createContext, useEffect, useMemo, useRef, useState } from "react";
-import { connect, Connection } from "@tts/crustina";
-import { UserResponseObject } from "@tts/axeroni";
+import { connect, Connection } from "crustina";
+import { UserResponseObject } from "axeroni";
 import { BASE_URL } from "../../lib/constants";
 import { useSaveTokens } from "../auth/useSaveTokens";
 import { useTokenStore } from "../auth/useTokenStore";

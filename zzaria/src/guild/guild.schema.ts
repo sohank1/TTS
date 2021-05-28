@@ -1,5 +1,5 @@
 import { Schema, SchemaFactory, Prop } from "@nestjs/mongoose";
-import { Member, Role } from "@tts/axeroni";
+import { Member, Role } from "axeroni";
 import { Document } from "mongoose";
 
 @Schema()

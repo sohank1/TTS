@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Controller, Get, HttpException, HttpStatus, Query, Req, Res } from "@nestjs/common";
-import { UserResponseObject } from "@tts/axeroni";
+import { UserResponseObject } from "axeroni";
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
 

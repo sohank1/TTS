@@ -1,4 +1,4 @@
-import { ContentResponseObject, UserResponseObject } from "@tts/axeroni";
+import { ContentResponseObject, UserResponseObject } from "axeroni";
 import { Connection } from "./Connection";
 
 export class Query {

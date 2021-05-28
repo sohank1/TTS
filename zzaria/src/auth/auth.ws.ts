@@ -1,5 +1,5 @@
 import { HttpStatus } from "@nestjs/common";
-import { OpCodes } from "@tts/axeroni";
+import { OpCodes } from "axeroni";
 import { Socket } from "socket.io";
 import { TTS_BOT } from "../environment/environment";
 import { UserService } from "../user/user.service";

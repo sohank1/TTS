@@ -1,4 +1,4 @@
-import { OpCodes } from "@tts/axeroni";
+import { OpCodes } from "axeroni";
 import { Socket } from "socket.io";
 import { GuildService } from "./guild.service";
 

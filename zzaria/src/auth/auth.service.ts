@@ -11,7 +11,7 @@ import { environment, IS_TEST, TTS_BOT } from "../environment/environment";
 import { UserService } from "../user/user.service";
 import { Guild } from "../guild/guild.schema";
 import { getIconUrl } from "../guild/util/get-icon.util";
-import { UserResponseObject } from "@tts/axeroni";
+import { UserResponseObject } from "axeroni";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const DiscordOauth = require("discord-oauth2");

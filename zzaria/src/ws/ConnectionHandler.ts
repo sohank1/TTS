@@ -1,4 +1,4 @@
-import { OpCodes, UserResponseObject } from "@tts/axeroni";
+import { OpCodes, UserResponseObject } from "axeroni";
 import { Server, Socket } from "socket.io";
 import { TTS_BOT } from "../environment/environment";
 

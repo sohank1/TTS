@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from "react-query";
 import { isServer } from "../lib/isServer";
-import { Query } from "@tts/crustina";
+import { Query } from "crustina";
 import { useConn } from "./useConn";
 
 type Await<T> = T extends Promise<infer U> ? U : T;
