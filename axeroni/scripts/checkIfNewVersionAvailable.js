@@ -5,7 +5,8 @@ setInterval(() => {
     fetch("https://registry.npmjs.com/axeroni").then(r => r.json().then(registry => {
         const { latest } = registry["dist-tags"];
 
-        if (latest === version) {
+        // If registry version is more than or equal to local version we are up to date
+        if (latest >= version) {
             console.log(`Axeroni version up to date: ${latest}`);
             process.exit(0);
         }
