@@ -18,6 +18,12 @@ jobs:
               with:
                   node-version: 14.x
 
+            - name: Check if Axeroni is up to date
+            - run: cd ./axeroni && yarn version:check
+
+            - name: Check if Crustina is up to date
+            - run: cd ./Crustina && yarn version:check
+
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
                   heroku_api_key: ${{secrets.HOTHOUSE_API_KEY}}

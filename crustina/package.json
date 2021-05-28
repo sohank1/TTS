@@ -10,7 +10,9 @@
     "build": "tsc",
     "lint": "eslint \"./**/*.ts\"",
     "lint:fix": "eslint \"./**/*.ts\" --fix",
-    "test": "echo \"Crustina tests TODO\""
+    "test": "echo \"Crustina tests TODO\"",
+    "version:update": "node ./scripts/updateVersion",
+    "version:check": "node ./scripts/checkIfNewVersionAvailable"
   },
   "dependencies": {
     "axeroni": "*",
@@ -18,6 +20,7 @@
   },
   "devDependencies": {
     "@types/socket.io-client": "^1.4.36",
+    "node-fetch": "^2.6.1",
     "typescript": "^4.1.3"
   }
 }

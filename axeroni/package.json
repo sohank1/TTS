@@ -10,9 +10,12 @@
     "dev": "tsc -w",
     "build": "tsc",
     "lint": "eslint \"./**/*.ts\"",
-    "lint:fix": "eslint \"./**/*.ts\" --fix"
+    "lint:fix": "eslint \"./**/*.ts\" --fix",
+    "version:update": "node ./scripts/updateVersion",
+    "version:check": "node ./scripts/checkIfNewVersionAvailable"
   },
   "devDependencies": {
+    "node-fetch": "^2.6.1",
     "typescript": "^4.1.3"
   }
 }

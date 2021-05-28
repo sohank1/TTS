@@ -1,26 +1,41 @@
 version: 2
 updates:
+    - package-ecosystem: "npm"
+      directory: "/axeroni"
+      schedule:
+          interval: "daily"
+      commit-message:
+          include: scope
+          prefix: chore
 
-  - package-ecosystem: "npm"
-    directory: "/hothouse"
-    schedule:
-      interval: "daily"
-    commit-message:
-      include: scope
-      prefix: chore
+    - package-ecosystem: "npm"
+      directory: "/crustina"
+      schedule:
+          interval: "daily"
+      commit-message:
+          include: scope
+          prefix: chore
 
-  - package-ecosystem: "npm"
-    directory: "/nightshade"
-    schedule:
-      interval: "daily"
-    commit-message:
-      include: scope
-      prefix: chore
+    - package-ecosystem: "npm"
+      directory: "/hothouse"
+      schedule:
+          interval: "daily"
+      commit-message:
+          include: scope
+          prefix: chore
 
-  - package-ecosystem: "npm"
-    directory: "/zzaria"
-    schedule:
-      interval: "daily"
-    commit-message:
-      include: scope
-      prefix: chore
+    - package-ecosystem: "npm"
+      directory: "/nightshade"
+      schedule:
+          interval: "daily"
+      commit-message:
+          include: scope
+          prefix: chore
+
+    - package-ecosystem: "npm"
+      directory: "/zzaria"
+      schedule:
+          interval: "daily"
+      commit-message:
+          include: scope
+          prefix: chore

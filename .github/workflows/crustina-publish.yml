@@ -1,0 +1,43 @@
+name: "Publish: Crustina"
+
+on:
+    push:
+        paths:
+            - crustina/**
+            - yarn.lock
+            - .eslintrc.json
+            - .prettierrc.js
+            - .github/workflows/crustina-publish.yml
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+
+            - uses: actions/cache@v2
+              id: cache
+              with:
+                  path: "**/node_modules"
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+            - name: Install Dependencies
+              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+              run: yarn
+
+            - name: Update Version
+              run: cd ./crustina && yarn version:update
+
+            - name: Publish to NPM
+              uses: JS-DevTools/npm-publish@v1
+              with:
+                  token: ${{ secrets.NPM_TOKEN }}
+
+            - name: Commit package.json
+              uses: EndBug/add-and-commit@v7
+              with:
+                  message: "chore(crustina): update version"
