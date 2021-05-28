@@ -18,6 +18,9 @@ jobs:
               with:
                   node-version: 14.x
 
+           - name: Install Dependencies
+             run: yarn
+
             - name: Check if Axeroni is up to date
               run: cd ./axeroni && yarn version:check
 

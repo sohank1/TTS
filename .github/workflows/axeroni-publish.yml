@@ -36,6 +36,7 @@ jobs:
               uses: JS-DevTools/npm-publish@v1
               with:
                   token: ${{ secrets.NPM_TOKEN }}
+                  package: ./axeroni/package.json
 
             - name: Commit package.json
               uses: EndBug/add-and-commit@v7
