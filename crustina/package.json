@@ -1,7 +1,7 @@
 {
   "name": "crustina",
   "author": "Creeper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "API Client",
   "main": "lib/index.js",
   "license": "MIT",
