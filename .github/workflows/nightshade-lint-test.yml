@@ -65,11 +65,11 @@ jobs:
                       ${{ runner.os }}-cypress-
 
             - name: Install Dependencies
-              if: ${{ steps.deps.outputs.cache-hit != 'true' }}
-              run: cd ./nightshade && yarn
-              
+              # if: ${{ steps.deps.outputs.cache-hit != 'true' }}
+              run: yarn install
+
             - name: Build Axeroni
-              run: cd ./axeroni && yarn build  
+              run: cd ./axeroni && yarn build
 
             - name: Build Crustina
               run: cd ./crustina && yarn build
