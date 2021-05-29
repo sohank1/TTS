@@ -4,6 +4,7 @@ on:
     push:
         paths:
             - axeroni/src/**
+            - yarn.lock
             - .github/workflows/axeroni-publish.yml
 
 jobs:
