@@ -4,6 +4,7 @@ on:
     push:
         paths:
             - crustina/**
+            - zzaria/**
             - yarn.lock
             - .eslintrc.json
             - .prettierrc.js
@@ -31,7 +32,6 @@ jobs:
 
             - name: Lint
               run: cd ./crustina && yarn lint
-
     test:
         runs-on: ubuntu-latest
         steps:
@@ -41,21 +41,38 @@ jobs:
                   node-version: 14.x
 
             - uses: actions/cache@v2
-              id: cache
+              id: deps
               with:
                   path: "**/node_modules"
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
                       ${{ runner.os }}-yarn-
+            - uses: actions/cache@v2
+              id: cypress
+              with:
+                  path: "/home/runner/.cache/Cypress/"
+                  key: ${{ runner.os }}-cypress-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-cypress-
             - name: Install Dependencies
-              # if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-              run: yarn
+              # if: ${{ steps.deps.outputs.cache-hit != 'true' }}
+              run: yarn install
+
+
+            - name: Install MongoDB
+              uses: supercharge/mongodb-github-action@1.4.0
+              with:
+                  mongodb-version: 4.0
 
             - name: Build Axeroni
               run: cd ./axeroni && yarn build
 
+            - name: Start Server
+              run: cd ./zzaria && MONGO_URI=mongodb://localhost/test JWT_SECERT=test BOT_TOKEN=${{secrets.ZZARIA_BOT_TOKEN}} yarn start:dev &
+
             - name: Build
               run: cd ./crustina && yarn build
 
-            - name: Test
+            - name: Run Tests
               run: cd ./crustina && yarn test
+
