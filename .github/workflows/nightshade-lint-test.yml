@@ -68,6 +68,11 @@ jobs:
               # if: ${{ steps.deps.outputs.cache-hit != 'true' }}
               run: yarn install
 
+            - name: Install MongoDB
+              uses: supercharge/mongodb-github-action@1.4.0
+              with:
+                  mongodb-version: 4.0
+
             - name: Build Axeroni
               run: cd ./axeroni && yarn build
 
@@ -83,11 +88,6 @@ jobs:
 
             - name: Build
               run: cd ./nightshade && yarn build
-
-            - name: Install MongoDB
-              uses: supercharge/mongodb-github-action@1.4.0
-              with:
-                  mongodb-version: 4.0
 
             - name: Run Tests
               run: cd ./nightshade && yarn run cypress run
