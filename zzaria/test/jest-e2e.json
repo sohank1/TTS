@@ -1,10 +1,10 @@
 {
   "roots": [
-      "src"
+      "../src"
    ],
   "moduleDirectories": [
-      "node_modules",
-      "src"
+      "../node_modules",
+      "../src"
    ],
   "moduleFileExtensions": ["js", "json", "ts"],
   "rootDir": ".",
