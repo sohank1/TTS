@@ -13,7 +13,7 @@ export const connect = (
         onClearTokens = () => {},
         url = apiUrl,
         getAuthOptions,
-        onUser,
+        onUser = () => {},
         onNewTokens,
     }: {
         onConnectionFailed?: () => void;
