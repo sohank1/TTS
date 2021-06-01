@@ -26,7 +26,7 @@ export class Connection {
         opCode,
         handler
     ) => {
-        return this.socket.on(opCode, handler);
+        return this.socket.on(opCode, (...args) => handler(args));
     };
 
     public query = new Query(this);
