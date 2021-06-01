@@ -10,6 +10,6 @@
         "sourceMap": true,
         "outDir": "./lib",
         "baseUrl": "./",
-        "incremental": true,
+        "incremental": true
     }
 }
