@@ -1,7 +1,7 @@
 {
   "name": "axeroni",
   "author": "Creeper",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Typings for TTS",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
