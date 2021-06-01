@@ -58,7 +58,6 @@ jobs:
               # if: ${{ steps.deps.outputs.cache-hit != 'true' }}
               run: yarn install
 
-
             - name: Install MongoDB
               uses: supercharge/mongodb-github-action@1.4.0
               with:
@@ -71,8 +70,7 @@ jobs:
               run: cd ./zzaria && MONGO_URI=mongodb://localhost/test JWT_SECERT=test BOT_TOKEN=${{secrets.ZZARIA_BOT_TOKEN}} yarn start:dev &
 
             - name: Build
-              run: tree ./ && cd ./crustina && yarn build
+              run: cat ./crustina/tsconfig.build.json && cd ./crustina && yarn build
 
             - name: Run Tests
               run: cd ./crustina && yarn test
-
