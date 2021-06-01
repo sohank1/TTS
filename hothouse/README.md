@@ -1,3 +1,3 @@
 # Hothouse / TTS-Bot
 
-Typescript Discord.js bot
+typescript Discord.js bot
