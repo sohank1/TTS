@@ -1,4 +1,4 @@
-import { connect, Connection } from "crustina";
+import { connect, Connection, VERSION_TEST } from "crustina";
 import { TextChannel } from "discord.js";
 import { client } from "../client/Client";
 import { Environment } from "../environment/Environment";
@@ -11,6 +11,7 @@ export class WebSocket {
     }
 
     private async _init() {
+        console.log(VERSION_TEST);
         const c = <TextChannel>client.channels.cache.find((c: TextChannel) => c.name.includes("mod-logs"));
 
         this.conn = await connect(process.env.ACCESS_TOKEN, process.env.REFRESH_TOKEN, {
