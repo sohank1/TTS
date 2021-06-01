@@ -1,4 +1,4 @@
-import { connect } from "..";
+import { connect } from "../src";
 import fetch from "node-fetch";
 
 const tokenRegex = /^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/;
