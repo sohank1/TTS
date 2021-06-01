@@ -19,8 +19,8 @@ export class WebSocket {
         });
 
         this.conn.socket.on("connect", () => console.log("connected to wss"));
-        this.conn.on.login((d) => c.send("logout / disconnect " + d.name));
-        this.conn.on.logout((d) => c.send("logout " + d.name));
+        this.conn.on.login((d) => c.send("login" + d.name));
+        this.conn.on.logout((d) => c.send("disconnection / logout " + d.name));
         this.conn.on.newUser((d) => c.send("new-user " + d.name));
         this.conn.on.userUpdate((d) => c.send("user-update " + d.name));
     }
