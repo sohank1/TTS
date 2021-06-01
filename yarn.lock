@@ -2706,15 +2706,6 @@ cross-spawn@^7.0.0, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-crustina@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/crustina/-/crustina-9.0.0.tgz#da1442aab1c59ca6b24cd0098639bef187c4a426"
-  integrity sha512-kkT9PULUiuAM9Nm2/XU5wM75GWjQeFaFj5QR19b4aBJSH6uRLIB3pqepef1YBf90h5GVOHyIASvJYgyzubIfFg==
-  dependencies:
-    "@types/socket.io-client" "^1.4.36"
-    axeroni "*"
-    socket.io-client "^2.3.0"
-
 crypto-browserify@3.12.0, crypto-browserify@^3.11.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.12.0.tgz#396cf9f3137f03e4b8e532c58f698254e00f80ec"

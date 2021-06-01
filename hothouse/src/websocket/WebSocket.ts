@@ -18,8 +18,7 @@ export class WebSocket {
             url: Environment.BASE_URL,
         });
 
-     //   this.conn.socket.on("connect", () => console.log("connected to wss"));
-
+        this.conn.socket.on("connect", () => console.log("connected to wss"));
         this.conn.on.login((d) => c.send("logout / disconnect " + d.name));
         this.conn.on.logout((d) => c.send("logout " + d.name));
         this.conn.on.newUser((d) => c.send("new-user " + d.name));

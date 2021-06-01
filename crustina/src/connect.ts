@@ -14,7 +14,7 @@ export const connect = (
         url = apiUrl,
         getAuthOptions,
         onUser = () => {},
-        onNewTokens,
+        onNewTokens = () => {},
     }: {
         onConnectionFailed?: () => void;
         onClearTokens?: () => void;
@@ -53,7 +53,9 @@ export const connect = (
             }
         });
 
-        socket.on(OpCodes["auth:new_tokens"], onNewTokens);
+        socket.on(OpCodes["auth:new_tokens"], ({ accessToken, refreshToken }) =>
+            onNewTokens({ accessToken, refreshToken })
+        );
 
         socket.on("connect", () => {
             socket.on(OpCodes["auth:success"], (u: UserResponseObject) => onUser(u));
