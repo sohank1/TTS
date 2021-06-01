@@ -1,5 +1,7 @@
 import { OpCode, UserResponseObject } from "axeroni";
 import { Query } from "./Query";
+import { Subscription } from "./Subscription";
+import { ListenerHandler } from "./types";
 
 export class Connection {
     public user: UserResponseObject = null;
@@ -20,5 +22,13 @@ export class Connection {
         });
     };
 
-    public query = new Query(this.fetch);
+    public addListener: <Data = unknown>(opCode: OpCode, handler: ListenerHandler<Data>) => SocketIOClient.Emitter = (
+        opCode,
+        handler
+    ) => {
+        return this.socket.on(opCode, handler);
+    };
+
+    public query = new Query(this);
+    public on = new Subscription(this);
 }

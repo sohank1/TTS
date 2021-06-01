@@ -2,17 +2,17 @@ import { ContentResponseObject, UserResponseObject } from "axeroni";
 import { Connection } from "./Connection";
 
 export class Query {
-    constructor(private fetch: Connection["fetch"]) {}
+    constructor(private conn: Connection) {}
 
     public getUsers(): Promise<UserResponseObject[]> {
-        return this.fetch("user:get_all");
+        return this.conn.fetch("user:get_all");
     }
 
     public getUser(id: string): Promise<UserResponseObject> {
-        return this.fetch("user:get", id);
+        return this.conn.fetch("user:get", id);
     }
 
     public getContent(): Promise<ContentResponseObject> {
-        return this.fetch("content:get");
+        return this.conn.fetch("content:get");
     }
 }

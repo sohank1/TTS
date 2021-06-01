@@ -1,31 +1,27 @@
+import { connect, Connection } from "crustina";
 import { TextChannel } from "discord.js";
-import * as io from "socket.io-client";
 import { client } from "../client/Client";
 import { Environment } from "../environment/Environment";
 
 export class WebSocket {
-    public socket = io(Environment.BASE_URL, { transports: ["websocket"], upgrade: false });
+    public conn: Connection;
 
     constructor() {
-        const c = <TextChannel>client.channels.cache.find((c: TextChannel) => c.name.includes("mod-logs"));
-        this.socket.emit("auth", { refreshToken: process.env.REFRESH_TOKEN, accessToken: process.env.ACCESS_TOKEN });
-        this.socket.on("message", (d) => console.log(d));
-        this.socket.on("connect", () => console.log("connected"));
-        this.socket.on("reconnect_attempt", (d) => console.log("reconnect attempt", d));
-        this.socket.on("reconnect", (d) => {
-            console.log("reconnect", d);
-            this.socket.emit("auth", {
-                refreshToken: process.env.REFRESH_TOKEN,
-                accessToken: process.env.ACCESS_TOKEN,
-            });
-        });
-        this.socket.on("ping", (d) => console.log("ping", d));
-        this.socket.on("auth-success", (d) => console.log(d));
-        this.socket.on("auth-error", (d) => console.log(d));
+        this._init();
+    }
 
-        this.socket.on("login", (d) => c.send("login " + d.name));
-        this.socket.on("logout", (d) => c.send("logout " + d.name));
-        this.socket.on("new-user", (d) => c.send("new-user " + d.name));
-        this.socket.on("user-update", (d) => c.send("user-update " + d.name));
+    private async _init() {
+        const c = <TextChannel>client.channels.cache.find((c: TextChannel) => c.name.includes("mod-logs"));
+
+        this.conn = await connect(process.env.ACCESS_TOKEN, process.env.REFRESH_TOKEN, {
+            url: Environment.BASE_URL,
+        });
+
+        this.conn.socket.on("connect", () => console.log("connected"));
+
+        this.conn.on.login((d) => c.send("logout / disconnect " + d.name));
+        this.conn.on.logout((d) => c.send("logout " + d.name));
+        this.conn.on.newUser((d) => c.send("new-user " + d.name));
+        this.conn.on.userUpdate((d) => c.send("user-update " + d.name));
     }
 }

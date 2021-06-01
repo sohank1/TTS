@@ -11,5 +11,10 @@
         "outDir": "./lib",
         "baseUrl": "./",
         "incremental": true
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "lib",
+        "test"
+    ]
 }
