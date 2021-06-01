@@ -41,7 +41,7 @@ export const connect = (
             };
             console.log(data);
             if (data.accessToken && data.refreshToken) {
-                console.log("emitting auth");
+                console.log("emitting auth: ", data);
                 socket.emit(OpCodes["auth"], data);
             }
         });
