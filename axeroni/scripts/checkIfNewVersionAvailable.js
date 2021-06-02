@@ -6,7 +6,7 @@ setInterval(() => {
         const { latest } = registry["dist-tags"];
 
         // If registry version is more than or equal to local version we are up to date
-        if (latest >= version) {
+        if (Number(latest[0]) >= Number(version[0])) {
             console.log(`Axeroni version up to date: ${latest}`);
             process.exit(0);
         }
