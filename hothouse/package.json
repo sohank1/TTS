@@ -16,7 +16,7 @@
   "author": "Creeper",
   "dependencies": {
     "axeroni": "*",
-    "crustina": "*",
+    "crustina": "latest",
     "@types/node": "^15.0.2",
     "axios": "^0.21.1",
     "discord.js": "^12.5.1",
