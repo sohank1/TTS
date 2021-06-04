@@ -4,7 +4,6 @@ on:
     push:
         paths:
             - crustina/src/**
-            - yarn.lock
             - .github/workflows/crustina-publish.yml
 
 jobs:
