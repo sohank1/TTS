@@ -1,11 +1,11 @@
-import { ClientEvents } from "discord.js";
+import { Subscription } from "crustina";
 import { promises as fs } from "fs";
 import { join } from "path";
-import { client } from "../../client/Client";
+import { useConn } from "../conn";
 
-export abstract class BaseEvent {
-    constructor(e: keyof ClientEvents) {
-        client.on(e, this.init);
+export abstract class BaseWsEvent {
+    constructor(k: keyof Subscription) {
+        useConn().on[k](this.init);
     }
 
     public abstract init(...args: any[]): any;
@@ -14,11 +14,11 @@ export abstract class BaseEvent {
         const files = await fs.readdir(join(dir));
 
         for (const f of files) {
-            if ((await fs.lstat(join(dir, f))).isDirectory() && f !== "baseEvent") this.register(join(dir, f));
-            else if (f !== "baseEvent")
+            if ((await fs.lstat(join(dir, f))).isDirectory() && f !== "baseWsEvent") this.register(join(dir, f));
+            else if (f !== "baseWsEvent")
                 try {
                     const { default: Event } = await import(join(dir, f));
-                    <BaseEvent>new Event();
+                    <BaseWsEvent>new Event();
                 } catch (err) {}
         }
     }

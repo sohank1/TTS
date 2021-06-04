@@ -27,9 +27,7 @@ export abstract class BaseCommand {
                 try {
                     const { default: Command } = await import(join(dir, f));
                     commands.push(<BaseCommand>new Command());
-                } catch (err) {
-                    console.log(err);
-                }
+                } catch (err) {}
         }
     }
 }
