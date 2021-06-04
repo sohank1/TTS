@@ -1848,6 +1848,11 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
+axeroni@latest:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/axeroni/-/axeroni-7.0.0.tgz#286a4f998669ee9332a67462c281fa1e11de218c"
+  integrity sha512-lg1RIqoD+NcxultkFeB4QpFNMl0YKpG9VZUMnZqeZ/PaTIXFEZ+ZwHkHMVr6AXGFEXDWvowTTas/G7LmP6NXmw==
+
 axios@0.21.1, axios@^0.21.1:
   version "0.21.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
