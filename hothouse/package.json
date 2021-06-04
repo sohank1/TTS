@@ -15,7 +15,7 @@
   "keywords": [],
   "author": "Creeper",
   "dependencies": {
-    "axeroni": "*",
+    "axeroni": "latest",
     "crustina": "latest",
     "@types/node": "^15.0.2",
     "axios": "^0.21.1",
