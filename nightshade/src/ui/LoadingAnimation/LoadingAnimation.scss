@@ -1,0 +1,60 @@
+@import "../../styles/variables.scss";
+
+.loading-animation-ui-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    &.remove {
+        animation: loading-animation-fade-out forwards 1.5s ease;
+    }
+
+    img {
+        width: 50%;
+        min-width: 23rem;
+        max-width: 40rem;
+        margin: 0 auto;
+        animation: loading-animation-img forwards 1.5s ease;
+        animation-iteration-count: infinite;
+    }
+
+    .fade {
+        animation: loading-animation-fade forwards 1s ease;
+    }
+
+    h1 {
+        font-weight: $extra-bold;
+        font-size: 2rem;
+    }
+
+    @keyframes loading-animation-img {
+        50% {
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes loading-animation-fade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes loading-animation-fade-out {
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+}
