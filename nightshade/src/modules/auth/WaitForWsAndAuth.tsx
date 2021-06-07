@@ -9,7 +9,6 @@ export const WaitForWsAndAuth: React.FC = ({ children }) => {
     const conn = useConn();
     const hasTokens = useHasTokens();
 
-
     // If there is no websocket connection return nothing
     if (!conn) return <LoadingAnimation show={show} />;
 
