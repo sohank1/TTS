@@ -34,7 +34,7 @@ export const DashboardNavBar: React.FC = ({ children }) => {
             <section>
                 <div className="side-nav">
                     <header>
-                        <img src="assets/tts-logo.png" alt="The TTS logo" />
+                        <img src="assets/tts-logo-small.png" alt="The TTS logo" />
                         <Link href="/">
                             <Button className="tts-button on-card">TTS</Button>
                         </Link>
