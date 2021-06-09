@@ -19,7 +19,7 @@ export const LoadingAnimation: FC<LoadingAnimationProps> = ({ show }) => {
     return (
         <div ref={ref} className="loading-animation-ui-component">
             <div className="fade">
-                <img src="assets/tts-logo.png" />
+                <img src="assets/tts-logo-small.png" />
             </div>
             <h1>Waiting for server...</h1>
         </div>
