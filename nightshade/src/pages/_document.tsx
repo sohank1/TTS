@@ -36,6 +36,8 @@ export default class MyDocument extends Document {
                     <meta property="twitter:creator" content="@TheTomatoHeads" />
                     <meta property="twitter:creator:id" content="@TheTomatoHeads" />
                     <meta property="twitter:image" content="https://ttsclan.vercel.app/assets/preview.png" />
+                    
+                    <meta name="google-site-verification" content="b1c55Ng4j3VJXfO1MMohWhDDxe4iLPQy_c3DfxSZXq4" />
                 </Head>
                 <body>
                     <Main />
