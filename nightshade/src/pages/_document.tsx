@@ -20,7 +20,11 @@ export default class MyDocument extends Document {
                         property="og:description"
                         content="The Tomatohead Society (TTS) is a Fortnite clan that strongly supports Team Pizza and is always looking for new members like you!"
                     />
-                    <meta name="description" content="The Tomatohead Society (TTS) is a Fortnite clan that strongly supports Team Pizza and is always looking for new members like you!" />
+                    
+                    <meta 
+                        name="description" 
+                        content="The Tomatohead Society (TTS) is a Fortnite clan that strongly supports Team Pizza and is always looking for new members like you!"
+                    />
                         
                     <meta property="og:image" content="https://ttsclan.vercel.app/assets/preview.png" />
                     <meta name="theme-color" content="#ff3f3f" />
