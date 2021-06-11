@@ -1,0 +1,54 @@
+@import "../../styles/variables.scss";
+
+.patch-notes-page {
+    .creations {
+        width: 90%;
+        min-height: 50vh;
+        background: $primary;
+        border-radius: 1.5rem;
+        margin: 2rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            margin-top: 2rem;
+            width: 80%;
+            max-width: 25rem;
+        }
+
+        h1,
+        p {
+            width: 70%;
+        }
+
+        h1 {
+            font-weight: $extra-bold;
+            font-size: 2rem;
+            margin-top: 2rem;
+        }
+
+        p {
+            color: #ffffff;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            text-transform: none;
+            line-height: 36px;
+
+            font-weight: $bold;
+            font-size: 1.2rem;
+            background: $black;
+
+            border-radius: 0.6rem;
+            padding: 0.7rem 32% 0.7rem 32%;
+            margin-bottom: 2rem;
+
+            &:hover {
+                background: lighten($black, 2%);
+            }
+        }
+    }
+}

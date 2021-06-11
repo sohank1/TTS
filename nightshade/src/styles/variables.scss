@@ -5,6 +5,7 @@ $primary: #ff3f3f;
 $secondary: #e94d3d;
 $blue: #3f69ff;
 $card: #272a3f;
+$black: #171717;
 
 $border: #8c8c8c;
 
@@ -39,6 +40,12 @@ $extra-bold: 800;
 
 @mixin large-phone {
     @media (min-width: 400px) {
+        @content;
+    }
+}
+
+@mixin extra-large-phone {
+    @media (min-width: 500px) {
         @content;
     }
 }

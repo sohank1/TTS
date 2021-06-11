@@ -20,15 +20,14 @@ export default class MyDocument extends Document {
                         property="og:description"
                         content="The Tomatohead Society (TTS) is a Fortnite clan that strongly supports Team Pizza and is always looking for new members like you!"
                     />
-                    
-                    <meta 
-                        name="description" 
+
+                    <meta
+                        name="description"
                         content="The Tomatohead Society (TTS) is a Fortnite clan that strongly supports Team Pizza and is always looking for new members like you!"
                     />
-                        
+
                     <meta property="og:image" content="https://ttsclan.vercel.app/assets/preview.png" />
                     <meta name="theme-color" content="#ff3f3f" />
-                    
 
                     <meta property="twitter:card" content="summary_large_image" />
                     <meta property="twitter:site" content="@TheTomatoHeads" />
@@ -36,7 +35,7 @@ export default class MyDocument extends Document {
                     <meta property="twitter:creator" content="@TheTomatoHeads" />
                     <meta property="twitter:creator:id" content="@TheTomatoHeads" />
                     <meta property="twitter:image" content="https://ttsclan.vercel.app/assets/preview.png" />
-                    
+
                     <meta name="google-site-verification" content="b1c55Ng4j3VJXfO1MMohWhDDxe4iLPQy_c3DfxSZXq4" />
                 </Head>
                 <body>

@@ -3,6 +3,8 @@
 @import "responsive";
 @import "../modules/home/HomePage";
 @import "../modules/dashboard/DashboardPage";
+@import "../modules/patch-notes/PatchNotesPage";
+@import "../modules/not-found/NotFoundPage";
 @import "../ui/LoginButton/LoginButton";
 @import "../ui/JoinButton/JoinButton";
 @import "../ui/Footer/Footer";
@@ -12,7 +14,6 @@
 @import "../ui/DashboardUser/DashboardUser";
 @import "../ui/ServerDownModal/ServerDownModal";
 @import "../ui/LoadingAnimation/LoadingAnimation";
-@import "../modules/not-found/NotFoundPage";
 
 #nprogress {
     position: relative;
