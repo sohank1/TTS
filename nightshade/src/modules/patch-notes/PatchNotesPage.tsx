@@ -8,11 +8,14 @@ export const PatchNotesPage = () => {
             <div className="patch-notes-page">
                 <section className="creations">
                     <img src="assets/tomato.png" />
-                    <h1>See Creations from Creators</h1>
-                    <p>See the newest patch notes from creators</p>
-                    <Link href="/patch-notes">
-                        <Button>View</Button>
-                    </Link>
+                    <div className="text">
+                        <h1>See Creations from Creators</h1>
+                        <p>See the newest patch notes from creators</p>
+                        <Link href="/patch-notes">
+                            <Button>View</Button>
+                        </Link>
+                    </div>
+                    <img src="assets/tomato.png" className="laptop" />
                 </section>
             </div>
         </DashboardNavBar>
