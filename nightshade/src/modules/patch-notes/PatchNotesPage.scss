@@ -55,15 +55,7 @@
             }
         }
 
-        @media (min-width: 1000px) {
-            // display: grid;
-            // grid-template-columns: 0.2fr 1fr 1fr;
-            // grid-template-rows: 1fr 1fr 1fr;
-            // grid-template-areas:
-            //     ". text img"
-            //     ". text img"
-            //     ". text img";
-            // align-items: center;
+        @include large-tablet {
             flex-direction: row;
             justify-content: flex-start;
 
@@ -106,6 +98,76 @@
             button {
                 padding: 0.7rem 5rem 0.7rem;
                 margin-bottom: 1rem;
+            }
+        }
+    }
+
+    .panel {
+        background: $card;
+        height: 30rem;
+        width: 90%;
+        border-radius: 1.5rem;
+        margin: 2rem auto;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            color: $table-th;
+            font-weight: $bold;
+            padding: 1.5rem 0 1.5rem 1.8rem;
+            border-bottom: 1px solid $border;
+            vertical-align: middle;
+        }
+
+        .thumbnail {
+            display: none;
+
+            img {
+                max-width: 15rem;
+
+                border-radius: 0.7rem;
+            }
+
+            @include large-tablet {
+                display: table-cell;
+            }
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                max-width: 21rem;
+                text-align: start;
+            }
+
+            .user {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .avatar {
+                    min-width: 3rem;
+                    max-width: 3rem;
+                    border-radius: 50%;
+                    grid-area: image;
+                    margin-left: auto;
+
+                    margin-right: 0.5rem;
+                }
+
+                h2 {
+                    font-size: 1rem;
+                    margin-left: 0.2rem;
+                    text-align: start;
+                }
             }
         }
     }

@@ -8,6 +8,7 @@ $card: #272a3f;
 $black: #171717;
 
 $border: #8c8c8c;
+$table-th: #adadad;
 
 $active: #64a0b2;
 
@@ -52,6 +53,12 @@ $extra-bold: 800;
 
 @mixin tablet {
     @media (min-width: 700px) {
+        @content;
+    }
+}
+
+@mixin large-tablet {
+    @media (min-width: 1000px) {
         @content;
     }
 }

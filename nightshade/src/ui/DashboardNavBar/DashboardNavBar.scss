@@ -39,7 +39,7 @@
         }
     }
 
-    section {
+    section.section {
         @include tablet {
             display: flex;
             justify-content: flex-start;
