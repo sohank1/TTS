@@ -11,7 +11,7 @@
     }
 
     @include laptop {
-        min-width: 65rem;
+        min-width: 61rem;
     }
 
     @include desktop {
@@ -126,9 +126,12 @@
     .panel {
         background: $card;
         height: 30rem;
-        width: 90%;
         border-radius: 1.5rem;
         margin-top: 2rem;
+
+        @include tablet {
+            display: none;
+        }
 
         table {
             width: 100%;
@@ -139,22 +142,36 @@
             color: $table-th;
             font-weight: $bold;
             padding: 1.5rem 0 1.5rem 1.8rem;
-            border-bottom: 1px solid $border;
+            // border-bottom: 1px solid $border;
             vertical-align: middle;
         }
 
-        .thumbnail {
+        .top-row {
             display: none;
+        }
 
+        tr {
+            display: flex;
+            align-items: center;
+            padding: 24px;
+
+            &:not(.top-row) {
+                border-top: 1px solid $border;
+            }
+        }
+
+        th {
+            display: block;
+            padding: 0;
+        }
+
+        .thumbnail {
             img {
-                max-width: 15rem;
-
-                border-radius: 0.7rem;
+                min-width: 8rem;
+                max-width: 8rem;
             }
 
-            @include large-tablet {
-                display: table-cell;
-            }
+            margin-right: 1rem;
         }
 
         .details {
@@ -163,9 +180,8 @@
             align-items: flex-start;
 
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
                 margin-bottom: 1rem;
-                max-width: 21rem;
                 text-align: start;
             }
 
@@ -175,17 +191,16 @@
                 align-items: center;
 
                 .avatar {
-                    min-width: 3rem;
-                    max-width: 3rem;
+                    min-width: 2rem;
+                    max-width: 2rem;
                     border-radius: 50%;
-                    grid-area: image;
                     margin-left: auto;
 
                     margin-right: 0.5rem;
                 }
 
                 h2 {
-                    font-size: 1rem;
+                    font-size: 0.8rem;
                     margin-left: 0.2rem;
                     text-align: start;
                 }
