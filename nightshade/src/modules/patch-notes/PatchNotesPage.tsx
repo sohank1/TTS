@@ -20,6 +20,10 @@ export const PatchNotesPage = () => {
 
                 <section className="panel">
                     <table>
+                        <div className="search">
+                            <img src="assets/search.svg" />
+                            <input type="text" placeholder="Search" />
+                        </div>
                         <tr className="top-row">
                             <th>Image</th>
                             <th>Details</th>
@@ -30,7 +34,7 @@ export const PatchNotesPage = () => {
                             <th className="thumbnail">
                                 <img src="https://i.imgur.com/OKIwF04.png" />
                             </th>
-                            <th>
+                            <th className="info">
                                 <div className="details">
                                     <h1>Penguin's Zone/Scrim Wars V2.1</h1>
                                     <div className="user">
@@ -43,8 +47,16 @@ export const PatchNotesPage = () => {
                                 </div>
                             </th>
 
-                            <th>1/20/19</th>
+                            <th>
+                                <h4 className="date">1/20/19</h4>
+                            </th>
                         </tr>
+
+                        <div className="body">
+                            <h4 className="date">1/20/19</h4>
+                            <h4 className="date">1/20/19</h4>
+                            <h4 className="date">1/20/19</h4>
+                        </div>
                     </table>
                 </section>
             </div>

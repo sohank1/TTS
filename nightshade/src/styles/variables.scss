@@ -10,6 +10,9 @@ $black: #171717;
 $border: #8c8c8c;
 $table-th: #adadad;
 
+$input: #393d59;
+$placeholder: #8386a1;
+
 $active: #64a0b2;
 
 $nav-text: #8590b7;
@@ -71,6 +74,12 @@ $extra-bold: 800;
 
 @mixin laptop {
     @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin large-laptop {
+    @media (min-width: 1325px) {
         @content;
     }
 }

@@ -62,8 +62,10 @@
 
             &::-webkit-scrollbar {
                 @include laptop {
-                    height: 1rem;
-                    width: 0.3rem;
+                    // height: 1rem;
+                    // width: 0.3rem;
+
+                    display: none;
                 }
             }
 
