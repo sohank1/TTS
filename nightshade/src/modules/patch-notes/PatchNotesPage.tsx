@@ -21,8 +21,8 @@ export const PatchNotesPage = () => {
                 <section className="panel">
                     <table>
                         <div className="search">
-                            <img src="assets/search.svg" />
                             <input type="text" placeholder="Search" />
+                            <img src="assets/search.svg" />
                         </div>
                         <tr className="top-row">
                             <th>Image</th>

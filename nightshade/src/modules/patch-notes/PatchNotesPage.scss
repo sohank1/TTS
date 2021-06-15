@@ -141,7 +141,13 @@
         }
 
         .search {
-            display: flex;
+            margin: 0 0 16px;
+
+            img {
+                position: relative;
+                left: 1.2rem;
+                bottom: 2.5rem;
+            }
 
             input {
                 background: $input;
@@ -153,6 +159,7 @@
                 border-radius: 1rem;
                 font-weight: $bold;
                 outline: none;
+                margin: 0;
 
                 &::placeholder {
                     color: $placeholder;
@@ -182,7 +189,7 @@
             padding: 24px;
 
             &:not(.top-row) {
-                // border-top: 1px solid $border;
+                border-top: 1px solid $border;
             }
         }
 
