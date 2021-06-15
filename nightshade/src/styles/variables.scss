@@ -51,6 +51,12 @@ $extra-bold: 800;
     }
 }
 
+@mixin small-tablet {
+    @media (min-width: 600px) {
+        @content;
+    }
+}
+
 @mixin tablet {
     @media (min-width: 700px) {
         @content;

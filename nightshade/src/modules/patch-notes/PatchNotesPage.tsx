@@ -18,7 +18,7 @@ export const PatchNotesPage = () => {
                     <img src="assets/tomato.png" className="laptop" />
                 </section>
 
-                <section className="panel">
+                {/* <section className="panel">
                     <table>
                         <tr className="top-row">
                             <th className="space" />
@@ -46,7 +46,7 @@ export const PatchNotesPage = () => {
                             <th>1/20/19</th>
                         </tr>
                     </table>
-                </section>
+                </section> */}
             </div>
         </DashboardNavBar>
     );
