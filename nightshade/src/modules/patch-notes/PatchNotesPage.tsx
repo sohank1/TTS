@@ -40,7 +40,7 @@ export const PatchNotesPage = () => {
                     <div className="text">
                         <h1>See Creations from Creators</h1>
                         <p>See the newest patch notes from creators</p>
-                        <Link href="/patch-notes">
+                        <Link href="/">
                             <Button>View</Button>
                         </Link>
                     </div>
@@ -53,7 +53,7 @@ export const PatchNotesPage = () => {
                             <div className="container">
                                 <input type="text" placeholder="Search" />
                                 <button>
-                                    <img src="assets/search.svg" />
+                                    <img src="assets/icons/search.svg" />
                                 </button>
                             </div>
                         </div>
@@ -64,37 +64,58 @@ export const PatchNotesPage = () => {
                             {/* <th>Opinion</th> */}
                         </tr>
 
-                        {data.map((p) => (
-                            <Link href="/">
-                                <a>
-                                    <tr>
-                                        <th className="thumbnail">
-                                            <img src={p.image} />
-                                        </th>
+                        {data.map((p, i) => (
+                            <>
+                                <hr />
+                                <Link href="/">
+                                    <a>
+                                        <tr>
+                                            <th className="thumbnail">
+                                                <img src={p.image} />
+                                            </th>
 
-                                        <th className="info">
-                                            <div className="details">
-                                                <h1>{p.name}</h1>
-                                                <div className="user">
-                                                    <img className="avatar" src={p.author.avatarUrl} />
-                                                    <h2>{p.author.name}</h2>
+                                            <th className="info">
+                                                <div className="details">
+                                                    <h1>{p.name}</h1>
+                                                    <div className="user">
+                                                        <img className="avatar" src={p.author.avatarUrl} />
+                                                        <h2>{p.author.name}</h2>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </th>
+                                            </th>
+                                            <th>
+                                                <h4 className="date">{p.date}</h4>
+                                            </th>
+                                        </tr>
+                                    </a>
+                                </Link>
 
-                                        <th>
-                                            <h4 className="date">{p.date}</h4>
-                                        </th>
-                                    </tr>
-
-                                    <div className="body">
-                                        <h4 className="date">{p.date}</h4>
-                                        <h4 className="date">{p.likes}</h4>
-                                        <h4 className="date">{p.dislikes}</h4>
-                                        <h4 className="date">{p.comments}</h4>
+                                <div className="body">
+                                    <h4 className="date">{p.date}</h4>
+                                    <div className="interactions">
+                                        <div className="likes">
+                                            <Button>
+                                                <img src="assets/icons/like.svg" />
+                                            </Button>
+                                            <h5>{p.likes}</h5>
+                                        </div>
+                                        <div className="dislikes">
+                                            <Button>
+                                                <img src="assets/icons/dislike.svg" />
+                                            </Button>
+                                            <h5>{p.dislikes}</h5>
+                                        </div>
+                                        <div className="comments">
+                                            <Button>
+                                                <img src="assets/icons/comment.svg" />
+                                            </Button>
+                                            <h5>{p.comments}</h5>
+                                        </div>
                                     </div>
-                                </a>
-                            </Link>
+                                </div>
+
+                                {data.length - 1 === i ? <hr /> : null}
+                            </>
                         ))}
                     </table>
                 </section>

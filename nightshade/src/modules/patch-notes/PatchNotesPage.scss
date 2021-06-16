@@ -128,7 +128,7 @@
         background: $card;
         border-radius: 1.5rem;
         margin-top: 2rem;
-        padding-bottom: 1rem;
+        padding-bottom: 2rem;
 
         @include tablet {
             display: none;
@@ -206,33 +206,76 @@
             display: flex;
             align-items: center;
             padding: 24px;
+            padding-top: 1rem;
 
             &:not(.top-row) {
-                border-top: 1px solid $border;
+                // border-top: 1px solid $border;
             }
+        }
+
+        hr {
+            background: $border;
+            height: 1px;
+            border-width: 0;
+            width: 90%;
         }
 
         .body {
             display: flex;
             flex-grow: 1;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             border: 1px solid $border;
             border-radius: 0.5rem;
             padding: 0.25rem;
-            margin: 0 1rem;
-            margin-bottom: 1rem;
+            margin: 0 auto;
+            margin-bottom: 1.5rem;
             text-align: center;
+            width: 90%;
 
             & > * {
-                flex: 0 0 20%;
-                padding-right: 0.5rem;
+                // flex: 0 0 20%;
             }
         }
 
         .date {
             color: #f0f0f0;
             font-weight: $semi-bold;
+        }
+
+        .interactions {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 3rem;
+            width: 12rem;
+
+            & > * {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            img {
+                min-width: 38px;
+                max-width: 38px;
+            }
+
+            Button {
+                min-width: 3rem;
+                max-width: 3rem;
+                // margin-right: 0.2rem;
+                border-radius: 1.5rem;
+
+                &:hover {
+                    background: darken($card, 2%);
+                }
+            }
+
+            h5 {
+                color: $placeholder;
+                margin-right: 0.2rem;
+            }
         }
 
         th {
@@ -242,16 +285,17 @@
 
         .thumbnail {
             display: none;
+            margin-right: 2rem;
+            margin-left: 0.5rem;
 
             @include extra-large-phone {
                 display: table-cell;
             }
 
-            margin-right: 2rem;
-
             img {
                 min-width: 12rem;
                 max-width: 12rem;
+                border-radius: 0.5rem;
             }
         }
 
