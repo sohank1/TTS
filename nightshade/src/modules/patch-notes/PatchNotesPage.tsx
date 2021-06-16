@@ -86,6 +86,28 @@ export const PatchNotesPage = () => {
                                             <th>
                                                 <h4 className="date">{p.date}</h4>
                                             </th>
+                                            <th>
+                                                <div className="interactions">
+                                                    <div className="likes">
+                                                        <Button>
+                                                            <img src="assets/icons/like.svg" />
+                                                        </Button>
+                                                        <h5>{p.likes}</h5>
+                                                    </div>
+                                                    <div className="dislikes">
+                                                        <Button>
+                                                            <img src="assets/icons/dislike.svg" />
+                                                        </Button>
+                                                        <h5>{p.dislikes}</h5>
+                                                    </div>
+                                                    <div className="comments">
+                                                        <Button>
+                                                            <img src="assets/icons/comment.svg" />
+                                                        </Button>
+                                                        <h5>{p.comments}</h5>
+                                                    </div>
+                                                </div>
+                                            </th>
                                         </tr>
                                     </a>
                                 </Link>

@@ -7,7 +7,7 @@
     @include tablet {
         width: 100%;
         max-width: 930px;
-        padding: 0 3rem 2.5rem;
+        padding: 0 1.5rem 2.5rem;
     }
 
     @include large-laptop {
@@ -130,14 +130,18 @@
         margin-top: 2rem;
         padding-bottom: 2rem;
 
-        @include tablet {
-            display: none;
+        @include laptop {
+            display: block;
         }
 
         table {
             display: block;
             width: 100%;
             border-collapse: collapse;
+
+            @include laptop {
+                display: table;
+            }
         }
 
         .search {
@@ -195,11 +199,19 @@
 
             &:not(.thumbnail, .info) {
                 display: none;
+
+                @include laptop {
+                    display: table-cell;
+                }
             }
         }
 
         .top-row {
             display: none;
+
+            @include laptop {
+                display: table-row;
+            }
         }
 
         tr {
@@ -210,6 +222,11 @@
 
             &:not(.top-row) {
                 // border-top: 1px solid $border;
+            }
+
+            @include laptop {
+                // display: table-row;
+                // width: 100%;
             }
         }
 
@@ -232,6 +249,10 @@
             margin-bottom: 1.5rem;
             text-align: center;
             width: 90%;
+
+            @include laptop {
+                display: none;
+            }
 
             & > * {
                 // flex: 0 0 20%;
@@ -281,6 +302,10 @@
         th {
             display: block;
             padding: 0;
+
+            @include laptop {
+                display: table-cell;
+            }
         }
 
         .thumbnail {
@@ -288,7 +313,12 @@
             margin-right: 2rem;
             margin-left: 0.5rem;
 
-            @include extra-large-phone {
+            @include laptop {
+                // padding-left: 2rem;
+                // padding-right: 2rem;
+            }
+
+            @include large-phone {
                 display: table-cell;
             }
 
