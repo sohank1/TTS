@@ -44,8 +44,8 @@ export const MetaController: NextPage<MetaControllerProps> = ({
 
             <meta name="og:type" content="website" />
             <meta name="og:site_name" content="TTS" />
-            <meta name="og:image" content={embed.image} />
-            <meta property="twitter:image" content={embed.image} />
+            {embed.image && <meta name="og:image" content={embed.image} />}
+            {embed.image && <meta property="twitter:image" content={embed.image} />}
 
             <meta property="twitter:card" content="summary_large_image" />
             <meta property="twitter:site" content="@TheTomatoHeads" />

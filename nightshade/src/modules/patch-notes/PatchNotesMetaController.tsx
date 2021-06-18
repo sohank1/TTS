@@ -10,6 +10,10 @@ const names = defaultPatchNotes
 
 export const PatchNotesMetaController = () => {
     return (
-        <MetaController title="Patch Notes" description={`See the newest patch notes from creators. See ${names}`} />
+        <MetaController
+            title="Patch Notes"
+            description={`See the newest patch notes from creators. See ${names}`}
+            embed={{ image: null }}
+        />
     );
 };
