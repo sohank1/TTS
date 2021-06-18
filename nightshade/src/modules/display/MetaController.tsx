@@ -20,7 +20,6 @@ export const MetaController: NextPage<MetaControllerProps> = ({
         image: "https://ttsclan.vercel.app/assets/preview.png",
     },
 }) => {
-    console.log(description);
     return (
         <Head>
             <meta property="og:locale" content="en-US" />
