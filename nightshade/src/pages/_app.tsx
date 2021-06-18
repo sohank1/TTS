@@ -50,8 +50,6 @@ export default function App({ Component, pageProps }: AppProps) {
                 />
             </Head>
 
-            <MetaController />
-
             <WebSocketProvider shouldConnect={true}>
                 <QueryClientProvider client={queryClient}>
                     <StylesProvider injectFirst>
