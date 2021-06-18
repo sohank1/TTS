@@ -39,7 +39,7 @@ export const MetaController: NextPage<MetaControllerProps> = ({
                     (k) => `,${k}`
                 )}`}
             />
-            <meta name="theme-color" content={embed.hexColor} />
+            <meta name="theme-color" content={embed.hexColor || "#ff3f3f"} />
 
             <meta name="og:type" content="website" />
             <meta name="og:site_name" content="TTS" />
