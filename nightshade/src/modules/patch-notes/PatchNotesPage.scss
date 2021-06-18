@@ -132,6 +132,8 @@
 
         @include laptop {
             display: block;
+            padding-left: 3rem;
+            padding-right: 3rem;
         }
 
         table {
@@ -149,6 +151,11 @@
             align-items: center;
             justify-content: center;
             padding-top: 1.5rem;
+
+            @include laptop {
+                width: 20rem;
+                justify-content: flex-start;
+            }
 
             .container {
                 position: relative;
@@ -191,17 +198,26 @@
         }
 
         th {
+            display: block;
             color: $table-th;
             font-weight: $bold;
-            padding: 1.5rem 0 1.5rem 1.8rem;
+            padding: 0;
             // border-bottom: 1px solid $border;
             vertical-align: middle;
 
             &:not(.thumbnail, .info) {
                 display: none;
+            }
 
-                @include laptop {
-                    display: table-cell;
+            @include laptop {
+                display: table-cell !important;
+                padding: 1.5rem 0 1.5rem 1rem;
+
+                &:nth-of-type(3) {
+                    padding-right: 1rem;
+                }
+                &:last-of-type {
+                    padding-right: 2rem;
                 }
             }
         }
@@ -211,6 +227,10 @@
 
             @include laptop {
                 display: table-row;
+
+                th {
+                    padding-top: 0.2rem;
+                }
             }
         }
 
@@ -221,12 +241,13 @@
             padding-top: 1rem;
 
             &:not(.top-row) {
-                // border-top: 1px solid $border;
+                @include laptop {
+                    border-top: 1px solid $border;
+                }
             }
 
             @include laptop {
-                // display: table-row;
-                // width: 100%;
+                display: table-row;
             }
         }
 
@@ -235,6 +256,10 @@
             height: 1px;
             border-width: 0;
             width: 90%;
+
+            @include laptop {
+                display: none;
+            }
         }
 
         .body {
@@ -299,33 +324,30 @@
             }
         }
 
-        th {
-            display: block;
-            padding: 0;
-
-            @include laptop {
-                display: table-cell;
-            }
-        }
-
         .thumbnail {
             display: none;
             margin-right: 2rem;
             margin-left: 0.5rem;
 
-            @include laptop {
-                // padding-left: 2rem;
-                // padding-right: 2rem;
+            @include extra-large-phone {
+                display: table-cell;
             }
 
-            @include large-phone {
-                display: table-cell;
+            @include laptop {
+                padding-right: 0;
+                padding-left: 0;
             }
 
             img {
                 min-width: 12rem;
                 max-width: 12rem;
                 border-radius: 0.5rem;
+            }
+        }
+
+        .info {
+            @include laptop {
+                padding-left: 2rem;
             }
         }
 
