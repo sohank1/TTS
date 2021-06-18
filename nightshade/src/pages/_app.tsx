@@ -11,6 +11,7 @@ import { useSaveLoginRedirectPath } from "../modules/auth/useSaveLoginRedirectPa
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "../lib/queryClient";
 import { HandleConnectionFailed } from "../modules/ws/HandleConnectionFailed";
+import { MetaController } from "../modules/display/MetaController";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -48,6 +49,8 @@ export default function App({ Component, pageProps }: AppProps) {
                     content="width=device-width, initial-scale=1, user-scalable=no, user-scalable=0"
                 />
             </Head>
+
+            <MetaController />
 
             <WebSocketProvider shouldConnect={true}>
                 <QueryClientProvider client={queryClient}>
