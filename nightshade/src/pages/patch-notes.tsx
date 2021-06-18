@@ -1,10 +1,14 @@
 import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
+import { PatchNotesMetaController } from "../modules/patch-notes/PatchNotesMetaController";
 import { PatchNotesPage } from "../modules/patch-notes/PatchNotesPage";
 
 export default function PatchNotes() {
     return (
-        <WaitForWsAndAuth>
-            <PatchNotesPage />
-        </WaitForWsAndAuth>
+        <>
+            <PatchNotesMetaController />
+            <WaitForWsAndAuth>
+                <PatchNotesPage />
+            </WaitForWsAndAuth>
+        </>
     );
 }
