@@ -9,8 +9,8 @@ export const defaultPatchNotes = [
         },
         date: "1/20/19",
         likes: 1,
-        dislikes: 4,
-        comments: 1,
+        dislikes: 328,
+        comments: 2,
     },
     {
         name: "Creeper's Turtle Zone Wars (v0.1 Beta) Release Notes",
