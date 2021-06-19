@@ -206,7 +206,7 @@
             vertical-align: middle;
 
             &:not(.thumbnail, .info) {
-                display: none;
+                display: none !important;
             }
 
             @include laptop {
