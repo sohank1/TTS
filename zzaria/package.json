@@ -43,7 +43,7 @@
     "dotenv": "^10.0.0",
     "express-fileupload": "^1.2.0",
     "express-session": "^1.17.1",
-    "jest": "27.0.5",
+    "jest": "27.4.7",
     "jsonwebtoken": "8.5.1",
     "mongoose": "^5.11.5",
     "prettier": "^2.3.0",
